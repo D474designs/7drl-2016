@@ -1,32 +1,44 @@
+var camera, ui, dungeon; // Globals
 
-var dungeon = new Dungeon();
-var pl = new Actor(dungeon.start[0], dungeon.start[1]);
-dungeon.actors.push(pl);
-resetDisplay();
-var ui = new UI();
+window.onload = function() {
+	try {
+		camera = {};
+		dungeon = new Dungeon();
+		var pl = new Actor(dungeon.start[0], dungeon.start[1]);
+		dungeon.actors.push(pl);
+		dungeon.updateVisibility(pl);
+		ui = new UI(pl);
 
-ui.msg("Welcome!");
-ui.msg("You are likely to be eaten by a grue.");
+		if (CONFIG.debug) $("#debug").style.display = "block";
 
-function onClick(e) {
-	var coords = display.eventToPosition(e);
-	var x = coords[0] + camera.pos[0]
-	var y = coords[1] + camera.pos[1];
-	var target = dungeon.getTile(x, y);
-	if (!target.walkable) return;
-	dungeon.findPath(x, y, pl);
+		var frameTime = performance.now();
+		function tick(time) {
+			var dt = time - frameTime;
+			frameTime = time;
+			ui.fps = 0.1 * (1000 / dt) + 0.9 * ui.fps;
+
+			var t0, t1, t2;
+			if (CONFIG.debug) t0 = performance.now();
+			dungeon.update();
+			if (CONFIG.debug) t1 = performance.now();
+			camera.x = pl.pos[0];
+			camera.y = pl.pos[1];
+			ui.render(camera, dungeon);
+			if (CONFIG.debug) t2 = performance.now();
+			ui.update();
+			if (CONFIG.debug) {
+				t3 = performance.now();
+				$("#time-update").innerHTML = (t1-t0).toFixed(2);
+				$("#time-render").innerHTML = (t2-t1).toFixed(2);
+				$("#time-ui").innerHTML = (t3-t2).toFixed(2);
+			}
+			requestAnimationFrame(tick);
+		}
+		requestAnimationFrame(tick);
+
+	} catch(e) {
+		$("#error").style.display = "block";
+		$("#error").innerHTML = "ERROR: " + e.message + "\n" + e.stack;
+		console.error(e);
+	}
 };
-
-function render() {
-	display.clear();
-	camera.pos[0] = pl.pos[0] - camera.center[0];
-	camera.pos[1] = pl.pos[1] - camera.center[1];
-	dungeon.draw(camera, display, pl);
-	ui.update();
-}
-
-window.setInterval(function () {
-	dungeon.update();
-	render();
-	display.getContainer().style.cursor = pl.path.length ? "wait" : "crosshair";
-}, 75);

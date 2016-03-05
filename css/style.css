@@ -1,14 +1,50 @@
 
 body {
+	padding: 0;
+	margin: 0;
 	color: whitesmoke;
 	background-color: #111;
 	font-family: monospace;
 	font-size: 12px;
 }
 
-#messages {
+canvas {
 	position: absolute;
-	bottom: 5px;
+	z-index: -1;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#debug {
+	display: none;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 5px;
+}
+
+#messages {
+	position: fixed;
+	bottom: 0;
+	max-width: 70%;
+	padding: 8px 12px;
 	text-shadow: black 0 0 2px;
 	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+	pointer-events: none;
+}
+
+.msg0 { color: #fff; }
+.msg1 { color: #999; }
+.msg2 { color: #777; }
+.msg3 { color: #555; }
+.msg4 { color: #333; }
+
+.right { float: right; }
+.left { float: left; }
+
 }
