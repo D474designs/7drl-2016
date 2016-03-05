@@ -49,10 +49,10 @@ Actor.prototype.moveTo = function(x, y) {
 	//if (!target.walkable) return;
 	if (x == this.pos[0] && y == this.pos[1]) {
 		this.done = true; // Skip turn
-		return;
+		return true;
 	}
-	if (!world.dungeon.getPassable(x, y)) return;
-	world.dungeon.findPath(x, y, this);
+	if (!world.dungeon.getPassable(x, y)) return false;
+	return world.dungeon.findPath(x, y, this);
 };
 
 Actor.prototype.move = function(dx, dy) {

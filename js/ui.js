@@ -5,7 +5,7 @@ function UI(player) {
 	this.messagesDirty = false;
 	this.display = null;
 	this.fps = 0;
-	this.mouse = { x: 0, y: 0 };
+	this.mouse = { x: 0, y: 0, downTime: 0, longpress: false };
 	this.pressed = [];
 	this.soundsEnabled = true;
 	this.vibrationEnabled = true;
@@ -95,18 +95,35 @@ function UI(player) {
 };
 
 UI.prototype.onClick = function(e) {
+	e.preventDefault();
 	var coords = this.display.eventToPosition(e);
 	var x = coords[0] + camera.pos[0];
 	var y = coords[1] + camera.pos[1];
-	if (!world.dungeon.getPassable(x, y)) return;
-	if (world.dungeon.findPath(x, y, this.actor))
+	if (ui.actor.visibility(x, y) < 0.1)
+		return;
+	if (e.type === "contextmenu" || this.mouse.longpress) {
+		var thing = world.dungeon.getTile(x, y);
+		var desc = thing.getDescription ? thing.getDescription() : thing.desc;
+		this.msg(desc ? desc : (thing.name ? thing.name : "Nothing interesting..."));
+	} else if (ui.actor.moveTo(x, y)) {
 		this.snd("click");
+	}
 };
 
 UI.prototype.onMouseMove = function(e) {
 	var coords = this.display.eventToPosition(e);
 	this.mouse.x = coords[0] + camera.pos[0];
 	this.mouse.y = coords[1] + camera.pos[1];
+};
+
+UI.prototype.onMouseDown = function(e) {
+	this.mouse.downTime = Date.now();
+	this.mouse.longpress = false;
+};
+
+UI.prototype.onMouseUp = function(e) {
+	var upTime = Date.now();
+	this.mouse.longpress = (upTime - this.mouse.downTime < 500) ? false : true;
 };
 
 UI.prototype.onKeyDown = function(e) {
@@ -163,7 +180,10 @@ UI.prototype.resetDisplay = function() {
 	});
 	document.body.appendChild(this.display.getContainer());
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
+	this.display.getContainer().addEventListener("contextmenu", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("mousemove", this.onMouseMove.bind(this), true);
+	this.display.getContainer().addEventListener("mousedown", this.onMouseDown.bind(this), true);
+	this.display.getContainer().addEventListener("mouseup", this.onMouseUp.bind(this), true);
 	world.dungeon.needsRender = true;
 };
 

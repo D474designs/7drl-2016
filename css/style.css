@@ -70,6 +70,12 @@ canvas {
 	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 3px;
 	pointer-events: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .msg0 { color: #fff; }
@@ -105,7 +111,7 @@ h1 {
 	cursor: pointer;
 	border: 1px solid black;
 	text-decoration: none;
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -186,6 +192,12 @@ h1 {
 	position: fixed;
 	top: 10px;
 	left: 10px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .sprite {
