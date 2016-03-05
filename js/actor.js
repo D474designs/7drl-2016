@@ -67,7 +67,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		if (enemy) {
 			this.path = [];
 			if (this.faction != enemy.faction) {
-				// TODO: this.attack(thing);
+				this.attack(enemy);
 				return true;
 			}
 			return false;
@@ -114,6 +114,26 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		return true;
 	}
 	return false;
+};
+
+Actor.prototype.attack = function(target) {
+	var hit = randInt(0, 1); // TODO
+	if (hit) {
+		var damage = 1; // TODO
+		target.health -= damage;
+		if (target.health <= 0) {
+			target.health = 0;
+			this.stats.kills++;
+			ui.msg("You killed " + target.name + "!", this);
+			ui.msg(this.name + " kills you!", target);
+		} else {
+			ui.msg("You hit " + target.name + " for " + damage + "!", this);
+			ui.msg(this.name + " hit you for " + damage + "!", target);
+		}
+	} else {
+		ui.msg("You missed " + target.name + "!", this);
+		ui.msg(this.name + " missed you!", target);
+	}
 };
 
 Actor.prototype.act = function() {
