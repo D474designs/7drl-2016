@@ -258,6 +258,12 @@ var SOUNDS = {
 	},
 	door_open: {
 		src: "assets/sounds/door_open.ogg"
+	},
+	hit: {
+		src: "assets/sounds/hit.ogg"
+	},
+	miss: {
+		src: "assets/sounds/miss.ogg"
 	}
 };
 

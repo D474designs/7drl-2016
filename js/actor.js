@@ -90,7 +90,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 			}
 			world.dungeon.removeItem(item);
 			ui.msg("Picked up a " + item.name + ".", this);
-			ui.snd("pickup");
+			ui.snd("pickup", this);
 			return true;
 		}
 		var object = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
@@ -131,6 +131,8 @@ Actor.prototype.attack = function(target) {
 	if (hit) {
 		var damage = 1; // TODO
 		target.health -= damage;
+		ui.snd("hit", this);
+		ui.snd("hit", target);
 		if (target.health <= 0) {
 			target.health = 0;
 			this.stats.kills++;
@@ -145,6 +147,8 @@ Actor.prototype.attack = function(target) {
 	} else {
 		ui.msg("You missed " + target.name + "!", this);
 		ui.msg(this.name + " missed you!", target);
+		ui.snd("miss", this);
+		ui.snd("miss", target);
 	}
 };
 
