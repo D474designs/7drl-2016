@@ -6,10 +6,13 @@ function UI(player) {
 	this.display = null;
 	this.fps = 0;
 	this.mouse = { x: 0, y: 0 };
+	this.pressed = [];
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.hash.indexOf("#debug") != -1;
 	window.addEventListener('resize', this.resetDisplay.bind(this));
+	document.addEventListener('keydown', this.onKeyDown.bind(this), false);
+	document.addEventListener('keyup', this.onKeyUp.bind(this), false);
 };
 
 UI.prototype.onClick = function(e) {
@@ -24,6 +27,37 @@ UI.prototype.onMouseMove = function(e) {
 	var coords = this.display.eventToPosition(e);
 	this.mouse.x = coords[0] + camera.pos[0];
 	this.mouse.y = coords[1] + camera.pos[1];
+};
+
+UI.prototype.onKeyDown = function(e) {
+	ui.pressed[e.keyCode] = true;
+	if (this.pressed[ROT.VK_CONTROL] || this.pressed[ROT.VK_ALT]) // CTRL/ALT for browser hotkeys
+		return;
+	if (e.keyCode >= ROT.VK_F1 && e.keyCode <= ROT.VK_F12) // F1-F12
+		return;
+
+	if (e.keyCode == ROT.VK_LEFT || e.keyCode == ROT.VK_NUMPAD4 || e.keyCode == ROT.VK_H)
+		this.actor.move(-1, 0);
+	else if (e.keyCode == ROT.VK_RIGHT || e.keyCode == ROT.VK_NUMPAD6 || e.keyCode == ROT.VK_L)
+		this.actor.move(1, 0);
+	else if (e.keyCode == ROT.VK_UP || e.keyCode == ROT.VK_NUMPAD8 || e.keyCode == ROT.VK_K)
+		this.actor.move(0, -1);
+	else if (e.keyCode == ROT.VK_DOWN || e.keyCode == ROT.VK_NUMPAD2 || e.keyCode == ROT.VK_J)
+		this.actor.move(0, 1);
+	else if (e.keyCode == ROT.VK_INSERT || e.keyCode == ROT.VK_NUMPAD7 || e.keyCode == ROT.VK_Y)
+		this.actor.move(-1, -1);
+	else if (e.keyCode == ROT.VK_PAGE_UP || e.keyCode == ROT.VK_NUMPAD9 || e.keyCode == ROT.VK_U)
+		this.actor.move(1, -1);
+	else if (e.keyCode == ROT.VK_DELETE || e.keyCode == ROT.VK_NUMPAD1 || e.keyCode == ROT.VK_B)
+		this.actor.move(-1, 1);
+	else if (e.keyCode == ROT.VK_PAGE_DOWN || e.keyCode == ROT.VK_NUMPAD3 || e.keyCode == ROT.VK_N)
+		this.actor.move(1, 1);
+
+	e.preventDefault();
+};
+
+UI.prototype.onKeyUp = function(e) {
+	this.pressed[e.keyCode] = false;
 };
 
 UI.prototype.resetDisplay = function() {
@@ -50,7 +84,7 @@ UI.prototype.resetDisplay = function() {
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("mousemove", this.onMouseMove.bind(this), true);
 	dungeon.needsRender = true;
-}
+};
 
 UI.prototype.msg = function(msg, source) {
 	if (source === undefined || source == this.actor) {
