@@ -9,6 +9,7 @@ function Actor(x, y, def) {
 	this.fov = [];
 	this.vision = def.vision || 8;
 	this.health = def.health || 3;
+	this.maxHealth = this.health;
 	this.inv = {
 		gems: 0,
 		keys: 0
@@ -75,28 +76,29 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		// Check items
 		var item = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_ITEM);
 		if (checkItems && item && this.path.length == 0) {
-			if (item.name == "gem") {
+			if (item.id == "gem") {
 				this.inv.gems++;
-				world.dungeon.removeItem(item);
-				ui.msg("Picked up a gem.", this);
-				ui.snd("pickup");
 				triggerAnimation($(".gem"), "tada");
-				return true;
-			} else if (item.name == "key") {
+			} else if (item.id == "key") {
 				this.inv.keys++;
-				world.dungeon.removeItem(item);
-				ui.msg("Picked up a key.", this);
-				ui.snd("pickup");
 				triggerAnimation($(".key"), "tada")
-				return true;
+			} else if (item.id == "potion_health") {
+				if (this.health >= this.maxHealth)
+					return true;
+				this.health++;
+				triggerAnimation($(".heart"), "tada");
 			}
+			world.dungeon.removeItem(item);
+			ui.msg("Picked up a " + item.name + ".", this);
+			ui.snd("pickup");
+			return true;
 		}
 		var object = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
 		if (object) {
-			if (object.name == "door_wood") {
+			if (object.id == "door_wood") {
 				world.dungeon.setTile(waypoint[0], waypoint[1], "door_wood_open", Dungeon.LAYER_STATIC);
 				ui.snd("door_open", this);
-			} else if (object.name == "door_metal") {
+			} else if (object.id == "door_metal") {
 				if (this.inv.keys > 0) {
 					this.inv.keys--;
 					world.dungeon.setTile(waypoint[0], waypoint[1], "door_metal_open", Dungeon.LAYER_STATIC);

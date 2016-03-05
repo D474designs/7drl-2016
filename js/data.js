@@ -112,8 +112,24 @@ var TILES = {
 		walkable: true,
 		transparent: true
 	},
+	coin: {
+		tileCoords: [ 8, 9 ],
+		walkable: true,
+		transparent: true
+	},
 	gem: {
 		tileCoords: [ 11, 9 ],
+		walkable: true,
+		transparent: true
+	},
+	ring: {
+		tileCoords: [ 14, 9 ],
+		walkable: true,
+		transparent: true
+	},
+	potion_health: {
+		name: "health potion",
+		tileCoords: [ 14, 11 ],
 		walkable: true,
 		transparent: true
 	},
@@ -161,8 +177,7 @@ var TILES = {
 	},
 
 	tileset: {},
-	tilemap: {},
-	tilearray: []
+	tilemap: {}
 };
 
 (function() {
@@ -192,13 +207,12 @@ var TILES = {
 		if (!tile.tileCoords) continue;
 		if (count >= tileChs.length)
 			throw new Error("Out of tile characters!");
-		tile.name = i;
-		tile.id = count;
+		tile.id = i;
+		tile.name = tile.name || i;
 		tile.ch = tileChs[count++];
 		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap) * CONFIG.tileMag;
 		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap) * CONFIG.tileMag;
 		TILES.tilemap[tile.ch] = tile.tileCoords;
-		TILES.tilearray[tile.id] = tile;
 	}
 })();
 

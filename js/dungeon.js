@@ -31,7 +31,7 @@ Dungeon.prototype.generate = function() {
 	var keysNeeded = 0;
 	var doorCallback = (function(x, y) {
 		var door = doors.random();
-		if (door.name == "door_metal")
+		if (door.id == "door_metal")
 			keysNeeded++;
 		this.setTile(x, y, door, Dungeon.LAYER_STATIC);
 	}).bind(this);
@@ -69,7 +69,10 @@ Dungeon.prototype.generate = function() {
 		}
 	}).bind(this);
 	sprinkleItems(TILES.key, keysNeeded);
-	sprinkleItems(TILES.gem, 10);
+	sprinkleItems(TILES.coin, 10);
+	sprinkleItems(TILES.gem, 5);
+	sprinkleItems(TILES.ring, 2);
+	sprinkleItems(TILES.potion_health, 6);
 
 	// Mobs
 	for (var i = 0; i < 10; ++i) {
