@@ -7,6 +7,7 @@ function UI(player) {
 	this.fps = 0;
 	this.mouse = { x: 0, y: 0 };
 	this.pressed = [];
+	this.soundsEnabled = true;
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.hash.indexOf("#debug") != -1;
@@ -30,7 +31,8 @@ UI.prototype.onClick = function(e) {
 	var x = coords[0] + camera.pos[0];
 	var y = coords[1] + camera.pos[1];
 	if (!dungeon.getPassable(x, y)) return;
-	dungeon.findPath(x, y, this.actor);
+	if (dungeon.findPath(x, y, this.actor))
+		this.snd("click");
 };
 
 UI.prototype.onMouseMove = function(e) {
@@ -101,6 +103,13 @@ UI.prototype.msg = function(msg, source) {
 		this.messages.push(msg);
 		this.messagesDirty = true;
 	}
+};
+
+UI.prototype.snd = function(sound, source) {
+	if (!this.soundsEnabled || (source !== undefined && source !== this.actor))
+		return;
+	var audio = typeof sound == "string" ? SOUNDS[sound].audio : sound.audio;
+	audio.play();
 };
 
 UI.prototype.update = function() {

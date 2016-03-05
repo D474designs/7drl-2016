@@ -79,12 +79,14 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 				this.inv.gems++;
 				dungeon.removeItem(item);
 				ui.msg("Picked up a gem.", this);
+				ui.snd("pickup");
 				triggerAnimation($(".gem"), "tada");
 				return true;
 			} else if (item.name == "key") {
 				this.inv.keys++;
 				dungeon.removeItem(item);
 				ui.msg("Picked up a key.", this);
+				ui.snd("pickup");
 				triggerAnimation($(".key"), "tada")
 				return true;
 			}
@@ -93,12 +95,15 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		if (object) {
 			if (object.name == "door_wood") {
 				dungeon.setTile(waypoint[0], waypoint[1], "door_wood_open", Dungeon.LAYER_STATIC);
+				ui.snd("door_open", this);
 			} else if (object.name == "door_metal") {
 				if (this.inv.keys > 0) {
 					this.inv.keys--;
 					dungeon.setTile(waypoint[0], waypoint[1], "door_metal_open", Dungeon.LAYER_STATIC);
+					ui.snd("door_open", this);
 				} else {
-					ui.msg("The door is locked! Find a key.");
+					ui.msg("The door is locked! Find a key.", this);
+					ui.snd("door_locked", this);
 				}
 				this.path = [];
 				return true;

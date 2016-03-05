@@ -230,3 +230,26 @@ var MOBS = {
 	for (var i in MOBS)
 		MOBS[i].id = i;
 })();
+
+
+var SOUNDS = {
+	click: {
+		src: "assets/sounds/click.ogg"
+	},
+	pickup: {
+		src: "assets/sounds/pickup.ogg"
+	},
+	door_locked: {
+		src: "assets/sounds/door_locked.ogg"
+	},
+	door_open: {
+		src: "assets/sounds/door_open.ogg"
+	}
+};
+
+(function() {
+	for (var i in SOUNDS) {
+		SOUNDS[i].id = i;
+		SOUNDS[i].audio = new Audio(SOUNDS[i].src);
+	}
+})();
