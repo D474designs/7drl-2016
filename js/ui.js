@@ -8,12 +8,15 @@ function UI(player) {
 	this.mouse = { x: 0, y: 0 };
 	this.pressed = [];
 	this.soundsEnabled = true;
+	this.vibrationEnabled = true;
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.hash.indexOf("#debug") != -1;
 	window.addEventListener('resize', this.resetDisplay.bind(this));
 	document.addEventListener('keydown', this.onKeyDown.bind(this), false);
 	document.addEventListener('keyup', this.onKeyUp.bind(this), false);
+
+	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 	if (!CONFIG.touch) {
 		[].forEach.call(document.querySelectorAll(".btn"), function(elem) {
@@ -110,6 +113,13 @@ UI.prototype.snd = function(sound, source) {
 		return;
 	var audio = typeof sound == "string" ? SOUNDS[sound].audio : sound.audio;
 	audio.play();
+};
+
+UI.prototype.vibrate = function(pattern, source) {
+	if (!this.vibrationEnabled || (source !== undefined && source !== this.actor))
+		return;
+	if (navigator.vibrate)
+		navigator.vibrate(pattern);
 };
 
 UI.prototype.update = function() {

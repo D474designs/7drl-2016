@@ -131,9 +131,11 @@ Actor.prototype.attack = function(target) {
 			this.stats.kills++;
 			ui.msg("You killed " + target.name + "!", this);
 			ui.msg(this.name + " kills you!", target);
+			ui.vibrate(300, target);
 		} else {
 			ui.msg("You hit " + target.name + " for " + damage + "!", this);
-			ui.msg(this.name + " hit you for " + damage + "!", target);
+			ui.msg(this.name + " hits you for " + damage + "!", target);
+			ui.vibrate(75, target);
 		}
 	} else {
 		ui.msg("You missed " + target.name + "!", this);
