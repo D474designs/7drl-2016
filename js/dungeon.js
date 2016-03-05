@@ -9,6 +9,7 @@ function Dungeon() {
 	for (var i = 0; i < Dungeon.LAYER_COUNT; ++i)
 		this.map[i] = new Array(this.width * this.height);
 	this.start = [0, 0];
+	this.end = [0, 0];
 	this.needsRender = false;
 }
 
@@ -33,16 +34,18 @@ Dungeon.prototype.generate = function() {
 			keysNeeded++;
 		this.setTile(x, y, door, Dungeon.LAYER_STATIC);
 	}).bind(this);
+	this.start = rooms[0].getCenter();
+	this.end = rooms[rooms.length-1].getCenter();
 	for (var i = 0; i < rooms.length; i++) {
 		rooms[i].getDoors(doorCallback);
 		for (var y = rooms[i].getTop(); y < rooms[i].getBottom(); ++y) {
 			for (var x = rooms[i].getLeft(); x < rooms[i].getRight(); ++x) {
-				freeTiles.push([x, y]);
+				if ((x != this.start[0] || y != this.start[1]) &&
+					(x != this.end[0] || y != this.end[1]))
+						freeTiles.push([x, y]);
 			}
 		}
 	}
-	this.start = rooms[0].getCenter();
-	this.end = rooms[rooms.length-1].getCenter();
 
 	shuffle(freeTiles);
 
