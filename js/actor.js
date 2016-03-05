@@ -38,6 +38,18 @@ Actor.prototype.act = function() {
 				return true;
 			}
 		}
+		var object = dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
+		if (object) {
+			if (object.name == "door_wood") {
+				dungeon.setTile(waypoint[0], waypoint[1], "door_wood_open", Dungeon.LAYER_STATIC);
+			} else if (object.name == "door_metal") {
+				if (this.inv.keys > 0) {
+					this.inv.keys--;
+					dungeon.setTile(waypoint[0], waypoint[1], "door_metal_open", Dungeon.LAYER_STATIC);
+				} else {
+					ui.msg("The door is locked! Find a key.");
+				}
+				this.path = [];
 				return true;
 			}
 		}
