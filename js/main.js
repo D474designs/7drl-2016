@@ -1,9 +1,10 @@
-var camera, ui, dungeon; // Globals
+var camera, ui, dungeon, world; // Globals
 
 window.onload = function() {
 	try {
 		camera = {};
-		dungeon = new Dungeon();
+		world = new World();
+		dungeon = world.dungeon; // TODO: Temp
 		dungeon.generate();
 		var pl = new Actor(dungeon.start[0], dungeon.start[1]);
 		dungeon.actors.push(pl);
@@ -19,7 +20,7 @@ window.onload = function() {
 
 			var t0, t1, t2;
 			if (CONFIG.debug) t0 = performance.now();
-			dungeon.update();
+			world.update();
 			if (CONFIG.debug) t1 = performance.now();
 			camera.x = pl.pos[0];
 			camera.y = pl.pos[1];

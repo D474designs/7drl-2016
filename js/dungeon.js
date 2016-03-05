@@ -121,13 +121,13 @@ Dungeon.prototype.findPath = function(x, y, actor) {
 };
 
 Dungeon.prototype.update = function() {
+	for (var i = 0, l = this.map[Dungeon.LAYER_ACTOR].length; i < l; ++i)
+		this.map[Dungeon.LAYER_ACTOR][i] = null;
 	for (var i = 0, l = this.actors.length; i < l; ++i) {
 		var actor = this.actors[i];
-		if (actor.act()) {
-			actor.updateVisibility();
-			this.needsRender = true;
-		}
+		this.map[Dungeon.LAYER_ACTOR][actor.pos[0] + actor.pos[1] * this.width] = actor;
 	}
+	this.needsRender = true;
 };
 
 Dungeon.prototype.draw = function(camera, display, player) {
@@ -135,12 +135,6 @@ Dungeon.prototype.draw = function(camera, display, player) {
 		return;
 	this.needsRender = false;
 	display.clear();
-	for (var i = 0, l = this.map[Dungeon.LAYER_ACTOR].length; i < l; ++i)
-		this.map[Dungeon.LAYER_ACTOR][i] = null;
-	for (var i = 0, l = this.actors.length; i < l; ++i) {
-		var actor = this.actors[i];
-		this.map[Dungeon.LAYER_ACTOR][actor.pos[0] + actor.pos[1] * this.width] = actor;
-	}
 	var w = display.getOptions().width;
 	var h = display.getOptions().height;
 	for (var j = 0; j < h; ++j) {

@@ -8,7 +8,6 @@ function Actor(x, y, def) {
 	this.path = [];
 	this.fov = [];
 	this.vision = def.vision || 8;
-	this.moveTimer = 0;
 	this.health = def.health || 3;
 	this.inv = {
 		gems: 0,
@@ -19,6 +18,10 @@ function Actor(x, y, def) {
 		target: null
 	};
 	this.faction = def.ai ? 0 : 1;
+	this.stats = {
+		turns: 0,
+		kills: 0
+	};
 	this.updateVisibility();
 }
 
@@ -56,7 +59,7 @@ Actor.prototype.move = function(dx, dy) {
 };
 
 Actor.prototype.doPath = function(checkItems, checkMapChange) {
-	if (this.path.length && Date.now() > this.moveTimer) {
+	if (this.path.length) {
 		// Pathing
 		var waypoint = this.path.shift();
 		// Check enemy
