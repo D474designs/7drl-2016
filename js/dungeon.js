@@ -10,7 +10,6 @@ function Dungeon() {
 		this.map[i] = new Array(this.width * this.height);
 	this.start = [0, 0];
 	this.needsRender = false;
-	this.generate();
 }
 
 Dungeon.LAYER_BG = 0;
@@ -55,6 +54,7 @@ Dungeon.prototype.generate = function() {
 
 	this.setTile(this.end[0], this.end[1], TILES.stairs_down, Dungeon.LAYER_STATIC);
 
+	// Items
 	var sprinkleItems = (function(item, n) {
 		for (var i = 0; i < n; ++i) {
 			var item = clone(item);
@@ -65,6 +65,13 @@ Dungeon.prototype.generate = function() {
 	}).bind(this);
 	sprinkleItems(TILES.key, keysNeeded);
 	sprinkleItems(TILES.gem, 10);
+
+	// Mobs
+	for (var i = 0; i < 10; ++i) {
+		var pos = freeTiles.pop();
+		var mob = new Actor(pos[0], pos[1], randProp(MOBS));
+		this.actors.push(mob);
+	}
 
 	this.needsRender = true;
 };

@@ -4,9 +4,9 @@ window.onload = function() {
 	try {
 		camera = {};
 		dungeon = new Dungeon();
+		dungeon.generate();
 		var pl = new Actor(dungeon.start[0], dungeon.start[1]);
 		dungeon.actors.push(pl);
-		dungeon.updateVisibility(pl);
 		ui = new UI(pl);
 
 		if (CONFIG.debug) $("#debug").style.display = "block";
