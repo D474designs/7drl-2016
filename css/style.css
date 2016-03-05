@@ -64,4 +64,17 @@ canvas {
 .right { float: right; }
 .left { float: left; }
 
+#status { position: absolute; }
+
+.sprite {
+	background-image: url(../assets/tileset.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.gem { background-position: calc(-16px * 11) calc(-16px * 9); }
+.key { background-position: calc(-16px * 8) calc(-16px * 8); }
+.heart { background: none; font-size: 16px; text-align: center; color: red; }
+
 }

@@ -66,6 +66,10 @@ UI.prototype.update = function() {
 		this.messagesDirty = false;
 	}
 
+	$("#health").innerHTML = this.actor.health;
+	$("#gems").innerHTML = this.actor.inv.gems;
+	$("#keys").innerHTML = this.actor.inv.keys;
+
 	$("#fps").innerHTML = Math.round(this.fps);
 
 	this.display.getContainer().style.cursor = this.actor.path.length ? "wait" : "crosshair";
