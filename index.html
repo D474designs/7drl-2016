@@ -11,12 +11,8 @@
 
 	<div id="messages"></div>
 
-	<script>
-		function $(selector) { return document.querySelector(selector); }
-		if (!String.prototype.contains)
-			String.prototype.contains = function() { return String.prototype.indexOf.apply(this, arguments) !== -1; };
-	</script>
 	<script src="libs/rot.min.js"></script>
+	<script src="js/utils.js"></script>
 	<script src="js/data.js"></script>
 	<script src="js/ui.js"></script>
 	<script src="js/actor.js"></script>
