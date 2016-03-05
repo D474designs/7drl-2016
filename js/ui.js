@@ -9,6 +9,7 @@ function UI(player) {
 	this.pressed = [];
 	this.soundsEnabled = true;
 	this.vibrationEnabled = true;
+	this.characterChoice = null;
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.search.indexOf("?debug") != -1;
@@ -41,6 +42,7 @@ function UI(player) {
 			else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
 		}
 	}
+	$("#new-fullscreen").addEventListener("click", toggleFullscreen, false);
 	$("#pausemenu-fullscreen").addEventListener("click", toggleFullscreen, false);
 	$("#pausemenu-sounds").addEventListener("click", function() {
 		ui.soundsEnabled = !ui.soundsEnabled;
@@ -56,19 +58,38 @@ function UI(player) {
 	$("#death-restart").addEventListener("click", function() {
 		window.location.reload();
 	}, false);
+	$("#new-male").addEventListener("click", function() {
+		this.classList.add("btn-selected");
+		$("#new-female").classList.remove("btn-selected");
+		$("#new-ok").classList.remove("btn-disabled");
+		ui.characterChoice = "player_male";
+	}, false);
+	$("#new-female").addEventListener("click", function() {
+		this.classList.add("btn-selected");
+		$("#new-male").classList.remove("btn-selected");
+		$("#new-ok").classList.remove("btn-disabled");
+		ui.characterChoice = "player_female";
+	}, false);
+	$("#new-ok").addEventListener("click", function() {
+		ui.actor = world.create();
+	}, false);
 
 	function closeAllMenus() {
 		$(".modal", function (elem) { elem.style.display = "none"; });
 	}
 
-	function handleHash() {
+	var handleHash = (function() {
 		var hash = window.location.hash;
 		closeAllMenus();
-		if (hash.length < 2 || hash == "#game")
+		if (hash.length < 2 || (hash == "#game" && this.characterChoice === null)) {
+			window.location.hash = "#new";
+			return;
+		}
+		if (hash == "#game")
 			return;
 		var menudiv = $(hash);
 		if (menudiv) menudiv.style.display = "block";
-	}
+	}).bind(this);
 	window.addEventListener("hashchange", handleHash, true);
 	handleHash();
 };
@@ -182,6 +203,9 @@ UI.prototype.update = function() {
 		this.messagesDirty = false;
 	}
 
+	if (!this.actor)
+		return;
+
 	$("#health").innerHTML = this.actor.health;
 	$("#gems").innerHTML = this.actor.inv.gems;
 	$("#keys").innerHTML = this.actor.inv.keys;
@@ -204,6 +228,8 @@ UI.prototype.update = function() {
 };
 
 UI.prototype.render = function(camera, dungeon) {
+	if (!this.actor)
+		return;
 	camera.pos[0] = this.actor.pos[0] - camera.center[0];
 	camera.pos[1] = this.actor.pos[1] - camera.center[1];
 	world.dungeon.draw(camera, this.display, this.actor);

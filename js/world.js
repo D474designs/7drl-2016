@@ -9,13 +9,25 @@ function World() {
 	this.dungeon = this.maps.start;
 	this.currentActorIndex = 0;
 	this.roundTimer = 0;
-	this.running = true;
+	this.running = false;
 
 	if (debugDisplay)
 		for (var j = 0; j < this.dungeon.height; ++j)
 			for (var i = 0; i < this.dungeon.width; ++i)
 				if (!this.dungeon.map[i + j * this.dungeon.width].walkable)
 					debugDisplay.draw(i, j, "#");
+}
+
+World.prototype.create = function() {
+	this.dungeon.generate();
+	var def = {
+		ch: TILES[ui.characterChoice].ch,
+		health: 10
+	}
+	var pl = new Actor(this.dungeon.start[0], this.dungeon.start[1], def);
+	this.dungeon.actors.push(pl);
+	this.running = true;
+	return pl;
 }
 
 World.prototype.update = function() {
