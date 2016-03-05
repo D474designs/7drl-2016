@@ -13,6 +13,16 @@ function UI(player) {
 	window.addEventListener('resize', this.resetDisplay.bind(this));
 	document.addEventListener('keydown', this.onKeyDown.bind(this), false);
 	document.addEventListener('keyup', this.onKeyUp.bind(this), false);
+
+	if (!CONFIG.touch) {
+		[].forEach.call(document.querySelectorAll(".btn"), function(elem) {
+			elem.classList.add("btn-no-touch");
+		});
+	}
+
+	$("#death-restart").addEventListener("click", function() {
+		window.location.reload();
+	}, false);
 };
 
 UI.prototype.onClick = function(e) {
@@ -133,4 +143,11 @@ UI.prototype.render = function(camera, dungeon) {
 	camera.pos[0] = this.actor.pos[0] - camera.center[0];
 	camera.pos[1] = this.actor.pos[1] - camera.center[1];
 	dungeon.draw(camera, this.display, this.actor);
+};
+
+UI.prototype.die = function() {
+	var stats = ui.actor.stats;
+	$("#death-turns").innerHTML = Math.round(stats.turns);
+	$("#death-kills").innerHTML = Math.round(stats.kills);
+	$("#death-screen").style.display = "block";
 };

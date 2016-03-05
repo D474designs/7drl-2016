@@ -64,6 +64,98 @@ canvas {
 .right { float: right; }
 .left { float: left; }
 
+h1 {
+	font-size: 2em;
+	padding: 16px 0 16px 0;
+	margin: 0px;
+}
+
+.btn {
+	display: inline-block;
+	height: 48px;
+	line-height: 48px;
+	margin: 6px 4px 3px 0px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #222;
+	cursor: pointer;
+	border: 1px solid black;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.btn-selected {
+	border: 1px solid white;
+}
+
+.btn-no-touch:hover {
+	/*border: 1px solid white;*/
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.btn:active {
+	-webkit-transform: scale(0.85);
+	-moz-transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-o-transform: scale(0.85);
+	transform: scale(0.85);
+}
+
+.btn-disabled {
+	pointer-events: none;
+	color: #444 !important;
+}
+
+.btn-square {
+	width: 48px;
+	font-size: 48px;
+}
+
+.btn-text {
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 24px;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0, 0.8);
+	z-index: 1000;
+	/*opacity: 0;
+	-webkit-transition: opacity 200ms ease-in;
+	-moz-transition: opacity 200ms ease-in;
+	transition: opacity 200ms ease-in;
+	pointer-events: none;*/
+}
+
+.menu {
+	margin: 3% auto;
+	width: 90%;
+	max-width: 600px;
+}
+
+#death-screen {
+	background-color: rgba(64, 0, 0, 0.7);
+	text-align: center;
+}
+
+#death-screen > div {
+	top: 35%;
+}
+
 #status { position: absolute; }
 
 .sprite {

@@ -31,7 +31,7 @@ World.prototype.update = function() {
 			this.dungeon.actors.splice(this.currentActorIndex, 1);
 			if (actor == ui.actor) {
 				this.running = false;
-				// TODO: ui.die();
+				ui.die();
 				return;
 			}
 		} else this.currentActorIndex++;
