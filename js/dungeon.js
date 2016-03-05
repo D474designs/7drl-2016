@@ -24,20 +24,47 @@ Dungeon.prototype.generate = function() {
 	gen.create((function(x, y, wall) {
 		this.setTile(x, y, wall ? TILES.wall : TILES.floor);
 	}).bind(this));
+	var freeTiles = [];
 	var rooms = gen.getRooms();
 	var doors = [ TILES.door_wood, TILES.door_metal ];
+	var keysNeeded = 0;
 	var doorCallback = (function(x, y) {
 		var door = doors.random();
+		if (door.name == "door_metal")
+			keysNeeded++;
 		this.setTile(x, y, door, Dungeon.LAYER_STATIC);
 	}).bind(this);
 	for (var i = 0; i < rooms.length; i++) {
 		rooms[i].getDoors(doorCallback);
+		for (var y = rooms[i].getTop(); y < rooms[i].getBottom(); ++y) {
+			for (var x = rooms[i].getLeft(); x < rooms[i].getRight(); ++x) {
+				freeTiles.push([x, y]);
+			}
+		}
 	}
 	this.start = rooms[0].getCenter();
 	this.end = rooms[rooms.length-1].getCenter();
 
+	shuffle(freeTiles);
+
+	var decorChoices = [ TILES.well, TILES.pillar, TILES.statue, TILES.table, TILES.cupboard, TILES.pot, TILES.chest ];
+	for (var i = 0; i < 20; ++i) {
+		var pos = freeTiles.pop();
+		this.setTile(pos[0], pos[1], decorChoices.random(), Dungeon.LAYER_STATIC);
+	}
 
 	this.setTile(this.end[0], this.end[1], TILES.stairs_down, Dungeon.LAYER_STATIC);
+
+	var sprinkleItems = (function(item, n) {
+		for (var i = 0; i < n; ++i) {
+			var item = clone(item);
+			item.pos = freeTiles.pop();
+			this.setTile(item.pos[0], item.pos[1], item, Dungeon.LAYER_ITEM);
+			this.items.push(item);
+		}
+	}).bind(this);
+	sprinkleItems(TILES.key, keysNeeded);
+	sprinkleItems(TILES.gem, 10);
 
 	this.needsRender = true;
 };
