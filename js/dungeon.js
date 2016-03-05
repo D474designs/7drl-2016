@@ -5,6 +5,7 @@ function Dungeon() {
 	this.height = 24;
 	this.actors = [];
 	this.items = [];
+	this.playerFov = [];
 	this.map = new Array(Dungeon.LAYER_COUNT);
 	for (var i = 0; i < Dungeon.LAYER_COUNT; ++i)
 		this.map[i] = new Array(this.width * this.height);
@@ -46,7 +47,6 @@ Dungeon.prototype.generate = function() {
 			}
 		}
 	}
-
 	shuffle(freeTiles);
 
 	var decorChoices = [ TILES.well, TILES.pillar, TILES.statue, TILES.table, TILES.cupboard, TILES.pot, TILES.chest ];
@@ -55,7 +55,9 @@ Dungeon.prototype.generate = function() {
 		this.setTile(pos[0], pos[1], decorChoices.random(), Dungeon.LAYER_STATIC);
 	}
 
-	this.setTile(this.end[0], this.end[1], TILES.stairs_down, Dungeon.LAYER_STATIC);
+	var stairs_down = clone(TILES.stairs_down);
+	stairs_down.entrance = { mapId: "dungeon-" + randInt(1000, 9999), mapType: "dungeon" };
+	this.setTile(this.start[0]+1, this.start[1], stairs_down, Dungeon.LAYER_BG);
 
 	// Items
 	var sprinkleItems = (function(item, n) {

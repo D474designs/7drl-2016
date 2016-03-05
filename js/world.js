@@ -50,6 +50,7 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.dungeon.playerFov = actor.fov;
 	if (!this.maps[entrance.mapId]) {
 		this.maps[entrance.mapId] = new Dungeon(entrance.mapId, entrance.mapType);
+		this.maps[entrance.mapId].generate();
 	}
 	this.dungeon = this.maps[entrance.mapId];
 	this.dungeon.actors.push(actor);
