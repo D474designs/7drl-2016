@@ -1,13 +1,12 @@
-var camera, ui, dungeon, world; // Globals
+var camera, ui, world; // Globals
 
 window.onload = function() {
 	try {
 		camera = {};
 		world = new World();
-		dungeon = world.dungeon; // TODO: Temp
-		dungeon.generate();
-		var pl = new Actor(dungeon.start[0], dungeon.start[1]);
-		dungeon.actors.push(pl);
+		world.dungeon.generate();
+		var pl = new Actor(world.dungeon.start[0], world.dungeon.start[1]);
+		world.dungeon.actors.push(pl);
 		ui = new UI(pl);
 
 		if (CONFIG.debug) $("#debug").style.display = "block";
@@ -24,7 +23,7 @@ window.onload = function() {
 			if (CONFIG.debug) t1 = performance.now();
 			camera.x = pl.pos[0];
 			camera.y = pl.pos[1];
-			ui.render(camera, dungeon);
+			ui.render(camera, world.dungeon);
 			if (CONFIG.debug) t2 = performance.now();
 			ui.update();
 			if (CONFIG.debug) {

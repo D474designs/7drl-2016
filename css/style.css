@@ -36,6 +36,11 @@ canvas {
     -ms-interpolation-mode: nearest-neighbor;
 }
 
+#error {
+	position: absolute;
+	z-index: 1000;
+}
+
 #debug {
 	display: none;
 	position: fixed;

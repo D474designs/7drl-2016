@@ -77,8 +77,8 @@ UI.prototype.onClick = function(e) {
 	var coords = this.display.eventToPosition(e);
 	var x = coords[0] + camera.pos[0];
 	var y = coords[1] + camera.pos[1];
-	if (!dungeon.getPassable(x, y)) return;
-	if (dungeon.findPath(x, y, this.actor))
+	if (!world.dungeon.getPassable(x, y)) return;
+	if (world.dungeon.findPath(x, y, this.actor))
 		this.snd("click");
 };
 
@@ -142,7 +142,7 @@ UI.prototype.resetDisplay = function() {
 	document.body.appendChild(this.display.getContainer());
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("mousemove", this.onMouseMove.bind(this), true);
-	dungeon.needsRender = true;
+	world.dungeon.needsRender = true;
 };
 
 UI.prototype.msg = function(msg, source) {
@@ -193,9 +193,9 @@ UI.prototype.update = function() {
 		if (this.actor.path.length) {
 			cursor = "wait";
 		} else if (this.actor.visibility(mx, my) > 0.1) {
-			if (dungeon.getTile(mx, my, Dungeon.LAYER_ITEM))
+			if (world.dungeon.getTile(mx, my, Dungeon.LAYER_ITEM))
 				cursor = "cell";
-			else if (dungeon.getPassable(mx, my))
+			else if (world.dungeon.getPassable(mx, my))
 				cursor = "crosshair";
 		}
 		this.display.getContainer().style.cursor = cursor;
@@ -205,7 +205,7 @@ UI.prototype.update = function() {
 UI.prototype.render = function(camera, dungeon) {
 	camera.pos[0] = this.actor.pos[0] - camera.center[0];
 	camera.pos[1] = this.actor.pos[1] - camera.center[1];
-	dungeon.draw(camera, this.display, this.actor);
+	world.dungeon.draw(camera, this.display, this.actor);
 };
 
 UI.prototype.die = function() {
