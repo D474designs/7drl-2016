@@ -28,11 +28,13 @@ Actor.prototype.act = function() {
 				this.inv.gems++;
 				dungeon.removeItem(item);
 				ui.msg("Picked up a gem.", this);
+				triggerAnimation($(".gem"), "tada");
 				return true;
 			} else if (item && item.name == "key") {
 				this.inv.keys++;
 				dungeon.removeItem(item);
 				ui.msg("Picked up a key.", this);
+				triggerAnimation($(".key"), "tada")
 				return true;
 			}
 		}

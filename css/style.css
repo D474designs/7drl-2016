@@ -77,4 +77,30 @@ canvas {
 .key { background-position: calc(-16px * 8) calc(-16px * 8); }
 .heart { background: none; font-size: 16px; text-align: center; color: red; }
 
+@keyframes tada {
+	from {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	10%, 20% {
+		-webkit-transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, -3deg);
+		transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, -3deg);
+	}
+	30%, 50%, 70%, 90% {
+		-webkit-transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 3deg);
+		transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 3deg);
+	}
+	40%, 60%, 80% {
+		-webkit-transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -3deg);
+		transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -3deg);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.tada {
+	animation-name: tada;
+	animation-duration: 1s;
 }
