@@ -19,13 +19,26 @@ function Actor(x, y, def) {
 		target: null
 	};
 	this.faction = def.ai ? 0 : 1;
-	dungeon.updateVisibility(this);
+	this.updateVisibility();
 }
 
 Actor.prototype.visibility = function(x, y) {
 	return this.fov[x + y * dungeon.width];
 };
 
+Actor.prototype.updateVisibility = function(actor) {
+	if (this.fov.length != dungeon.map[0].length)
+		this.fov = new Array(dungeon.width * dungeon.height);
+	for (var i = 0, l = this.fov.length; i < l; ++i)
+		if (this.fov[i] == 1) this.fov[i] = 0.5;
+		else if (this.fov[i] === undefined) this.fov[i] = 0;
+	function callback(x, y, r, visibility) {
+		if (visibility > 0)
+			this.fov[x + y * dungeon.width] = 1;
+	}
+	var fov = new ROT.FOV.PreciseShadowcasting(dungeon.getTransparent.bind(dungeon));
+	fov.compute(this.pos[0], this.pos[1], this.vision, callback.bind(this));
+};
 
 Actor.prototype.moveTo = function(x, y) {
 	//var target = world.dungeon.getTile(x, y);
@@ -108,7 +121,7 @@ Actor.prototype.act = function() {
 		return this.hunterAI();
 
 	if (this.doPath(true, true)) {
-		dungeon.updateVisibility(this);
+		this.updateVisibility();
 		return true;
 	}
 	return false;
@@ -126,7 +139,7 @@ Actor.prototype.drunkAI = function() {
 Actor.prototype.hunterAI = function() {
 	if (!this.ai.target) {
 		var newTarget = ui.actor; // TODO: Other possibilities?
-		dungeon.updateVisibility(this);
+		this.updateVisibility();
 		if (this.visibility(newTarget.pos[0], newTarget.pos[1]) < 1)
 			return this.drunkAI();
 		this.ai.target = ui.actor;

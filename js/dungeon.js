@@ -124,26 +124,10 @@ Dungeon.prototype.update = function() {
 	for (var i = 0, l = this.actors.length; i < l; ++i) {
 		var actor = this.actors[i];
 		if (actor.act()) {
-			this.updateVisibility(actor);
+			actor.updateVisibility();
 			this.needsRender = true;
 		}
 	}
-};
-
-Dungeon.prototype.updateVisibility = function(actor) {
-	if (actor.fov.length != this.map[0].length)
-		actor.fov = new Array(this.width * this.height);
-	for (var i = 0, l = actor.fov.length; i < l; ++i)
-		if (actor.fov[i] == 1) actor.fov[i] = 0.5;
-		else if (actor.fov[i] === undefined) actor.fov[i] = 0;
-	function callback(x, y, r, visibility) {
-		if (visibility > 0)
-			actor.fov[x + y * this.width] = 1;
-	}
-	var fov = new ROT.FOV.PreciseShadowcasting((function(x, y) {
-		return (x == actor.pos[0] && y == actor.pos[1]) ? true : this.getTransparent(x, y);
-	}).bind(this));
-	fov.compute(actor.pos[0], actor.pos[1], actor.vision, callback.bind(this));
 };
 
 Dungeon.prototype.draw = function(camera, display, player) {
