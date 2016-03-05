@@ -11,7 +11,7 @@ function UI(player) {
 	this.vibrationEnabled = true;
 
 	this.resetDisplay();
-	CONFIG.debug = window.location.hash.indexOf("#debug") != -1;
+	CONFIG.debug = window.location.search.indexOf("?debug") != -1;
 	window.addEventListener('resize', this.resetDisplay.bind(this));
 	document.addEventListener('keydown', this.onKeyDown.bind(this), false);
 	document.addEventListener('keyup', this.onKeyUp.bind(this), false);
@@ -19,14 +19,58 @@ function UI(player) {
 	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 	if (!CONFIG.touch) {
-		[].forEach.call(document.querySelectorAll(".btn"), function(elem) {
+		$(".btn", function(elem) {
 			elem.classList.add("btn-no-touch");
 		});
+		$("#pausemenu-vibration").style.display = "none";
 	}
 
+	function toggleFullscreen() {
+		if (!document.fullscreenElement && !document.mozFullScreenElement &&
+			!document.webkitFullscreenElement && !document.msFullscreenElement)
+		{
+			var d = document.documentElement;
+			if (d.requestFullscreen) d.requestFullscreen();
+			else if (d.msRequestFullscreen) d.msRequestFullscreen();
+			else if (d.mozRequestFullScreen) d.mozRequestFullScreen();
+			else if (d.webkitRequestFullscreen) d.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+		} else {
+			if (document.exitFullscreen) document.exitFullscreen();
+			else if (document.msExitFullscreen) document.msExitFullscreen();
+			else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+			else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+		}
+	}
+	$("#pausemenu-fullscreen").addEventListener("click", toggleFullscreen, false);
+	$("#pausemenu-sounds").addEventListener("click", function() {
+		ui.soundsEnabled = !ui.soundsEnabled;
+		ui.msg("Sounds " + (ui.soundsEnabled ? "enabled." : "disabled."));
+	}, false);
+	$("#pausemenu-vibration").addEventListener("click", function() {
+		ui.vibrationEnabled = !ui.vibrationEnabled;
+		ui.msg("Vibration " + (ui.vibrationEnabled ? "enabled." : "disabled."));
+	}, false);
+	$("#pausemenu-restart").addEventListener("click", function() {
+		window.location.reload();
+	}, false);
 	$("#death-restart").addEventListener("click", function() {
 		window.location.reload();
 	}, false);
+
+	function closeAllMenus() {
+		$(".modal", function (elem) { elem.style.display = "none"; });
+	}
+
+	function handleHash() {
+		var hash = window.location.hash;
+		closeAllMenus();
+		if (hash.length < 2 || hash == "#game")
+			return;
+		var menudiv = $(hash);
+		if (menudiv) menudiv.style.display = "block";
+	}
+	window.addEventListener("hashchange", handleHash, true);
+	handleHash();
 };
 
 UI.prototype.onClick = function(e) {

@@ -21,7 +21,13 @@ if (typeof window !== "undefined") {
 			})();
 }
 
-function $(selector) { return document.querySelector(selector); }
+function $(selector, callback) {
+	if (callback === undefined)
+		return document.querySelector(selector);
+	var elems = document.querySelectorAll(selector);
+	[].forEach.call(elems, callback);
+	return elems;
+}
 
 function triggerAnimation(elem, className) {
 	elem.classList.remove(className);
