@@ -76,8 +76,11 @@ Dungeon.prototype.removeItem = function(item) {
 
 Dungeon.prototype.getTile = function(x, y, layer) {
 	if (x < 0 || y < 0 || x >= this.width || y >= this.height) return TILES.empty;
-	if (!layer) layer = Dungeon.LAYER_BG;
-	return this.map[layer][x + y * this.width];
+	if (layer !== undefined)
+		return this.map[layer][x + y * this.width];
+	for (layer = Dungeon.LAYER_COUNT - 1; layer >= 0; layer--)
+		if (this.map[layer][x + y * this.width])
+			return this.map[layer][x + y * this.width];
 };
 
 Dungeon.prototype.setTile = function(x, y, tile, layer) {
@@ -89,13 +92,13 @@ Dungeon.prototype.setTile = function(x, y, tile, layer) {
 Dungeon.prototype.getPassable = function(x, y) {
 	var static = this.getTile(x, y, Dungeon.LAYER_STATIC);
 	if (static && !static.walkable) return false;
-	return this.getTile(x, y).walkable;
+	return this.getTile(x, y, Dungeon.LAYER_BG).walkable;
 };
 
 Dungeon.prototype.getTransparent = function(x, y) {
 	var static = this.getTile(x, y, Dungeon.LAYER_STATIC);
 	if (static && !static.transparent) return false;
-	return this.getTile(x, y).transparent;
+	return this.getTile(x, y, Dungeon.LAYER_BG).transparent;
 };
 
 Dungeon.prototype.findPath = function(x, y, actor) {
