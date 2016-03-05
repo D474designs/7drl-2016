@@ -69,6 +69,11 @@ Dungeon.prototype.generate = function() {
 	this.needsRender = true;
 };
 
+Dungeon.prototype.removeItem = function(item) {
+	removeElem(this.items, item);
+	this.setTile(item.pos[0], item.pos[1], null, Dungeon.LAYER_ITEM);
+};
+
 Dungeon.prototype.getTile = function(x, y, layer) {
 	if (x < 0 || y < 0 || x >= this.width || y >= this.height) return TILES.empty;
 	if (!layer) layer = Dungeon.LAYER_BG;
