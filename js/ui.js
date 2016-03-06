@@ -178,6 +178,7 @@ UI.prototype.resetDisplay = function() {
 		tileMap: TILES.tilemap,
 		tileColorize: true
 	});
+	this.display._tick = function() {}; // Disable dirty updates
 	document.body.appendChild(this.display.getContainer());
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("contextmenu", this.onClick.bind(this), true);

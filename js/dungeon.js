@@ -143,8 +143,13 @@ Dungeon.prototype.draw = function(camera, display, player) {
 		return;
 	this.needsRender = false;
 	display.clear();
+	display._context.fillStyle = display._options.bg;
+	display._context.fillRect(0, 0, display._context.canvas.width, display._context.canvas.height);
+
 	var w = display.getOptions().width;
 	var h = display.getOptions().height;
+	var tw = display.getOptions().tileWidth;
+	var th = display.getOptions().tileHeight;
 	for (var j = 0; j < h; ++j) {
 		for (var i = 0; i < w; ++i) {
 			var x = i + camera.pos[0];
@@ -156,11 +161,24 @@ Dungeon.prototype.draw = function(camera, display, player) {
 				tile.push(this.map[Dungeon.LAYER_STATIC][k].ch);
 			if (visibility > 0.9 && this.map[Dungeon.LAYER_ITEM][k])
 				tile.push(this.map[Dungeon.LAYER_ITEM][k].ch);
-			if (visibility > 0.9 && this.map[Dungeon.LAYER_ACTOR][k])
-				tile.push(this.map[Dungeon.LAYER_ACTOR][k].ch);
 			var color = visibility > 0.9 ? "transparent" : "rgba(0,0,0,0.6)";
-			display.draw(i, j, tile, color, "rgba(0,0,0,0.0)");
-
+			var data = [i, j, tile, color, "rgba(0,0,0,0.0)"];
+			display._backend.draw(data, false);
+			//display.draw(i, j, tile, color, "rgba(0,0,0,0.0)");
+		}
+	}
+	for (var i = 0, l = this.actors.length; i < l; ++i) {
+		var actor = this.actors[i];
+		var visibility = player.visibility(actor.pos[0], actor.pos[1]);
+		if (visibility > 0.9) {
+			var tileCoords = TILES.tilemap[actor.ch];
+			var x = actor.pos[0] - camera.pos[0];
+			var y = actor.pos[1] - camera.pos[1];
+			display._context.drawImage(
+				display._options.tileSet,
+				tileCoords[0], tileCoords[1], tw, th,
+				x * tw, y * th, tw, th
+			);
 		}
 	}
 };
