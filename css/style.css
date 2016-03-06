@@ -89,6 +89,7 @@ canvas {
 
 .right { float: right; }
 .left { float: left; }
+.center { text-align: center; }
 
 #menu-open {
 	position: fixed;
@@ -105,7 +106,7 @@ h1 {
 .btn {
 	display: inline-block;
 	height: 48px;
-	line-height: 48px;
+	line-height: 46px;
 	margin: 4px;
 	text-align: center;
 	vertical-align: middle;

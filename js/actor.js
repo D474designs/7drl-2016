@@ -83,8 +83,10 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 				this.inv.keys++;
 				triggerAnimation($(".key"), "tada")
 			} else if (item.id == "potion_health") {
-				if (this.health >= this.maxHealth)
+				if (this.health >= this.maxHealth) {
+					ui.msg("Health already full.", this);
 					return true;
+				}
 				this.health++;
 				triggerAnimation($(".heart"), "tada");
 			}
