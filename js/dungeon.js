@@ -198,9 +198,12 @@ Dungeon.prototype.draw = function(camera, display, player) {
 				tile.push(this.map[Dungeon.LAYER_STATIC][k].ch);
 			if (visibility > 0.9 && this.map[Dungeon.LAYER_ITEM][k])
 				tile.push(this.map[Dungeon.LAYER_ITEM][k].ch);
-			var color = visibility > 0.9 ? "transparent" : "rgba(0,0,0,0.6)";
-			var data = [i + camera.offset[0], j + camera.offset[1], tile, color, "rgba(0,0,0,0.0)"];
+			var data = [i + camera.offset[0], j + camera.offset[1], tile, "transparent", "rgba(0,0,0,0.0)"];
 			display._backend.draw(data, false);
+			if (visibility <= 0.9) {
+				display._context.fillStyle = "rgba(0,0,0,0.6)";
+				display._context.fillRect(Math.round(data[0] * tw), Math.round(data[1] * th), tw, th);
+			}
 		}
 	}
 	for (var i = 0, l = this.actors.length; i < l; ++i) {

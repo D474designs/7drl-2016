@@ -212,7 +212,7 @@ UI.prototype.resetDisplay = function() {
 		tileHeight: CONFIG.tileSize,
 		tileSet: TILES.tileset,
 		tileMap: TILES.tilemap,
-		tileColorize: true
+		tileColorize: false
 	});
 	this.display._tick = function() {}; // Disable dirty updates
 	document.body.appendChild(this.display.getContainer());
