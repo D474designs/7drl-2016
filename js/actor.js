@@ -24,6 +24,7 @@ function Actor(x, y, def) {
 		turns: 0,
 		kills: 0
 	};
+	this.done = false;
 	this.moved = false;
 	this.updateVisibility();
 }
@@ -163,6 +164,11 @@ Actor.prototype.attack = function(target) {
 Actor.prototype.act = function() {
 	if (this.health <= 0)
 		return true;
+
+	if (this.done) {
+		this.done = false;
+		return true;
+	}
 
 	if (this.ai)
 		return this.hunterAI();
