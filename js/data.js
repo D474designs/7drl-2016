@@ -1,12 +1,18 @@
 var CONFIG = {
 	tileSize: 16,
 	tileGap: 0,
-	tileMag: 2,
 	debug: false,
 	roundDelay: 200,
 	moveDuration: 140,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+};
+
+// User settings, saved to localStorage
+var SETTINGS = {
+	sounds: true,
+	vibration: true,
+	tileMag: 2
 };
 
 var TILES = {

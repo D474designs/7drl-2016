@@ -7,8 +7,6 @@ function UI(player) {
 	this.fps = 0;
 	this.mouse = { x: 0, y: 0, downTime: 0, longpress: false };
 	this.pressed = [];
-	this.soundsEnabled = true;
-	this.vibrationEnabled = true;
 	this.characterChoice = null;
 	this.characterPerk = null;
 	this.dom = {
@@ -18,6 +16,18 @@ function UI(player) {
 		keys: $("#keys"),
 		messages: $("#messages")
 	};
+	// Load settings
+	var savedSettings = window.localStorage.getItem("SETTINGS");
+	if (savedSettings) {
+		savedSettings = JSON.parse(savedSettings);
+		for (var i in SETTINGS) {
+			if (savedSettings.hasOwnProperty(i))
+				SETTINGS[i] = savedSettings[i];
+		}
+	}
+	function saveSettings() {
+		window.localStorage.setItem("SETTINGS", JSON.stringify(SETTINGS));
+	}
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.search.indexOf("?debug") != -1;
@@ -53,17 +63,20 @@ function UI(player) {
 	$("#new-fullscreen").addEventListener("click", toggleFullscreen, false);
 	$("#pausemenu-fullscreen").addEventListener("click", toggleFullscreen, false);
 	$("#pausemenu-tilesize").addEventListener("click", function() {
-		CONFIG.tileMag = CONFIG.tileMag === 2 ? 3 : 2;
-		ui.msg("Using " + (CONFIG.tileMag === 2  ? "normal tiles." : "large tiles."));
+		SETTINGS.tileMag = SETTINGS.tileMag === 2 ? 3 : 2;
+		saveSettings();
+		ui.msg("Using " + (SETTINGS.tileMag === 2  ? "normal tiles." : "large tiles."));
 		ui.resetDisplay();
 	}, false);
 	$("#pausemenu-sounds").addEventListener("click", function() {
-		ui.soundsEnabled = !ui.soundsEnabled;
-		ui.msg("Sounds " + (ui.soundsEnabled ? "enabled." : "disabled."));
+		SETTINGS.sounds = !SETTINGS.sounds;
+		saveSettings();
+		ui.msg("Sounds " + (SETTINGS.sounds ? "enabled." : "disabled."));
 	}, false);
 	$("#pausemenu-vibration").addEventListener("click", function() {
-		ui.vibrationEnabled = !ui.vibrationEnabled;
-		ui.msg("Vibration " + (ui.vibrationEnabled ? "enabled." : "disabled."));
+		SETTINGS.vibration = !SETTINGS.vibration;
+		saveSettings();
+		ui.msg("Vibration " + (SETTINGS.vibration ? "enabled." : "disabled."));
 	}, false);
 	$("#pausemenu-restart").addEventListener("click", function() {
 		window.location.reload();
@@ -195,8 +208,8 @@ UI.prototype.onKeyUp = function(e) {
 };
 
 UI.prototype.resetDisplay = function() {
-	var w = Math.floor(window.innerWidth / CONFIG.tileSize / CONFIG.tileMag);
-	var h = Math.floor(window.innerHeight / CONFIG.tileSize / CONFIG.tileMag);
+	var w = Math.floor(window.innerWidth / CONFIG.tileSize / SETTINGS.tileMag);
+	var h = Math.floor(window.innerHeight / CONFIG.tileSize / SETTINGS.tileMag);
 	camera = { pos: [0, 0], offset: [0, 0], center: [(w/2)|0, (h/2)|0] };
 
 	if (this.display)
@@ -216,8 +229,8 @@ UI.prototype.resetDisplay = function() {
 	});
 	this.display._tick = function() {}; // Disable dirty updates
 	document.body.appendChild(this.display.getContainer());
-	this.display.getContainer().style.width = Math.floor(w * CONFIG.tileSize * CONFIG.tileMag) + "px";
-	this.display.getContainer().style.height = Math.floor(h * CONFIG.tileSize * CONFIG.tileMag) + "px";
+	this.display.getContainer().style.width = Math.floor(w * CONFIG.tileSize * SETTINGS.tileMag) + "px";
+	this.display.getContainer().style.height = Math.floor(h * CONFIG.tileSize * SETTINGS.tileMag) + "px";
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("contextmenu", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("mousemove", this.onMouseMove.bind(this), true);
@@ -234,14 +247,14 @@ UI.prototype.msg = function(msg, source, type) {
 };
 
 UI.prototype.snd = function(sound, source) {
-	if (!this.soundsEnabled || (source !== undefined && source !== this.actor))
+	if (!SETTINGS.sounds || (source !== undefined && source !== this.actor))
 		return;
 	var audio = typeof sound == "string" ? SOUNDS[sound].audio : sound.audio;
 	audio.play();
 };
 
 UI.prototype.vibrate = function(pattern, source) {
-	if (!this.vibrationEnabled || (source !== undefined && source !== this.actor))
+	if (!SETTINGS.vibration || (source !== undefined && source !== this.actor))
 		return;
 	if (navigator.vibrate)
 		navigator.vibrate(pattern);
