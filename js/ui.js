@@ -11,6 +11,13 @@ function UI(player) {
 	this.vibrationEnabled = true;
 	this.characterChoice = null;
 	this.characterPerk = null;
+	this.dom = {
+		fps: $("#fps"),
+		health: $("#health"),
+		gems: $("#gems"),
+		keys: $("#keys"),
+		messages: $("#messages")
+	};
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.search.indexOf("?debug") != -1;
@@ -254,18 +261,18 @@ UI.prototype.update = function() {
 			msgBuf += templ.replace("%1%", classes.shift())
 				.replace("%2%", this.messages[i].type)
 				.replace("%3%", this.messages[i].msg);
-		$("#messages").innerHTML = msgBuf;
+		this.dom.messages.innerHTML = msgBuf;
 		this.messagesDirty = false;
 	}
 
-	$("#fps").innerHTML = Math.round(this.fps);
+	this.dom.fps.innerHTML = Math.round(this.fps);
 
 	if (!this.actor)
 		return;
 
-	$("#health").innerHTML = this.actor.health;
-	$("#gems").innerHTML = this.actor.inv.gems;
-	$("#keys").innerHTML = this.actor.inv.keys;
+	this.dom.health.innerHTML = this.actor.health;
+	this.dom.gems.innerHTML = this.actor.inv.gems;
+	this.dom.keys.innerHTML = this.actor.inv.keys;
 
 	if (!CONFIG.touch) {
 		var cursor = "default";
