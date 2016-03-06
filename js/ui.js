@@ -177,14 +177,16 @@ UI.prototype.resetDisplay = function() {
 		bg: "#111",
 		layout: "tile",
 		fontSize: CONFIG.tileSize,
-		tileWidth: CONFIG.tileSize * CONFIG.tileMag,
-		tileHeight: CONFIG.tileSize * CONFIG.tileMag,
+		tileWidth: CONFIG.tileSize,
+		tileHeight: CONFIG.tileSize,
 		tileSet: TILES.tileset,
 		tileMap: TILES.tilemap,
 		tileColorize: true
 	});
 	this.display._tick = function() {}; // Disable dirty updates
 	document.body.appendChild(this.display.getContainer());
+	this.display.getContainer().style.width = Math.floor(w * CONFIG.tileSize * CONFIG.tileMag) + "px";
+	this.display.getContainer().style.height = Math.floor(h * CONFIG.tileSize * CONFIG.tileMag) + "px";
 	this.display.getContainer().addEventListener("click", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("contextmenu", this.onClick.bind(this), true);
 	this.display.getContainer().addEventListener("mousemove", this.onMouseMove.bind(this), true);

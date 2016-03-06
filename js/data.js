@@ -184,23 +184,6 @@ var TILES = {
 (function() {
 	TILES.tileset = document.createElement("img");
 	TILES.tileset.src = "assets/tileset.png";
-	if (CONFIG.tileMag != 1)
-		TILES.tileset.onload = function() {
-			var resizeCanvas = document.createElement("canvas");
-			resizeCanvas.width = Math.floor(this.width * CONFIG.tileMag);
-			resizeCanvas.height = Math.floor(this.height * CONFIG.tileMag);
-			resizeCanvas.style.width = resizeCanvas.width + "px";
-			resizeCanvas.style.height = resizeCanvas.height + "px";
-			var ctx = resizeCanvas.getContext("2d");
-			if (ctx.imageSmoothingEnabled === undefined) {
-				ctx.mozImageSmoothingEnabled = false;
-				ctx.webkitImageSmoothingEnabled = false;
-				ctx.msImageSmoothingEnabled = false;
-			} else ctx.imageSmoothingEnabled = false;
-			ctx.drawImage(this, 0, 0, resizeCanvas.width, resizeCanvas.height);
-			TILES.tileset.onload = null;
-			TILES.tileset.src = resizeCanvas.toDataURL("image/png");
-		};
 	var tileChs = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	var count = 0;
 	for (var i in TILES) {
@@ -211,8 +194,8 @@ var TILES = {
 		tile.id = i;
 		tile.name = tile.name || i;
 		tile.ch = tileChs[count++];
-		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap) * CONFIG.tileMag;
-		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap) * CONFIG.tileMag;
+		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap);
+		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap);
 		TILES.tilemap[tile.ch] = tile.tileCoords;
 	}
 })();
