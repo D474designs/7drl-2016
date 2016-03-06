@@ -161,9 +161,9 @@ Dungeon.prototype.animate = function(dt) {
 				actor.animPos[0] += dx * 0.1;
 				actor.animPos[1] += dy * 0.1;
 			}*/
+			this.needsRender = true;
 		}
 	}
-	this.needsRender = true;
 };
 
 Dungeon.prototype.draw = function(camera, display, player) {
@@ -183,8 +183,12 @@ Dungeon.prototype.draw = function(camera, display, player) {
 			var x = i + camera.pos[0];
 			var y = j + camera.pos[1];
 			var k = x + y * this.width;
+			if (x < 0 || y < 0 || x >= this.width || y >= this.height)
+				continue;
 			var visibility = player.visibility(x, y);
-			var tile = visibility > 0 ? [ this.map[Dungeon.LAYER_BG][k].ch ] : null;
+			if (visibility <= 0)
+				continue;
+			var tile = [ this.map[Dungeon.LAYER_BG][k].ch ];
 			if (visibility > 0.5 && this.map[Dungeon.LAYER_STATIC][k])
 				tile.push(this.map[Dungeon.LAYER_STATIC][k].ch);
 			if (visibility > 0.9 && this.map[Dungeon.LAYER_ITEM][k])
@@ -192,7 +196,6 @@ Dungeon.prototype.draw = function(camera, display, player) {
 			var color = visibility > 0.9 ? "transparent" : "rgba(0,0,0,0.6)";
 			var data = [i + camera.offset[0], j + camera.offset[1], tile, color, "rgba(0,0,0,0.0)"];
 			display._backend.draw(data, false);
-			//display.draw(i, j, tile, color, "rgba(0,0,0,0.0)");
 		}
 	}
 	for (var i = 0, l = this.actors.length; i < l; ++i) {
