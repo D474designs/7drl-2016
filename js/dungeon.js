@@ -138,6 +138,34 @@ Dungeon.prototype.update = function() {
 	this.needsRender = true;
 };
 
+Dungeon.prototype.animate = function(dt) {
+	for (var i = 0, l = this.actors.length; i < l; ++i) {
+		var actor = this.actors[i];
+		var dx = actor.pos[0] - actor.animPos[0];
+		var dy = actor.pos[1] - actor.animPos[1];
+		if (dx != 0 || dy != 0) {
+			var speed = (1000 / CONFIG.roundDelay) * dt;
+			var length = dist(0, 0, dx, dy);
+			if (Math.abs(dx) <= speed)
+				actor.animPos[0] = actor.pos[0];
+			else
+				actor.animPos[0] += dx / length * speed;
+			if (Math.abs(dy) <= speed)
+				actor.animPos[1] = actor.pos[1];
+			else
+				actor.animPos[1] += dy / length * speed;
+			/*if (Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001) {
+				actor.animPos[0] = actor.pos[0];
+				actor.animPos[1] = actor.pos[1];
+			} else {
+				actor.animPos[0] += dx * 0.1;
+				actor.animPos[1] += dy * 0.1;
+			}*/
+		}
+	}
+	this.needsRender = true;
+};
+
 Dungeon.prototype.draw = function(camera, display, player) {
 	if (!this.needsRender)
 		return;
@@ -172,8 +200,8 @@ Dungeon.prototype.draw = function(camera, display, player) {
 		var visibility = player.visibility(actor.pos[0], actor.pos[1]);
 		if (visibility > 0.9) {
 			var tileCoords = TILES.tilemap[actor.ch];
-			var x = actor.pos[0] - camera.pos[0];
-			var y = actor.pos[1] - camera.pos[1];
+			var x = actor.animPos[0] - camera.pos[0];
+			var y = actor.animPos[1] - camera.pos[1];
 			display._context.drawImage(
 				display._options.tileSet,
 				tileCoords[0], tileCoords[1], tw, th,

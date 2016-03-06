@@ -4,6 +4,7 @@ function Actor(x, y, def) {
 	this.id = def.id || null;
 	this.name = def.name || "Player";
 	this.pos = [ x || 0, y || 0 ];
+	this.animPos = [ this.pos[0], this.pos[1] ];
 	this.ch = def.ch || TILES.player_female.ch;
 	this.path = [];
 	this.fov = [];

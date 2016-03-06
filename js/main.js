@@ -10,13 +10,13 @@ window.onload = function() {
 
 		var frameTime = performance.now();
 		function tick(time) {
-			var dt = time - frameTime;
+			var dt = (time - frameTime) / 1000;
 			frameTime = time;
-			ui.fps = 0.1 * (1000 / dt) + 0.9 * ui.fps;
+			ui.fps = 0.1 * (1 / dt) + 0.9 * ui.fps;
 
 			var t0, t1, t2;
 			if (CONFIG.debug) t0 = performance.now();
-			world.update();
+			world.update(dt);
 			if (CONFIG.debug) t1 = performance.now();
 			ui.render(camera, world.dungeon);
 			if (CONFIG.debug) t2 = performance.now();

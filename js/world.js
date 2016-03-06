@@ -30,8 +30,11 @@ World.prototype.create = function() {
 	return pl;
 }
 
-World.prototype.update = function() {
-	if (Date.now() < this.roundTimer || !this.running)
+World.prototype.update = function(dt) {
+	if (!this.running)
+		return;
+	this.dungeon.animate(dt);
+	if (Date.now() < this.roundTimer)
 		return;
 	while (this.dungeon.actors.length) {
 		if (this.currentActorIndex >= this.dungeon.actors.length)
@@ -68,6 +71,8 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.dungeon.actors.push(actor);
 	actor.pos[0] = this.dungeon.start[0];
 	actor.pos[1] = this.dungeon.start[1];
+	actor.animPos[0] = actor.pos[0];
+	actor.animPos[1] = actor.pos[1];
 	actor.fov = this.dungeon.playerFov;
 	actor.updateVisibility();
 	this.currentActor = null;

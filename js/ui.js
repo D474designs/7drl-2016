@@ -227,14 +227,14 @@ UI.prototype.update = function() {
 		this.messagesDirty = false;
 	}
 
+	$("#fps").innerHTML = Math.round(this.fps);
+
 	if (!this.actor)
 		return;
 
 	$("#health").innerHTML = this.actor.health;
 	$("#gems").innerHTML = this.actor.inv.gems;
 	$("#keys").innerHTML = this.actor.inv.keys;
-
-	$("#fps").innerHTML = Math.round(this.fps);
 
 	if (!CONFIG.touch) {
 		var cursor = "default";
