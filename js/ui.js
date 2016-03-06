@@ -44,6 +44,11 @@ function UI(player) {
 	}
 	$("#new-fullscreen").addEventListener("click", toggleFullscreen, false);
 	$("#pausemenu-fullscreen").addEventListener("click", toggleFullscreen, false);
+	$("#pausemenu-tilesize").addEventListener("click", function() {
+		CONFIG.tileMag = CONFIG.tileMag === 2 ? 3 : 2;
+		ui.msg("Using " + (CONFIG.tileMag === 2  ? "normal tiles." : "large tiles."));
+		ui.resetDisplay();
+	}, false);
 	$("#pausemenu-sounds").addEventListener("click", function() {
 		ui.soundsEnabled = !ui.soundsEnabled;
 		ui.msg("Sounds " + (ui.soundsEnabled ? "enabled." : "disabled."));
