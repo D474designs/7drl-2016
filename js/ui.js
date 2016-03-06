@@ -161,7 +161,7 @@ UI.prototype.onKeyUp = function(e) {
 UI.prototype.resetDisplay = function() {
 	var w = Math.floor(window.innerWidth / CONFIG.tileSize / CONFIG.tileMag);
 	var h = Math.floor(window.innerHeight / CONFIG.tileSize / CONFIG.tileMag);
-	camera = { pos: [0, 0], center: [(w/2)|0, (h/2)|0] };
+	camera = { pos: [0, 0], offset: [0, 0], center: [(w/2)|0, (h/2)|0] };
 
 	if (this.display)
 		document.body.removeChild(this.display.getContainer());
@@ -256,6 +256,13 @@ UI.prototype.render = function(camera, dungeon) {
 		return;
 	camera.pos[0] = this.actor.pos[0] - camera.center[0];
 	camera.pos[1] = this.actor.pos[1] - camera.center[1];
+	if (this.actor.moved) {
+		camera.offset[0] = this.actor.pos[0] - this.actor.animPos[0];
+		camera.offset[1] = this.actor.pos[1] - this.actor.animPos[1];
+	} else {
+		camera.offset[0] = 0;
+		camera.offset[1] = 0;
+	}
 	world.dungeon.draw(camera, this.display, this.actor);
 };
 

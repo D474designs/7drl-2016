@@ -3,7 +3,8 @@ var CONFIG = {
 	tileGap: 0,
 	tileMag: 2,
 	debug: false,
-	roundDelay: 150,
+	roundDelay: 200,
+	moveDuration: 140,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 };

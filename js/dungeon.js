@@ -144,7 +144,7 @@ Dungeon.prototype.animate = function(dt) {
 		var dx = actor.pos[0] - actor.animPos[0];
 		var dy = actor.pos[1] - actor.animPos[1];
 		if (dx != 0 || dy != 0) {
-			var speed = (1000 / CONFIG.roundDelay) * dt;
+			var speed = (1000 / CONFIG.moveDuration) * dt;
 			var length = dist(0, 0, dx, dy);
 			if (Math.abs(dx) <= speed)
 				actor.animPos[0] = actor.pos[0];
@@ -190,7 +190,7 @@ Dungeon.prototype.draw = function(camera, display, player) {
 			if (visibility > 0.9 && this.map[Dungeon.LAYER_ITEM][k])
 				tile.push(this.map[Dungeon.LAYER_ITEM][k].ch);
 			var color = visibility > 0.9 ? "transparent" : "rgba(0,0,0,0.6)";
-			var data = [i, j, tile, color, "rgba(0,0,0,0.0)"];
+			var data = [i + camera.offset[0], j + camera.offset[1], tile, color, "rgba(0,0,0,0.0)"];
 			display._backend.draw(data, false);
 			//display.draw(i, j, tile, color, "rgba(0,0,0,0.0)");
 		}
@@ -200,8 +200,8 @@ Dungeon.prototype.draw = function(camera, display, player) {
 		var visibility = player.visibility(actor.pos[0], actor.pos[1]);
 		if (visibility > 0.9) {
 			var tileCoords = TILES.tilemap[actor.ch];
-			var x = actor.animPos[0] - camera.pos[0];
-			var y = actor.animPos[1] - camera.pos[1];
+			var x = actor.animPos[0] - camera.pos[0] + camera.offset[0];
+			var y = actor.animPos[1] - camera.pos[1] + camera.offset[1];
 			display._context.drawImage(
 				display._options.tileSet,
 				tileCoords[0], tileCoords[1], tw, th,

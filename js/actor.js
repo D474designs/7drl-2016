@@ -24,6 +24,7 @@ function Actor(x, y, def) {
 		turns: 0,
 		kills: 0
 	};
+	this.moved = false;
 	this.updateVisibility();
 }
 
@@ -62,6 +63,7 @@ Actor.prototype.move = function(dx, dy) {
 
 Actor.prototype.doPath = function(checkItems, checkMapChange) {
 	if (this.path.length) {
+		this.moved = false;
 		// Pathing
 		var waypoint = this.path.shift();
 		// Check enemy
@@ -118,7 +120,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		}
 		this.pos[0] = waypoint[0];
 		this.pos[1] = waypoint[1];
-		this.moveTimer = Date.now() + CONFIG.moveDelay;
+		this.moved = true;
 		// Check for map change
 		if (checkMapChange) {
 			var tile = world.dungeon.getTile(this.pos[0], this.pos[1]);
