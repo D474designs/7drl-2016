@@ -173,7 +173,8 @@ Dungeon.prototype.draw = function(camera, display, player) {
 	if (!this.needsRender)
 		return;
 	this.needsRender = false;
-	display.clear();
+	//display.clear();
+	display._dirty = false;
 	display._context.fillStyle = display._options.bg;
 	display._context.fillRect(0, 0, display._context.canvas.width, display._context.canvas.height);
 
