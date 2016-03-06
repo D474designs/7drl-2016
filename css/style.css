@@ -78,11 +78,14 @@ canvas {
 	user-select: none;
 }
 
-.msg0 { color: #fff; }
-.msg1 { color: #999; }
-.msg2 { color: #777; }
-.msg3 { color: #555; }
-.msg4 { color: #333; }
+.msg0 { opacity: 1.0; }
+.msg1 { opacity: 0.4; }
+.msg2 { opacity: 0.2; }
+.msg3 { opacity: 0.15 }
+.msg4 { opacity: 0.1; }
+.info { }
+.warn { color: red; }
+.feat { color: green; }
 
 .right { float: right; }
 .left { float: left; }

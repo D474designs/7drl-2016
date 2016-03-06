@@ -137,11 +137,11 @@ Actor.prototype.attack = function(target) {
 			target.health = 0;
 			this.stats.kills++;
 			ui.msg("You killed " + target.name + "!", this);
-			ui.msg(this.name + " kills you!", target);
+			ui.msg(this.name + " kills you!", target, "warn");
 			ui.vibrate(300, target);
 		} else {
 			ui.msg("You hit " + target.name + " for " + damage + "!", this);
-			ui.msg(this.name + " hits you for " + damage + "!", target);
+			ui.msg(this.name + " hits you for " + damage + "!", target, "warn");
 			ui.vibrate(75, target);
 		}
 	} else {

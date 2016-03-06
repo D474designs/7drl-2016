@@ -187,9 +187,9 @@ UI.prototype.resetDisplay = function() {
 	world.dungeon.needsRender = true;
 };
 
-UI.prototype.msg = function(msg, source) {
+UI.prototype.msg = function(msg, source, type) {
 	if (source === undefined || source == this.actor) {
-		this.messages.push(msg);
+		this.messages.push({ msg: msg, type: type || "info" });
 		this.messagesDirty = true;
 	}
 };
@@ -217,8 +217,11 @@ UI.prototype.update = function() {
 		if (this.messages.length <= 3) classes.shift();
 		if (this.messages.length <= 2) classes.shift();
 		if (this.messages.length <= 1) classes.shift();
+		var templ = '<span class="%1% %2%">%3%</span><br/>\n';
 		for (var i = firstMsg; i < this.messages.length; ++i)
-			msgBuf += '<span class="' + classes.shift() + '">' + this.messages[i] + '</span><br/>';
+			msgBuf += templ.replace("%1%", classes.shift())
+				.replace("%2%", this.messages[i].type)
+				.replace("%3%", this.messages[i].msg);
 		$("#messages").innerHTML = msgBuf;
 		this.messagesDirty = false;
 	}
