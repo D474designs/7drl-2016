@@ -72,6 +72,11 @@ function UI(player) {
 	}, false);
 	$("#new-ok").addEventListener("click", function() {
 		ui.actor = world.create();
+		// "Liberate" sounds in user gesture so that they work on mobile
+		for (var sound in SOUNDS) {
+			if (SOUNDS[sound].audio)
+				SOUNDS[sound].audio.load();
+		}
 	}, false);
 
 	function closeAllMenus() {
