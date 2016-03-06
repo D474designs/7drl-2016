@@ -52,6 +52,7 @@ Dungeon.prototype.generate = function() {
 	var decorChoices = [ TILES.well, TILES.pillar, TILES.statue, TILES.table, TILES.cupboard, TILES.pot, TILES.chest ];
 	for (var i = 0; i < 20; ++i) {
 		var pos = freeTiles.pop();
+		if (!pos) throw "Too little floor space for decor!";
 		this.setTile(pos[0], pos[1], decorChoices.random(), Dungeon.LAYER_STATIC);
 	}
 
@@ -64,6 +65,7 @@ Dungeon.prototype.generate = function() {
 		for (var i = 0; i < n; ++i) {
 			var item = clone(item);
 			item.pos = freeTiles.pop();
+			if (!item.pos) throw "Too little floor space for items!";
 			this.setTile(item.pos[0], item.pos[1], item, Dungeon.LAYER_ITEM);
 			this.items.push(item);
 		}
@@ -77,6 +79,7 @@ Dungeon.prototype.generate = function() {
 	// Mobs
 	for (var i = 0; i < 10; ++i) {
 		var pos = freeTiles.pop();
+		if (!pos) throw "Too little floor space for mobs!";
 		var mob = new Actor(pos[0], pos[1], randProp(MOBS));
 		this.actors.push(mob);
 	}
