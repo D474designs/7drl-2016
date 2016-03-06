@@ -193,8 +193,10 @@ Actor.prototype.drunkAI = function() {
 	var dx = randInt(-1, 1);
 	var dy = randInt(-1, 1);
 	var newPos = [ this.pos[0] + dx, this.pos[1] + dy ];
-	if (world.dungeon.getPassable(newPos[0], newPos[1]));
+	if (world.dungeon.getPassable(newPos[0], newPos[1])) {
 		this.path.push(newPos);
+		this.doPath(false, false);
+	}
 	return true;
 };
 
