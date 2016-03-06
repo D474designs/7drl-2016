@@ -77,6 +77,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		// Check items
 		var item = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_ITEM);
 		if (checkItems && item && this.path.length == 0) {
+			this.animPos = lerpVec2(this.pos, waypoint, 0.2);
 			if (item.id == "gem") {
 				this.inv.gems++;
 				triggerAnimation($(".gem"), "tada");
@@ -102,6 +103,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 				world.dungeon.setTile(waypoint[0], waypoint[1], "door_wood_open", Dungeon.LAYER_STATIC);
 				ui.snd("door_open", this);
 			} else if (object.id == "door_metal") {
+				this.animPos = lerpVec2(this.pos, waypoint, 0.2);
 				if (this.inv.keys > 0) {
 					this.inv.keys--;
 					world.dungeon.setTile(waypoint[0], waypoint[1], "door_metal_open", Dungeon.LAYER_STATIC);
@@ -130,6 +132,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 };
 
 Actor.prototype.attack = function(target) {
+	this.animPos = lerpVec2(this.pos, target.pos, 0.3);
 	var hit = randInt(0, 1); // TODO
 	if (hit) {
 		var damage = 1; // TODO

@@ -36,6 +36,9 @@ function triggerAnimation(elem, className) {
 }
 
 function lerp(a, b, f) { return a + (b - a) * f; }
+function lerpVec2(a, b, f) {
+	return [ lerp(a[0], b[0], f), lerp(a[1], b[1], f) ];
+}
 
 function distSq(x1, y1, x2, y2) {
 	var dx = x2 - x1, dy = y2 - y1;
