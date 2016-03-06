@@ -59,6 +59,7 @@ Dungeon.prototype.generate = function() {
 	var stairs_down = clone(TILES.stairs_down);
 	stairs_down.entrance = { mapId: "dungeon-" + randInt(1000, 9999), mapType: "dungeon" };
 	this.setTile(this.end[0], this.end[1], stairs_down, Dungeon.LAYER_BG);
+	//this.setTile(this.start[0]+1, this.start[1], stairs_down, Dungeon.LAYER_BG);
 
 	// Items
 	var sprinkleItems = (function(item, n) {

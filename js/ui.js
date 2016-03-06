@@ -251,7 +251,7 @@ UI.prototype.update = function() {
 	if (!CONFIG.touch) {
 		var cursor = "default";
 		var mx = this.mouse.x, my = this.mouse.y;
-		if (this.actor.path.length) {
+		if (this.actor.path.length || world.currentActor != this.actor) {
 			cursor = "wait";
 		} else if (this.actor.visibility(mx, my) > 0.1) {
 			if (world.dungeon.getTile(mx, my, Dungeon.LAYER_ITEM))

@@ -7,9 +7,11 @@ function World() {
 		start: new Dungeon()
 	};
 	this.dungeon = this.maps.start;
-	this.currentActorIndex = 0;
+	this.scheduler = new ROT.Scheduler.Speed();
+	this.currentActor = null;
 	this.roundTimer = 0;
 	this.running = false;
+	this.mapChanged = false;
 
 	if (debugDisplay)
 		for (var j = 0; j < this.dungeon.height; ++j)
@@ -26,6 +28,9 @@ World.prototype.create = function() {
 	}
 	var pl = new Actor(this.dungeon.start[0], this.dungeon.start[1], def);
 	this.dungeon.actors.push(pl);
+	this.scheduler.clear();
+	for (var i = 0; i < this.dungeon.actors.length; ++i)
+		this.scheduler.add(this.dungeon.actors[i], true);
 	this.running = true;
 	return pl;
 }
@@ -34,29 +39,33 @@ World.prototype.update = function(dt) {
 	if (!this.running)
 		return;
 	this.dungeon.animate(dt);
-	if (Date.now() < this.roundTimer)
+	if (Date.now() < this.roundTimer || !this.dungeon.actors.length)
 		return;
-	while (this.dungeon.actors.length) {
-		if (this.currentActorIndex >= this.dungeon.actors.length)
-			this.currentActorIndex = 0;
-		var actor = this.dungeon.actors[this.currentActorIndex];
-		if (!actor.act()) break;
-		actor.stats.turns++;
-		if (actor.health <= 0) {
-			this.dungeon.actors.splice(this.currentActorIndex, 1);
-			if (actor == ui.actor) {
+	if (!this.currentActor)
+		this.currentActor = this.scheduler.next();
+	while (!this.mapChanged && this.currentActor.act()) {
+		this.currentActor.stats.turns++;
+		if (this.currentActor.health <= 0) {
+			removeElem(this.dungeon.actors, this.currentActor);
+			this.scheduler.remove(this.currentActor);
+			if (this.currentActor == ui.actor) {
 				this.running = false;
 				ui.die();
 				return;
 			}
-		} else this.currentActorIndex++;
+		}
 		this.dungeon.update();
-		if (actor == ui.actor) {
-			actor.updateVisibility();
+		this.currentActor = this.scheduler.next();
+		if (this.currentActor == ui.actor) {
+			this.roundTimer = Date.now() + CONFIG.roundDelay;
+			this.currentActor.updateVisibility();
 			break; // Always wait for next round after player action
+		} else if (distSq(this.currentActor.pos[0], this.currentActor.pos[1], ui.actor.pos[0], ui.actor.pos[1]) < 6) {
+			this.roundTimer = Date.now() + CONFIG.roundDelay;
+			break;
 		}
 	}
-	this.roundTimer = Date.now() + CONFIG.roundDelay;
+	this.mapChanged = false;
 };
 
 World.prototype.changeMap = function(actor, entrance) {
@@ -75,8 +84,11 @@ World.prototype.changeMap = function(actor, entrance) {
 	actor.animPos[1] = actor.pos[1];
 	actor.fov = this.dungeon.playerFov;
 	actor.updateVisibility();
-	this.currentActor = null;
 	//if (this.dungeon.mobProtos.length && this.dungeon.actors.length < 5) {
 	//	this.dungeon.spawnMobs(randInt(4, 7));
 	//}
+	this.scheduler.clear();
+	for (var i = 0; i < this.dungeon.actors.length; ++i)
+		this.scheduler.add(this.dungeon.actors[i], true);
+	this.mapChanged = true;
 };

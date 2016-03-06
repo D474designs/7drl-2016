@@ -204,23 +204,23 @@ var TILES = {
 var MOBS = {
 	skeleton: {
 		name: "Skeleton", ch: TILES.skeleton.ch, ai: "hunter",
-		health: 3, vision: 9
+		health: 3, vision: 9, speed: 1
 	},
 	slime: {
 		name: "Slime", ch: TILES.slime.ch, ai: "hunter",
-		health: 2, vision: 5
+		health: 2, vision: 5, speed: 0.5
 	},
 	bat: {
 		name: "Giant Bat", ch: TILES.bat.ch, ai: "hunter",
-		health: 1, vision: 4
+		health: 1, vision: 4, speed: 1.5
 	},
 	ghost: {
 		name: "Ghost", ch: TILES.ghost.ch, ai: "hunter",
-		health: 2, vision: 9
+		health: 2, vision: 9, speed: 1
 	},
 	spider: {
 		name: "Giant Spider", ch: TILES.spider.ch, ai: "hunter",
-		health: 2, vision: 7
+		health: 2, vision: 7, speed: 1.2
 	}
 };
 

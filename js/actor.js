@@ -9,6 +9,7 @@ function Actor(x, y, def) {
 	this.path = [];
 	this.fov = [];
 	this.vision = def.vision || 8;
+	this.speed = def.speed || 1;
 	this.health = def.health || 3;
 	this.maxHealth = this.health;
 	this.inv = {
@@ -28,6 +29,11 @@ function Actor(x, y, def) {
 	this.moved = false;
 	this.updateVisibility();
 }
+
+// Getter needed for ROT.Scheduler.Speed
+Actor.prototype.getSpeed = function() {
+	return this.speed;
+};
 
 Actor.prototype.visibility = function(x, y) {
 	return this.fov[x + y * world.dungeon.width];
