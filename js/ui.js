@@ -10,6 +10,7 @@ function UI(player) {
 	this.soundsEnabled = true;
 	this.vibrationEnabled = true;
 	this.characterChoice = null;
+	this.characterPerk = null;
 
 	this.resetDisplay();
 	CONFIG.debug = window.location.search.indexOf("?debug") != -1;
@@ -75,6 +76,24 @@ function UI(player) {
 		$("#new-ok").classList.remove("btn-disabled");
 		ui.characterChoice = "player_female";
 	}, false);
+	$("#new-strong").addEventListener("click", function() {
+		$(".perk", function(elem) { elem.classList.remove("btn-selected"); });
+		this.classList.add("btn-selected");
+		ui.characterPerk = "strong";
+		$("#new-perk-desc").innerHTML = "You will sometimes deal double damage!";
+	}, false);
+	$("#new-tough").addEventListener("click", function() {
+		$(".perk", function(elem) { elem.classList.remove("btn-selected"); });
+		this.classList.add("btn-selected");
+		ui.characterPerk = "tough";
+		$("#new-perk-desc").innerHTML = "You can withstand more punishment!";
+	}, false);
+	$("#new-swift").addEventListener("click", function() {
+		$(".perk", function(elem) { elem.classList.remove("btn-selected"); });
+		this.classList.add("btn-selected");
+		ui.characterPerk = "swift";
+		$("#new-perk-desc").innerHTML = "You can outrun your enemies!";
+	}, false);
 	$("#new-ok").addEventListener("click", function() {
 		ui.actor = world.create();
 		// "Liberate" sounds in user gesture so that they work on mobile
@@ -91,7 +110,7 @@ function UI(player) {
 	var handleHash = (function() {
 		var hash = window.location.hash;
 		closeAllMenus();
-		if (hash.length < 2 || (hash == "#game" && this.characterChoice === null)) {
+		if (hash.length < 2 || (hash !== "#new" && this.characterChoice === null)) {
 			window.location.hash = "#new";
 			return;
 		}

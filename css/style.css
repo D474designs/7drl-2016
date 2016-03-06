@@ -11,6 +11,13 @@
 	font-style: normal;
 }
 
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -59,7 +66,7 @@ canvas {
 	right: 0;
 	bottom: 0;
 	padding: 5px;
-	min-width: 100px;
+	min-width: 110px;
 	pointer-events: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-touch-callout: none;
@@ -169,9 +176,14 @@ h1 {
 	width: 200px;
 }
 
+.btn-compact {
+	font-size: 18px;
+	width: 100px;
+}
+
 .modal {
 	display: none;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -186,9 +198,11 @@ h1 {
 }
 
 .menu {
-	margin: 3% auto;
+	margin: 0 auto;
+	padding: 3%;
 	width: 90%;
 	max-width: 600px;
+	height: 100%;
 }
 
 #death-screen {
