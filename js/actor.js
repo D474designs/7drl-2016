@@ -28,7 +28,6 @@ function Actor(x, y, def) {
 	};
 	this.done = false;
 	this.moved = false;
-	this.updateVisibility();
 }
 
 // Getter needed for ROT.Scheduler.Speed

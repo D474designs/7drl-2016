@@ -21,13 +21,23 @@ var TILES = {
 		walkable: false,
 		transparent: false
 	},
-	floor: {
+	floor_wood: {
 		tileCoords: [ 0, 1 ],
 		walkable: true,
 		transparent: true
 	},
-	wall: {
+	floor_sand: {
+		tileCoords: [ 2, 1 ],
+		walkable: true,
+		transparent: true
+	},
+	wall_mossy: {
 		tileCoords: [ 6, 1 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_stone: {
+		tileCoords: [ 7, 1 ],
 		walkable: false,
 		transparent: false
 	},

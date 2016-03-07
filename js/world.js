@@ -4,7 +4,7 @@ var debugDisplay; // = new ROT.Display({width: 100, height: 100, fontSize: 6});
 function World() {
 	"use strict";
 	this.maps = {
-		start: new Dungeon()
+		start: new Dungeon("start", "dungeon")
 	};
 	this.dungeon = this.maps.start;
 	this.scheduler = new ROT.Scheduler.Speed();
@@ -20,8 +20,13 @@ function World() {
 					debugDisplay.draw(i, j, "#");
 }
 
+World.prototype.resetScheduler = function() {
+	this.scheduler.clear();
+	for (var i = 0; i < this.dungeon.actors.length; ++i)
+		this.scheduler.add(this.dungeon.actors[i], true);
+};
+
 World.prototype.create = function() {
-	this.dungeon.generate();
 	var def = {
 		ch: TILES[ui.characterChoice].ch,
 		health: ui.characterPerk === "tough" ? 12 : 10,
@@ -29,10 +34,9 @@ World.prototype.create = function() {
 		criticalChange: ui.characterPerk === "strong" ? 0.1 : 0
 	}
 	var pl = new Actor(this.dungeon.start[0], this.dungeon.start[1], def);
+	pl.updateVisibility();
 	this.dungeon.actors.push(pl);
-	this.scheduler.clear();
-	for (var i = 0; i < this.dungeon.actors.length; ++i)
-		this.scheduler.add(this.dungeon.actors[i], true);
+	this.resetScheduler();
 	this.running = true;
 	return pl;
 }
@@ -76,7 +80,6 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.dungeon.playerFov = actor.fov;
 	if (!this.maps[entrance.mapId]) {
 		this.maps[entrance.mapId] = new Dungeon(entrance.mapId, entrance.mapType);
-		this.maps[entrance.mapId].generate();
 	}
 	this.dungeon = this.maps[entrance.mapId];
 	this.dungeon.actors.push(actor);
@@ -89,8 +92,6 @@ World.prototype.changeMap = function(actor, entrance) {
 	//if (this.dungeon.mobProtos.length && this.dungeon.actors.length < 5) {
 	//	this.dungeon.spawnMobs(randInt(4, 7));
 	//}
-	this.scheduler.clear();
-	for (var i = 0; i < this.dungeon.actors.length; ++i)
-		this.scheduler.add(this.dungeon.actors[i], true);
+	this.resetScheduler();
 	this.mapChanged = true;
 };
