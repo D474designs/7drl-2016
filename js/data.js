@@ -17,12 +17,22 @@ var SETTINGS = {
 
 var TILES = {
 	empty: {
-		tileCoords: [ 0, 15 ],
+		tileCoords: [ 6, 2 ],
 		walkable: false,
 		transparent: false
 	},
-	floor_grass: {
+	grass_plain: {
 		tileCoords: [ 3, 1 ],
+		walkable: true,
+		transparent: true
+	},
+	grass_little: {
+		tileCoords: [ 0, 8 ],
+		walkable: true,
+		transparent: true
+	},
+	grass_lots: {
+		tileCoords: [ 1, 8 ],
 		walkable: true,
 		transparent: true
 	},
@@ -340,7 +350,7 @@ var LEVELS = [
 		height: 15,
 		wallOnStaticLayer: true,
 		wall: [ TILES.tree, TILES.tree2, TILES.tree3 ],
-		floor: [ TILES.floor_grass ],
+		floor: [ TILES.grass_plain, TILES.grass_plain, TILES.grass_plain, TILES.grass_little, TILES.grass_little, TILES.grass_lots ],
 		decor: [ TILES.flowers, TILES.flowers, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
 		decorAmount: 30,
 		mobs: [],
