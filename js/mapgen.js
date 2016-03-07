@@ -88,18 +88,16 @@ Dungeon.prototype.generateArena = function(params) {
 	this.initMap(this.parseRand(params.width), this.parseRand(params.height));
 	var freeTiles = [];
 	// Basic borders
+	var wallLayer = params.wallOnStaticLayer ? Dungeon.LAYER_STATIC : Dungeon.LAYER_BG;
 	var gen0 = new ROT.Map.Arena(this.width, this.height);
 	gen0.create((function(x, y, wall) {
-		if (wall) {
-			this.setTile(x, y, params.wall.random());
-		} else if ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667) {
-			this.setTile(x, y, params.wall.random());
-		} else if ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333) {
-			this.setTile(x, y, params.wall.random());
-		} else {
-			this.setTile(x, y, params.floor.random());
+		wall = wall || ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667);
+		wall = wall || ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333);
+		this.setTile(x, y, params.floor.random(), Dungeon.LAYER_BG);
+		if (wall)
+			this.setTile(x, y, params.wall.random(), wallLayer);
+		else
 			freeTiles.push([x, y]);
-		}
 	}).bind(this));
 	shuffle(freeTiles);
 	this.start = freeTiles.pop();
@@ -114,17 +112,16 @@ Dungeon.prototype.generateCave = function(params) {
 	this.initMap(w, h);
 	var freeTiles = [];
 	// Basic borders
+	var wallLayer = params.wallOnStaticLayer ? Dungeon.LAYER_STATIC : Dungeon.LAYER_BG;
 	var gen0 = new ROT.Map.Arena(this.width, this.height);
 	gen0.create((function(x, y, wall) {
-		if (wall) {
-			this.setTile(x, y, params.wall.random());
-		} else if ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667) {
-			this.setTile(x, y, params.wall.random());
-		} else if ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333) {
-			this.setTile(x, y, params.wall.random());
-		} else {
-			this.setTile(x, y, params.floor.random());
-		}
+		wall = wall || ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667);
+		wall = wall || ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333);
+		this.setTile(x, y, params.floor.random(), Dungeon.LAYER_BG);
+		if (wall)
+			this.setTile(x, y, params.wall.random(), wallLayer);
+		else
+			freeTiles.push([x, y]);
 	}).bind(this));
 	// Cellular middle part
 	var offset = 4;
