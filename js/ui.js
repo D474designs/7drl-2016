@@ -231,6 +231,12 @@ UI.prototype.resetDisplay = function() {
 		tileColorize: false
 	});
 	this.display._tick = function() {}; // Disable dirty updates
+	var ctx = this.display.getContainer().getContext("2d");
+	if (ctx.imageSmoothingEnabled === undefined) {
+		ctx.mozImageSmoothingEnabled = false;
+		ctx.webkitImageSmoothingEnabled = false;
+		ctx.msImageSmoothingEnabled = false;
+	} else ctx.imageSmoothingEnabled = false;
 	document.body.appendChild(this.display.getContainer());
 	this.display.getContainer().style.width = Math.floor(w * CONFIG.tileSize * SETTINGS.tileMag) + "px";
 	this.display.getContainer().style.height = Math.floor(h * CONFIG.tileSize * SETTINGS.tileMag) + "px";

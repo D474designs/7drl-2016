@@ -183,6 +183,16 @@ Dungeon.prototype.draw = function(camera, display, player) {
 	var h = display.getOptions().height;
 	var tw = display.getOptions().tileWidth;
 	var th = display.getOptions().tileHeight;
+
+	function drawTile(x, y, ch) {
+		var tileCoords = TILES.tilemap[ch];
+		display._context.drawImage(
+			display._options.tileSet,
+			tileCoords[0], tileCoords[1], tw, th,
+			x, y, tw, th
+		);
+	}
+
 	for (var j = 0; j < h; ++j) {
 		for (var i = 0; i < w; ++i) {
 			var x = i + camera.pos[0];
@@ -193,16 +203,16 @@ Dungeon.prototype.draw = function(camera, display, player) {
 			var visibility = player.visibility(x, y);
 			if (visibility <= 0)
 				continue;
-			var tile = [ this.map[Dungeon.LAYER_BG][k].ch ];
+			var visx = Math.round((i + camera.offset[0]) * tw);
+			var visy = Math.round((j + camera.offset[1]) * th);
+			drawTile(visx, visy, this.map[Dungeon.LAYER_BG][k].ch);
 			if (visibility > 0.5 && this.map[Dungeon.LAYER_STATIC][k])
-				tile.push(this.map[Dungeon.LAYER_STATIC][k].ch);
+				drawTile(visx, visy, this.map[Dungeon.LAYER_STATIC][k].ch);
 			if (visibility > 0.9 && this.map[Dungeon.LAYER_ITEM][k])
-				tile.push(this.map[Dungeon.LAYER_ITEM][k].ch);
-			var data = [i + camera.offset[0], j + camera.offset[1], tile, "transparent", "rgba(0,0,0,0.0)"];
-			display._backend.draw(data, false);
+				drawTile(visx, visy, this.map[Dungeon.LAYER_ITEM][k].ch);
 			if (visibility <= 0.9) {
 				display._context.fillStyle = "rgba(0,0,0,0.6)";
-				display._context.fillRect(Math.round(data[0] * tw), Math.round(data[1] * th), tw, th);
+				display._context.fillRect(visx, visy, tw, th);
 			}
 		}
 	}
