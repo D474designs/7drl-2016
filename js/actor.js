@@ -36,6 +36,8 @@ Actor.prototype.getSpeed = function() {
 };
 
 Actor.prototype.visibility = function(x, y) {
+	if (x < 0 || y < 0 || x >= world.dungeon.width || y >= world.dungeon.height)
+		return false;
 	return this.fov[x + y * world.dungeon.width];
 };
 
@@ -46,6 +48,8 @@ Actor.prototype.updateVisibility = function(actor) {
 		if (this.fov[i] == 1) this.fov[i] = 0.5;
 		else if (this.fov[i] === undefined) this.fov[i] = 0;
 	function callback(x, y, r, visibility) {
+		if (x < 0 || y < 0 || x >= world.dungeon.width || y >= world.dungeon.height)
+			return;
 		if (visibility > 0)
 			this.fov[x + y * world.dungeon.width] = 1;
 	}

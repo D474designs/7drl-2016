@@ -155,8 +155,6 @@ Dungeon.prototype.draw = function(camera, display, player) {
 			var x = i + camera.pos[0];
 			var y = j + camera.pos[1];
 			var k = x + y * this.width;
-			if (x < 0 || y < 0 || x >= this.width || y >= this.height)
-				continue;
 			var visibility = player.visibility(x, y);
 			if (visibility <= 0)
 				continue;
