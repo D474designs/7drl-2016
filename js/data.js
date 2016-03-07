@@ -21,8 +21,18 @@ var TILES = {
 		walkable: false,
 		transparent: false
 	},
+	floor_grass: {
+		tileCoords: [ 3, 1 ],
+		walkable: true,
+		transparent: true
+	},
 	floor_wood: {
 		tileCoords: [ 0, 1 ],
+		walkable: true,
+		transparent: true
+	},
+	floor_wood2: {
+		tileCoords: [ 0, 2 ],
 		walkable: true,
 		transparent: true
 	},
@@ -31,12 +41,27 @@ var TILES = {
 		walkable: true,
 		transparent: true
 	},
+	floor_tiles: {
+		tileCoords: [ 1, 9 ],
+		walkable: true,
+		transparent: true
+	},
+	wall_stone: {
+		tileCoords: [ 3, 0 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_tiles: {
+		tileCoords: [ 7, 0 ],
+		walkable: false,
+		transparent: false
+	},
 	wall_mossy: {
 		tileCoords: [ 6, 1 ],
 		walkable: false,
 		transparent: false
 	},
-	wall_stone: {
+	wall_rocks: {
 		tileCoords: [ 7, 1 ],
 		walkable: false,
 		transparent: false
@@ -98,6 +123,36 @@ var TILES = {
 		transparent: true
 	},
 
+	flowers: {
+		tileCoords: [ 4, 1 ],
+		walkable: true,
+		transparent: true
+	},
+	bush: {
+		tileCoords: [ 4, 2 ],
+		walkable: true,
+		transparent: true
+	},
+	tree: {
+		tileCoords: [ 6, 3 ],
+		walkable: false,
+		transparent: true
+	},
+	tree2: {
+		tileCoords: [ 6, 4 ],
+		walkable: false,
+		transparent: true
+	},
+	tree3: {
+		tileCoords: [ 5, 9 ],
+		walkable: false,
+		transparent: true
+	},
+	rocks: {
+		tileCoords: [ 2, 7 ],
+		walkable: false,
+		transparent: true
+	},
 	well: {
 		tileCoords: [ 7, 3 ],
 		walkable: false,
@@ -276,3 +331,40 @@ var SOUNDS = {
 		SOUNDS[i].audio = new Audio(SOUNDS[i].src + format);
 	}
 })();
+
+var LEVELS = [
+	{
+		name: "Start Area",
+		generator: "arena",
+		width: 20,
+		height: 15,
+		wall: [ TILES.tree, TILES.tree2, TILES.tree3 ],
+		floor: [ TILES.floor_grass ],
+		decor: [ TILES.flowers, TILES.flowers, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
+		decorAmount: 30,
+		mobs: [],
+		mobAmount: 0
+	},{
+		name: "Log House",
+		generator: "dungeon",
+		width: 40,
+		height: 20,
+		wall: [ TILES.wall_tiles ],
+		floor: [ TILES.floor_wood2 ],
+		decor: [ TILES.table, TILES.cupboard ],
+		decorAmount: 10,
+		mobs: [ MOBS.spider, MOBS.bat, MOBS.bat, MOBS.bat ],
+		mobAmount: [4, 5]
+	},{
+		name: "Small cave",
+		generator: "cave",
+		width: 50,
+		height: 30,
+		wall: [ TILES.wall_rocks ],
+		floor: [ TILES.floor_sand ],
+		decor: [ TILES.rocks ],
+		decorAmount: [ 15, 20 ],
+		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
+		mobAmount: [5, 6]
+	}
+];

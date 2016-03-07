@@ -1,23 +1,41 @@
 
-function Dungeon(id, mapType) {
+function Dungeon(id, params) {
 	//ROT.RNG.setSeed(666);
 	this.id = id;
 	this.width = 0;
 	this.height = 0;
 	this.actors = [];
 	this.items = [];
-	this.mobProtos = [];
 	this.playerFov = [];
 	this.map = [];
 	this.start = [0, 0];
 	this.end = [0, 0];
 	var generators = {
+		arena: this.generateArena.bind(this),
 		dungeon: this.generateDungeon.bind(this),
 		cave: this.generateCave.bind(this)
 	};
 	Dungeon.totalCount++;
-	generators[mapType]();
-	this.needsRender = false;
+	var freeTiles = generators[params.generator](params);
+	// Items
+	this.generateItems(randInt(3,5), [TILES.coin], freeTiles);
+	this.generateItems(randInt(2,3), [TILES.gem], freeTiles);
+	//this.generateItems(randInt(1,2), [TILES.ring], freeTiles);
+	this.generateItems(randInt(3,5), [TILES.potion_health], freeTiles);
+	// Mobs
+	this.generateMobs(this.parseRand(params.mobAmount), params.mobs, freeTiles);
+	// Decor / clutter
+	var decorAmount = this.parseRand(params.decorAmount);
+	for (var i = 0; i < decorAmount; ++i) {
+		var pos = freeTiles.pop();
+		if (!pos) {
+			console.warn("Too little floor space for decor!");
+			break;
+		}
+		this.setTile(pos[0], pos[1], params.decor.random(), Dungeon.LAYER_STATIC);
+	}
+	this.generateStairs(LEVELS[Dungeon.totalCount]);
+	this.needsRender = true;
 }
 
 Dungeon.LAYER_BG = 0;

@@ -1,3 +1,12 @@
+Dungeon.prototype.parseRand = function(rangeOrNumber) {
+	if (rangeOrNumber instanceof Array)
+		return randInt(rangeOrNumber[0], rangeOrNumber[1])
+	else if (typeof(rangeOrNumber) === "number")
+		return rangeOrNumber;
+	console.error("Invalid range or number", rangeOrNumber);
+	return 0;
+}
+
 Dungeon.prototype.initMap = function(w, h) {
 	this.width = w;
 	this.height = h;
@@ -25,15 +34,17 @@ Dungeon.prototype.generateMobs = function(amount, choices, freeTiles) {
 	}
 };
 
-Dungeon.prototype.generateStairs = function(mapType) {
+Dungeon.prototype.generateStairs = function(mapParams) {
+	if (!mapParams)
+		return;
 	var stairs_down = clone(TILES.stairs_down);
-	stairs_down.entrance = { mapId: mapType + randInt(1000, 9999), mapType: mapType };
+	stairs_down.entrance = { mapId: "level-" + Dungeon.totalCount, mapParams: mapParams };
 	this.setTile(this.end[0], this.end[1], stairs_down, Dungeon.LAYER_BG);
 	//this.setTile(this.start[0]+1, this.start[1], stairs_down, Dungeon.LAYER_BG);
 };
 
 Dungeon.prototype.generateDungeon = function(params) {
-	this.initMap(60, 24);
+	this.initMap(this.parseRand(params.width), this.parseRand(params.height));
 	var gen = new ROT.Map.Digger(this.width, this.height /*, {
 		roomWidth: [5, 6],
 		roomHeight: [4, 5],
@@ -44,7 +55,7 @@ Dungeon.prototype.generateDungeon = function(params) {
 	}*/);
 	// General layout
 	gen.create((function(x, y, wall) {
-		this.setTile(x, y, wall ? TILES.wall_mossy : TILES.floor_wood);
+		this.setTile(x, y, wall ? params.wall.random() : params.floor.random());
 	}).bind(this));
 	var freeTiles = [];
 	var rooms = gen.getRooms();
@@ -69,50 +80,50 @@ Dungeon.prototype.generateDungeon = function(params) {
 		}
 	}
 	shuffle(freeTiles);
-
-	// Decor / clutter
-	var decorChoices = [ TILES.well, TILES.pillar, TILES.statue, TILES.table, TILES.cupboard, TILES.pot, TILES.chest ];
-	for (var i = 0; i < 20; ++i) {
-		var pos = freeTiles.pop();
-		if (!pos) throw "Too little floor space for decor!";
-		this.setTile(pos[0], pos[1], decorChoices.random(), Dungeon.LAYER_STATIC);
-	}
-
-	this.generateStairs("cave");
-
-	// Items
 	this.generateItems(keysNeeded, [TILES.key], freeTiles);
-	this.generateItems(randInt(3,5), [TILES.coin], freeTiles);
-	this.generateItems(randInt(2,3), [TILES.gem], freeTiles);
-	//this.generateItems(randInt(1,2), [TILES.ring], freeTiles);
-	this.generateItems(randInt(3,5), [TILES.potion_health], freeTiles);
-	// Mobs
-	this.mobProtos = [ MOBS.skeleton, MOBS.ghost ];
-	this.generateMobs(randInt(7,10), this.mobProtos, freeTiles);
-
-	this.needsRender = true;
+	return freeTiles;
 };
 
-Dungeon.prototype.generateCave = function(params) {
-	// Seems there is a chance of large empty space at the bottom if height > width
-	var w = randInt(40, 60);
-	this.initMap(w, w - randInt(5, 15));
-
-	var groundTile = TILES.floor_sand;
-	var wallTile = TILES.wall_stone;
-	this.mobProtos = [ MOBS.bat, MOBS.slime, MOBS.skeleton, MOBS.spider ];
+Dungeon.prototype.generateArena = function(params) {
+	this.initMap(this.parseRand(params.width), this.parseRand(params.height));
 	var freeTiles = [];
 	// Basic borders
 	var gen0 = new ROT.Map.Arena(this.width, this.height);
 	gen0.create((function(x, y, wall) {
 		if (wall) {
-			this.setTile(x, y, wallTile);
+			this.setTile(x, y, params.wall.random());
 		} else if ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667) {
-			this.setTile(x, y, wallTile);
+			this.setTile(x, y, params.wall.random());
 		} else if ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333) {
-			this.setTile(x, y, wallTile);
+			this.setTile(x, y, params.wall.random());
 		} else {
-			this.setTile(x, y, groundTile);
+			this.setTile(x, y, params.floor.random());
+			freeTiles.push([x, y]);
+		}
+	}).bind(this));
+	shuffle(freeTiles);
+	this.start = freeTiles.pop();
+	this.end = freeTiles.pop();
+	return freeTiles;
+};
+
+Dungeon.prototype.generateCave = function(params) {
+	// Seems there is a chance of large empty space at the bottom if height > width
+	var w = this.parseRand(params.width);
+	var h = Math.min(this.parseRand(params.height), w - 1);
+	this.initMap(w, h);
+	var freeTiles = [];
+	// Basic borders
+	var gen0 = new ROT.Map.Arena(this.width, this.height);
+	gen0.create((function(x, y, wall) {
+		if (wall) {
+			this.setTile(x, y, params.wall.random());
+		} else if ((x <= 1 || y <= 1 || x >= this.width-2 || y >= this.height-2) && Math.random() < 0.667) {
+			this.setTile(x, y, params.wall.random());
+		} else if ((x <= 2 || y <= 2 || x >= this.width-3 || y >= this.height-3) && Math.random() < 0.333) {
+			this.setTile(x, y, params.wall.random());
+		} else {
+			this.setTile(x, y, params.floor.random());
 		}
 	}).bind(this));
 	// Cellular middle part
@@ -125,22 +136,14 @@ Dungeon.prototype.generateCave = function(params) {
 	gen.create((function(x, y, wall) {
 		x += offset; y += offset;
 		if (wall) {
-			this.setTile(x, y, wallTile);
+			this.setTile(x, y, params.wall.random());
 		} else {
-			this.setTile(x, y, groundTile);
+			this.setTile(x, y, params.floor.random());
 			freeTiles.push([x, y]);
 		}
 	}).bind(this));
 	shuffle(freeTiles);
 	this.start = freeTiles.pop();
 	this.end = freeTiles.pop();
-	this.generateStairs("dungeon");
-	// Items
-	this.generateItems(randInt(5,7), [TILES.coin], freeTiles);
-	this.generateItems(randInt(2,3), [TILES.gem], freeTiles);
-	//this.generateItems(randInt(1,2), [TILES.ring], freeTiles);
-	this.generateItems(randInt(0,2), [TILES.potion_health], freeTiles);
-	// Mobs
-	this.generateMobs(randInt(8,12), this.mobProtos, freeTiles);
-	this.needsRender = true;
+	return freeTiles;
 };

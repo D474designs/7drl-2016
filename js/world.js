@@ -3,10 +3,8 @@ var debugDisplay; // = new ROT.Display({width: 100, height: 100, fontSize: 6});
 
 function World() {
 	"use strict";
-	this.maps = {
-		start: new Dungeon("start", "dungeon")
-	};
-	this.dungeon = this.maps.start;
+	this.maps = [ new Dungeon(0, LEVELS[0]) ];
+	this.dungeon = this.maps[0];
 	this.scheduler = new ROT.Scheduler.Speed();
 	this.currentActor = null;
 	this.roundTimer = 0;
@@ -79,7 +77,7 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.dungeon.start = clone(actor.pos);
 	this.dungeon.playerFov = actor.fov;
 	if (!this.maps[entrance.mapId]) {
-		this.maps[entrance.mapId] = new Dungeon(entrance.mapId, entrance.mapType);
+		this.maps[entrance.mapId] = new Dungeon(entrance.mapId, entrance.mapParams);
 	}
 	this.dungeon = this.maps[entrance.mapId];
 	this.dungeon.actors.push(actor);
