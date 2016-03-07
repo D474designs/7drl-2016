@@ -120,8 +120,6 @@ Dungeon.prototype.generateCave = function(params) {
 		this.setTile(x, y, params.floor.random(), Dungeon.LAYER_BG);
 		if (wall)
 			this.setTile(x, y, params.wall.random(), wallLayer);
-		else
-			freeTiles.push([x, y]);
 	}).bind(this));
 	// Cellular middle part
 	var offset = 4;
