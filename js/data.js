@@ -238,28 +238,31 @@ var MOBS = {
 
 var SOUNDS = {
 	click: {
-		src: "assets/sounds/click.ogg"
+		src: "assets/sounds/click"
 	},
 	pickup: {
-		src: "assets/sounds/pickup.ogg"
+		src: "assets/sounds/pickup"
 	},
 	door_locked: {
-		src: "assets/sounds/door_locked.ogg"
+		src: "assets/sounds/door_locked"
 	},
 	door_open: {
-		src: "assets/sounds/door_open.ogg"
+		src: "assets/sounds/door_open"
 	},
 	hit: {
-		src: "assets/sounds/hit.ogg"
+		src: "assets/sounds/hit"
 	},
 	miss: {
-		src: "assets/sounds/miss.ogg"
+		src: "assets/sounds/miss"
 	}
 };
 
 (function() {
+	var format = ".ogg";
+	if (document.createElement("audio").canPlayType("audio/mp3"))
+		format = ".mp3";
 	for (var i in SOUNDS) {
 		SOUNDS[i].id = i;
-		SOUNDS[i].audio = new Audio(SOUNDS[i].src);
+		SOUNDS[i].audio = new Audio(SOUNDS[i].src + format);
 	}
 })();
