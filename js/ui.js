@@ -145,6 +145,8 @@ function UI(player) {
 };
 
 UI.prototype.onClick = function(e) {
+	if (!this.actor)
+		return;
 	e.preventDefault();
 	var coords = this.display.eventToPosition(e);
 	var x = coords[0] + camera.pos[0];
