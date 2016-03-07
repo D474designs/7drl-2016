@@ -359,7 +359,9 @@ var LEVELS = [
 		decor: [ TILES.flowers, TILES.flowers, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
 		decorAmount: 30,
 		mobs: [],
-		mobAmount: 0
+		mobAmount: 0,
+		items: [ TILES.coin ],
+		itemAmount: 1
 	},{
 		name: "Log House",
 		generator: "dungeon",
@@ -370,7 +372,9 @@ var LEVELS = [
 		decor: [ TILES.table, TILES.cupboard, TILES.pot ],
 		decorAmount: [ 15, 20 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.bat, MOBS.bat ],
-		mobAmount: [4, 5]
+		mobAmount: [4, 5],
+		items: [ TILES.potion_health, TILES.coin, TILES.coin ],
+		itemAmount: [ 3, 4 ]
 	},{
 		name: "Small cave",
 		generator: "cave",
@@ -381,6 +385,8 @@ var LEVELS = [
 		decor: [ TILES.rocks ],
 		decorAmount: [ 15, 20 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
-		mobAmount: [5, 6]
+		mobAmount: [5, 6],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
+		itemAmount: [ 4, 6 ]
 	}
 ];

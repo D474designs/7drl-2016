@@ -18,10 +18,7 @@ function Dungeon(id, params) {
 	Dungeon.totalCount++;
 	var freeTiles = generators[params.generator](params);
 	// Items
-	this.generateItems(randInt(3,5), [TILES.coin], freeTiles);
-	this.generateItems(randInt(2,3), [TILES.gem], freeTiles);
-	//this.generateItems(randInt(1,2), [TILES.ring], freeTiles);
-	this.generateItems(randInt(3,5), [TILES.potion_health], freeTiles);
+	this.generateItems(this.parseRand(params.itemAmount), params.items, freeTiles);
 	// Mobs
 	this.generateMobs(this.parseRand(params.mobAmount), params.mobs, freeTiles);
 	// Decor / clutter
