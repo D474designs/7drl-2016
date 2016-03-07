@@ -61,8 +61,8 @@ var TILES = {
 		walkable: false,
 		transparent: false
 	},
-	wall_tiles: {
-		tileCoords: [ 7, 0 ],
+	wall_bricks: {
+		tileCoords: [ 1, 12 ],
 		walkable: false,
 		transparent: false
 	},
@@ -73,6 +73,11 @@ var TILES = {
 	},
 	wall_rocks: {
 		tileCoords: [ 7, 1 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_logs: {
+		tileCoords: [ 2, 12 ],
 		walkable: false,
 		transparent: false
 	},
@@ -360,10 +365,10 @@ var LEVELS = [
 		generator: "dungeon",
 		width: 40,
 		height: 20,
-		wall: [ TILES.wall_tiles ],
-		floor: [ TILES.floor_wood2 ],
-		decor: [ TILES.table, TILES.cupboard ],
-		decorAmount: 10,
+		wall: [ TILES.wall_logs ],
+		floor: [ TILES.floor_wood ],
+		decor: [ TILES.table, TILES.cupboard, TILES.pot ],
+		decorAmount: [ 15, 20 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.bat, MOBS.bat ],
 		mobAmount: [4, 5]
 	},{
