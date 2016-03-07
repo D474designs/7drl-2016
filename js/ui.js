@@ -36,12 +36,13 @@ function UI(player) {
 	document.addEventListener('keyup', this.onKeyUp.bind(this), false);
 
 	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+	if (!navigator.vibrate || !CONFIG.touch)
+		$("#pausemenu-vibration").style.display = "none";
 
 	if (!CONFIG.touch) {
 		$(".btn", function(elem) {
 			elem.classList.add("btn-no-touch");
 		});
-		$("#pausemenu-vibration").style.display = "none";
 	}
 
 	function toggleFullscreen() {
