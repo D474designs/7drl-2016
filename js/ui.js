@@ -131,7 +131,8 @@ function UI(player) {
 	var handleHash = (function() {
 		var hash = window.location.hash;
 		closeAllMenus();
-		if (hash.length < 2 || (hash !== "#new" && this.characterChoice === null)) {
+		var whitelist = [ "#new", "#help", "#about" ];
+		if (hash.length < 2 || (whitelist.indexOf(hash) == -1 && this.characterChoice === null)) {
 			window.location.hash = "#new";
 			return;
 		}
