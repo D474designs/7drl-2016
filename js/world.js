@@ -93,3 +93,8 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.resetScheduler();
 	this.mapChanged = true;
 };
+
+// Debug tool
+World.prototype.gotoLevel = function(num) {
+	this.changeMap(ui.actor, { mapId: num, mapParams: LEVELS[num] });
+}

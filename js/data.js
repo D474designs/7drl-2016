@@ -388,5 +388,31 @@ var LEVELS = [
 		mobAmount: [5, 6],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 4, 6 ]
+	},{
+		name: "Prison",
+		generator: "dungeon",
+		width: 60,
+		height: 40,
+		wall: [ TILES.wall_mossy ],
+		floor: [ TILES.floor_tiles ],
+		decor: [ TILES.pot ],
+		decorAmount: [ 5, 8 ],
+		mobs: [ MOBS.skeleton, MOBS.skeleton, MOBS.ghost ],
+		mobAmount: [ 10, 12 ],
+		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
+		itemAmount: [ 5, 6 ]
+	},{
+		name: "Underground Garden",
+		generator: "cave",
+		width: 30,
+		height: 30,
+		wall: [ TILES.wall_rocks ],
+		floor: [ TILES.grass_plain, TILES.grass_plain, TILES.grass_plain, TILES.grass_little, TILES.grass_little, TILES.grass_lots ],
+		decor: [ TILES.well, TILES.statue, TILES.flowers, TILES.flowers, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
+		decorAmount: 50,
+		mobs: [ MOBS.spider ],
+		mobAmount: [1, 2],
+		items: [ TILES.potion_health, TILES.potion_health, TILES.potion_health, TILES.gem ],
+		itemAmount: [3, 4]
 	}
 ];
