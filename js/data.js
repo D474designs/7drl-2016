@@ -298,7 +298,7 @@ var TILES = {
 		transparent: true
 	},
 	slime: {
-		tileCoords: [ 22, 2 ],
+		tileCoords: [ 24, 2 ],
 		walkable: false,
 		transparent: true
 	},
