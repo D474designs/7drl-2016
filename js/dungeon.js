@@ -126,6 +126,14 @@ Dungeon.prototype.animate = function(dt) {
 				actor.animPos[0] += dx * 0.1;
 				actor.animPos[1] += dy * 0.1;
 			}*/
+			actor.animTime += 1000 * dt;
+			var anim = actor.tile.anim;
+			if (anim && anim.length && actor.animTime >= CONFIG.animFrameDuration) {
+				actor.animFrame = (actor.animFrame + 1) % anim.length;
+				actor.animTime = 0;
+				actor.tile.tileCoords[0] = anim[actor.animFrame][0];
+				actor.tile.tileCoords[1] = anim[actor.animFrame][1];
+			}
 			this.needsRender = true;
 		}
 	}
@@ -146,7 +154,7 @@ Dungeon.prototype.draw = function(camera, display, player) {
 	var th = display.getOptions().tileHeight;
 
 	function drawTile(x, y, ch) {
-		var tileCoords = TILES.tilemap[ch];
+		var tileCoords = TILES.tileArray[ch].tileCoords;
 		display._context.drawImage(
 			display._options.tileSet,
 			tileCoords[0], tileCoords[1], tw, th,
@@ -179,7 +187,7 @@ Dungeon.prototype.draw = function(camera, display, player) {
 		var actor = this.actors[i];
 		var visibility = player.visibility(actor.pos[0], actor.pos[1]);
 		if (visibility > 0.9) {
-			var tileCoords = TILES.tilemap[actor.ch];
+			var tileCoords = actor.tile.tileCoords;
 			var x = actor.animPos[0] - camera.pos[0] + camera.offset[0];
 			var y = actor.animPos[1] - camera.pos[1] + camera.offset[1];
 			display._context.drawImage(

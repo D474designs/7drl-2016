@@ -2,8 +2,9 @@ var CONFIG = {
 	tileSize: 16,
 	tileGap: 0,
 	debug: false,
-	roundDelay: 200,
+	roundDelay: 160,
 	moveDuration: 140,
+	animFrameDuration: 64,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 };
@@ -179,7 +180,8 @@ var TILES = {
 	},
 
 	altar: {
-		tileCoords: [ 8, 7 ], walkable: false, transparent: true
+		tileCoords: [ 8, 7 ], walkable: false, transparent: true,
+		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ]
 	},
 	key: {
 		tileCoords: [ 8, 8 ], walkable: true, transparent: true
@@ -199,51 +201,62 @@ var TILES = {
 	},
 
 	player_male: {
-		tileCoords: [ 24, 0 ], walkable: false, transparent: true
+		tileCoords: [ 24, 0 ], walkable: false, transparent: true,
+		anim: [ [ 23, 0 ], [ 24, 0 ], [ 25, 0 ], [ 24, 0 ] ]
 	},
 	player_female: {
-		tileCoords: [ 27, 0 ], walkable: false, transparent: true
+		tileCoords: [ 27, 0 ], walkable: false, transparent: true,
+		anim: [ [ 26, 0 ], [ 27, 0 ], [ 28, 0 ], [ 27, 0 ] ]
 	},
 
 	skeleton: {
-		tileCoords: [ 30, 0 ], walkable: false, transparent: true
-	},
-	skeleton: {
-		tileCoords: [ 30, 0 ], walkable: false, transparent: true
+		tileCoords: [ 30, 0 ], walkable: false, transparent: true,
+		anim: [ [ 29, 0 ], [ 30, 0 ], [ 31, 0 ], [ 30, 0 ] ]
 	},
 	slime: {
-		tileCoords: [ 24, 2 ], walkable: false, transparent: true
+		tileCoords: [ 24, 2 ], walkable: false, transparent: true,
+		anim: [ [ 23, 2 ], [ 24, 2 ], [ 25, 2 ], [ 24, 2 ] ]
 	},
 	bat: {
-		tileCoords: [ 24, 1 ], walkable: false, transparent: true
+		tileCoords: [ 24, 1 ], walkable: false, transparent: true,
+		anim: [ [ 23, 1 ], [ 24, 1 ], [ 25, 1 ], [ 24, 1 ] ]
 	},
 	ghost: {
-		tileCoords: [ 27, 1 ], walkable: false, transparent: true
+		tileCoords: [ 27, 1 ], walkable: false, transparent: true,
+		anim: [ [ 26, 1 ], [ 27, 1 ], [ 28, 1 ], [ 27, 1 ] ]
 	},
 	spider: {
-		tileCoords: [ 30, 1 ], walkable: false, transparent: true
+		tileCoords: [ 30, 1 ], walkable: false, transparent: true,
+		anim: [ [ 29, 1 ], [ 30, 1 ], [ 31, 1 ], [ 30, 1 ] ]
 	},
 	goblin: {
-		tileCoords: [ 27, 2 ], walkable: false, transparent: true
+		tileCoords: [ 27, 2 ], walkable: false, transparent: true,
+		anim: [ [ 26, 2 ], [ 27, 2 ], [ 28, 2 ], [ 27, 2 ] ]
 	},
 
 	tileset: null,
-	tilemap: {}
+	tileArray: [],
+	tilemap: {} // Obsolete
 };
 
 (function() {
 	TILES.tileset = document.createElement("img");
 	TILES.tileset.src = "assets/tileset.png";
-	var count = 0;
 	for (var i in TILES) {
 		var tile = TILES[i];
 		if (!tile.tileCoords) continue;
 		tile.id = i;
 		tile.name = tile.name || i;
-		tile.ch = count++;
+		tile.ch = TILES.tileArray.length;
 		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap);
 		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap);
-		TILES.tilemap[tile.ch] = tile.tileCoords;
+		if (tile.anim) {
+			for (var a = 0; a < tile.anim.length; ++a) {
+				tile.anim[a][0] *= (CONFIG.tileSize + CONFIG.tileGap);
+				tile.anim[a][1] *= (CONFIG.tileSize + CONFIG.tileGap);
+			}
+		}
+		TILES.tileArray.push(tile);
 	}
 })();
 
@@ -251,7 +264,7 @@ var TILES = {
 var MOBS = {
 	skeleton: {
 		name: "Skeleton", ch: TILES.skeleton.ch, ai: "hunter",
-		health: 3, vision: 9, speed: 1
+		health: 3, vision: 9, speed: 1,
 	},
 	slime: {
 		name: "Slime", ch: TILES.slime.ch, ai: "hunter",

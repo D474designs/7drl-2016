@@ -5,7 +5,9 @@ function Actor(x, y, def) {
 	this.name = def.name || "Player";
 	this.pos = [ x || 0, y || 0 ];
 	this.animPos = [ this.pos[0], this.pos[1] ];
-	this.ch = def.ch || TILES.player_female.ch;
+	this.animTime = (rnd() * 200)|0;
+	this.animFrame = 0;
+	this.tile = def.ch ? clone(TILES.tileArray[def.ch]) : clone(TILES.player_female);
 	this.path = [];
 	this.fov = [];
 	this.vision = def.vision || 8;
