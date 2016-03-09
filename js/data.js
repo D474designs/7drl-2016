@@ -17,350 +17,214 @@ var SETTINGS = {
 
 var TILES = {
 	empty: {
-		tileCoords: [ 0, 23 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 0, 23 ], walkable: false, transparent: false
 	},
 	grass_plain: {
-		tileCoords: [ 0, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 0, 0 ], walkable: true, transparent: true
 	},
 	grass_little: {
-		tileCoords: [ 1, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 1, 0 ], walkable: true, transparent: true
 	},
 	grass_lots: {
-		tileCoords: [ 2, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 2, 0 ], walkable: true, transparent: true
 	},
 	grass_dark: {
-		tileCoords: [ 7, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 7, 0 ], walkable: true, transparent: true
 	},
 	grass_darker: {
-		tileCoords: [ 6, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 6, 0 ], walkable: true, transparent: true
 	},
 	floor_wood: {
-		tileCoords: [ 0, 1 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 0, 1 ], walkable: true, transparent: true
 	},
 	floor_wood2: {
-		tileCoords: [ 1, 1 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 1, 1 ], walkable: true, transparent: true
 	},
 	floor_sand_a: {
-		tileCoords: [ 0, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 0, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_b: {
-		tileCoords: [ 1, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 1, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_c: {
-		tileCoords: [ 2, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 2, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_d: {
-		tileCoords: [ 3, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 3, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_rock1: {
-		tileCoords: [ 4, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 4, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_rock2: {
-		tileCoords: [ 5, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 5, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_rock3: {
-		tileCoords: [ 6, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 6, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_rock4: {
-		tileCoords: [ 7, 3 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 7, 3 ], walkable: true, transparent: true
 	},
 	floor_sand_alt: {
-		tileCoords: [ 0, 2 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 0, 2 ], walkable: true, transparent: true
 	},
 	floor_sand_dunes: {
-		tileCoords: [ 1, 2 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 1, 2 ], walkable: true, transparent: true
 	},
 	floor_tiles: {
-		tileCoords: [ 3, 1 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 3, 1 ], walkable: true, transparent: true
 	},
 	floor_cobblestone: {
-		tileCoords: [ 0, 6 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 0, 6 ], walkable: true, transparent: true
 	},
 	floor_cobblestone2: {
-		tileCoords: [ 1, 6 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 1, 6 ], walkable: true, transparent: true
 	},
 	wall_stone: {
-		tileCoords: [ 2, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 2, 5 ], walkable: false, transparent: false
 	},
 	wall_stone2: {
-		tileCoords: [ 7, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 7, 5 ], walkable: false, transparent: false
 	},
 	wall_stone_old: {
-		tileCoords: [ 1, 4 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 1, 4 ], walkable: false, transparent: false
 	},
 	wall_stone_old_small: {
-		tileCoords: [ 0, 4 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 0, 4 ], walkable: false, transparent: false
 	},
 	wall_bricks: {
-		tileCoords: [ 1, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 1, 5 ], walkable: false, transparent: false
 	},
 	wall_mossy: {
-		tileCoords: [ 0, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 0, 5 ], walkable: false, transparent: false
 	},
 	wall_rocks: {
-		tileCoords: [ 3, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 3, 5 ], walkable: false, transparent: false
 	},
 	wall_rocks2: {
-		tileCoords: [ 4, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 4, 5 ], walkable: false, transparent: false
 	},
 	wall_rocks3: {
-		tileCoords: [ 5, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 5, 5 ], walkable: false, transparent: false
 	},
 	wall_logs: {
-		tileCoords: [ 6, 5 ],
-		walkable: false,
-		transparent: false
+		tileCoords: [ 6, 5 ], walkable: false, transparent: false
 	},
 	wall_lava: {
-		tileCoords: [ 4, 12 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 4, 12 ], walkable: false, transparent: true
 	},
 	wall_lava2: {
-		tileCoords: [ 5, 12 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 5, 12 ], walkable: false, transparent: true
 	},
 	door_wood: {
-		tileCoords: [ 8, 0 ],
-		walkable: true,
-		transparent: false
+		tileCoords: [ 8, 0 ], walkable: true, transparent: false
 	},
 	door_wood_open: {
-		tileCoords: [ 8, 2 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 8, 2 ], walkable: true, transparent: true
 	},
 	door_metal: {
-		tileCoords: [ 9, 0 ],
-		walkable: true,
-		transparent: false
+		tileCoords: [ 9, 0 ], walkable: true, transparent: false
 	},
 	door_metal_open: {
-		tileCoords: [ 9, 2 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 9, 2 ], walkable: true, transparent: true
 	},
 	stairs_down: {
-		tileCoords: [ 10, 1 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 10, 1 ], walkable: true, transparent: true
 	},
 	stairs_up: {
-		tileCoords: [ 10, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 10, 0 ], walkable: true, transparent: true
 	},
 
 	pot: {
-		tileCoords: [ 12, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 12, 0 ], walkable: true, transparent: true
 	},
 	chest: {
-		tileCoords: [ 11, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 11, 0 ], walkable: true, transparent: true
 	},
 	chest_open: {
-		tileCoords: [ 11, 2 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 11, 2 ], walkable: true, transparent: true
 	},
 
 	flowers: {
-		tileCoords: [ 3, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 3, 0 ], walkable: true, transparent: true
 	},
 	bush: {
-		tileCoords: [ 19, 0 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 19, 0 ], walkable: true, transparent: true
 	},
 	tree: {
-		tileCoords: [ 19, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 19, 1 ], walkable: false, transparent: true
 	},
 	tree2: {
-		tileCoords: [ 19, 2 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 19, 2 ], walkable: false, transparent: true
 	},
 	tree3: {
-		tileCoords: [ 19, 3 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 19, 3 ], walkable: false, transparent: true
 	},
 	rocks: {
-		tileCoords: [ 19, 5 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 19, 5 ], walkable: false, transparent: true
 	},
 	well: {
-		tileCoords: [ 16, 0 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 16, 0 ], walkable: false, transparent: true
 	},
 	pillar: {
-		tileCoords: [ 16, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 16, 1 ], walkable: false, transparent: true
 	},
 	statue: {
-		tileCoords: [ 16, 2 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 16, 2 ], walkable: false, transparent: true
 	},
 	cupboard: {
-		tileCoords: [ 16, 3 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 16, 3 ], walkable: false, transparent: true
 	},
 	table: {
-		tileCoords: [ 14, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 14, 1 ], walkable: false, transparent: true
 	},
 
 	altar: {
-		tileCoords: [ 8, 7 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 8, 7 ], walkable: false, transparent: true
 	},
 	key: {
-		tileCoords: [ 8, 8 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 8, 8 ], walkable: true, transparent: true
 	},
 	coin: {
-		tileCoords: [ 8, 9 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 8, 9 ], walkable: true, transparent: true
 	},
 	gem: {
-		tileCoords: [ 11, 9 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 11, 9 ], walkable: true, transparent: true
 	},
 	ring: {
-		tileCoords: [ 14, 9 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 14, 9 ], walkable: true, transparent: true
 	},
 	potion_health: {
 		name: "health potion",
-		tileCoords: [ 14, 11 ],
-		walkable: true,
-		transparent: true
+		tileCoords: [ 14, 11 ], walkable: true, transparent: true
 	},
 
 	player_male: {
-		tileCoords: [ 24, 0 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 24, 0 ], walkable: false, transparent: true
 	},
 	player_female: {
-		tileCoords: [ 27, 0 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 27, 0 ], walkable: false, transparent: true
 	},
 
 	skeleton: {
-		tileCoords: [ 30, 0 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 30, 0 ], walkable: false, transparent: true
 	},
 	skeleton: {
-		tileCoords: [ 30, 0 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 30, 0 ], walkable: false, transparent: true
 	},
 	slime: {
-		tileCoords: [ 24, 2 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 24, 2 ], walkable: false, transparent: true
 	},
 	bat: {
-		tileCoords: [ 24, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 24, 1 ], walkable: false, transparent: true
 	},
 	ghost: {
-		tileCoords: [ 27, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 27, 1 ], walkable: false, transparent: true
 	},
 	spider: {
-		tileCoords: [ 30, 1 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 30, 1 ], walkable: false, transparent: true
 	},
 	goblin: {
-		tileCoords: [ 27, 2 ],
-		walkable: false,
-		transparent: true
+		tileCoords: [ 27, 2 ], walkable: false, transparent: true
 	},
 
 	tileset: null,
