@@ -57,29 +57,42 @@ Dungeon.prototype.generateDungeon = function(params) {
 		this.setTile(x, y, wall ? params.wall.random() : params.floor.random());
 	}).bind(this));
 	var freeTiles = [];
+	var keyTiles = [];
+	var keysNeeded = 0;
 	var rooms = gen.getRooms();
 	var doors = [ TILES.door_wood, TILES.door_metal ];
-	var keysNeeded = 0;
+	var doorLockedCallback = (function(x, y) {
+		keysNeeded++;
+		this.setTile(x, y, TILES.door_metal, Dungeon.LAYER_STATIC);
+	}).bind(this);
 	var doorCallback = (function(x, y) {
-		var door = doors.random();
-		if (door.id == "door_metal")
-			keysNeeded++;
-		this.setTile(x, y, door, Dungeon.LAYER_STATIC);
+		this.setTile(x, y, TILES.door_wood, Dungeon.LAYER_STATIC);
 	}).bind(this);
 	this.start = rooms[0].getCenter();
 	this.end = rooms[rooms.length-1].getCenter();
 	for (var i = 0; i < rooms.length; i++) {
-		rooms[i].getDoors(doorCallback);
+		var numDoors = Object.keys(rooms[i]._doors).length;
+		// Lock single door rooms and usually also down stairs room
+		var locked = (numDoors == 1 && i != 0) || (rnd() < 0.5 && i == rooms.length-1);
+		if (locked) rooms[i].getDoors(doorLockedCallback);
+		else rooms[i].getDoors(doorCallback);
 		for (var y = rooms[i].getTop(); y < rooms[i].getBottom(); ++y) {
 			for (var x = rooms[i].getLeft(); x < rooms[i].getRight(); ++x) {
 				if ((x != this.start[0] || y != this.start[1]) &&
 					(x != this.end[0] || y != this.end[1]))
-						freeTiles.push([x, y]);
+				{
+					// Don't generate keays in the first room, because that's boring
+					if (locked || i == 0) freeTiles.push([x, y]);
+					else if (i != 0) keyTiles.push([x, y]);
+				}
 			}
 		}
 	}
+	shuffle(keyTiles);
+	this.generateItems(keysNeeded, [TILES.key], keyTiles);
+	// TODO: Put some loot inside locked rooms (freeTiles) for reward
+	freeTiles = freeTiles.concat(keyTiles);
 	shuffle(freeTiles);
-	this.generateItems(keysNeeded, [TILES.key], freeTiles);
 	return freeTiles;
 };
 
