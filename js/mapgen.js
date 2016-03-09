@@ -44,14 +44,14 @@ Dungeon.prototype.generateStairs = function(pos, tile, mapParams) {
 
 Dungeon.prototype.generateDungeon = function(params) {
 	this.initMap(this.parseRand(params.width), this.parseRand(params.height));
-	var gen = new ROT.Map.Digger(this.width, this.height /*, {
-		roomWidth: [5, 6],
-		roomHeight: [4, 5],
-		corridorLength: [2, 4],
-		dugPercentage: 0.3,
+	var gen = new ROT.Map.Digger(this.width, this.height, {
+		roomWidth: params.roomWidth || [5, 6],
+		roomHeight: params.roomHeight || [4, 5],
+		corridorLength: params.corridorLength || [2, 4],
+		dugPercentage: params.dugPercentage || 0.3,
 		//roomDugPercentage: 0.5,
 		timeLimit: 3000
-	}*/);
+	});
 	// General layout
 	gen.create((function(x, y, wall) {
 		this.setTile(x, y, wall ? params.wall.random() : params.floor.random());
