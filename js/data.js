@@ -414,6 +414,7 @@ var SOUNDS = {
 var LEVELS = [
 	{
 		name: "Start Area",
+		desc: "What a lovely forest clearing. But down leads your journey, monsters are waiting!",
 		generator: "arena",
 		width: 20,
 		height: 15,
@@ -428,6 +429,7 @@ var LEVELS = [
 		itemAmount: 1
 	},{
 		name: "Log House",
+		desc: "Curiosly, you arrive at an underground log house.",
 		generator: "dungeon",
 		width: 40,
 		height: 20,
@@ -441,6 +443,7 @@ var LEVELS = [
 		itemAmount: [ 3, 4 ]
 	},{
 		name: "Sand cave",
+		desc: "There is fine sand everywhere. No idea how they've formed dunes though, because there is no wind here.",
 		generator: "cave",
 		width: 40,
 		height: 20,
@@ -454,6 +457,7 @@ var LEVELS = [
 		itemAmount: [ 4, 6 ]
 	},{
 		name: "Prison",
+		desc: "This looks like an old prison. Better be careful.",
 		generator: "dungeon",
 		width: 60,
 		height: 40,
@@ -467,6 +471,7 @@ var LEVELS = [
 		itemAmount: [ 5, 6 ]
 	},{
 		name: "Underground Garden",
+		desc: "It is wonderful how these plants can grow beneath the surface.",
 		generator: "cave",
 		width: 30,
 		height: 30,
@@ -480,6 +485,7 @@ var LEVELS = [
 		itemAmount: [3, 4]
 	},{
 		name: "Sand cave2",
+		desc: "Sand again. Quite fine.",
 		generator: "cave",
 		width: 40,
 		height: 20,

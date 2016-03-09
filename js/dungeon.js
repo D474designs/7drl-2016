@@ -31,7 +31,7 @@ function Dungeon(id, params) {
 		}
 		this.setTile(pos[0], pos[1], params.decor.random(), Dungeon.LAYER_STATIC);
 	}
-	this.generateStairs(LEVELS[Dungeon.totalCount]);
+	this.generateStairs(LEVELS[id+1]);
 	this.needsRender = true;
 }
 

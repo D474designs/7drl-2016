@@ -92,6 +92,9 @@ World.prototype.changeMap = function(actor, entrance) {
 	//}
 	this.resetScheduler();
 	this.mapChanged = true;
+	ui.msg("Entering new area...", actor);
+	if (entrance.mapParams.desc)
+		ui.msg(entrance.mapParams.desc, actor, "feat");
 };
 
 // Debug tool
