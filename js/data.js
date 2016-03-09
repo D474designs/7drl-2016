@@ -429,7 +429,7 @@ var LEVELS = [
 		itemAmount: 1
 	},{
 		name: "Log House",
-		desc: "Curiosly, you arrive at an underground log house.",
+		desc: "Curiously, you arrive at an underground log house.",
 		generator: "dungeon",
 		width: 40,
 		height: 20,
@@ -499,3 +499,8 @@ var LEVELS = [
 		itemAmount: [ 4, 6 ]
 	},
 ];
+
+(function() {
+	for (var i = 0; i < LEVELS.length; ++i)
+		LEVELS[i].id = i;
+})();

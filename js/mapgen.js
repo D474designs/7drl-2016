@@ -34,13 +34,12 @@ Dungeon.prototype.generateMobs = function(amount, choices, freeTiles) {
 	}
 };
 
-Dungeon.prototype.generateStairs = function(mapParams) {
+Dungeon.prototype.generateStairs = function(pos, tile, mapParams) {
 	if (!mapParams)
 		return;
-	var stairs_down = clone(TILES.stairs_down);
-	stairs_down.entrance = { mapId: "level-" + Dungeon.totalCount, mapParams: mapParams };
-	this.setTile(this.end[0], this.end[1], stairs_down, Dungeon.LAYER_BG);
-	//this.setTile(this.start[0]+1, this.start[1], stairs_down, Dungeon.LAYER_BG);
+	var stairs = clone(tile);
+	stairs.entrance = { mapId: mapParams.id, mapParams: mapParams };
+	this.setTile(pos[0], pos[1], stairs, Dungeon.LAYER_STATIC);
 };
 
 Dungeon.prototype.generateDungeon = function(params) {

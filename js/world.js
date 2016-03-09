@@ -78,7 +78,8 @@ World.prototype.changeMap = function(actor, entrance) {
 	this.dungeon.playerFov = actor.fov;
 	if (!this.maps[entrance.mapId]) {
 		this.maps[entrance.mapId] = new Dungeon(entrance.mapId, entrance.mapParams);
-	}
+		ui.msg("Entering new area...", actor);
+	} else ui.msg("Entering old area...", actor);
 	this.dungeon = this.maps[entrance.mapId];
 	this.dungeon.actors.push(actor);
 	actor.pos[0] = this.dungeon.start[0];
@@ -92,7 +93,6 @@ World.prototype.changeMap = function(actor, entrance) {
 	//}
 	this.resetScheduler();
 	this.mapChanged = true;
-	ui.msg("Entering new area...", actor);
 	if (entrance.mapParams.desc)
 		ui.msg(entrance.mapParams.desc, actor, "feat");
 };
