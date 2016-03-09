@@ -64,7 +64,7 @@ World.prototype.update = function(dt) {
 			this.roundTimer = Date.now() + CONFIG.roundDelay;
 			this.currentActor.updateVisibility();
 			break; // Always wait for next round after player action
-		} else if (distSq(this.currentActor.pos[0], this.currentActor.pos[1], ui.actor.pos[0], ui.actor.pos[1]) < 6) {
+		} else if (ui.actor.visibility(this.currentActor.pos[0], this.currentActor.pos[1]) > 0.9) {
 			this.roundTimer = Date.now() + CONFIG.roundDelay;
 			break;
 		}
