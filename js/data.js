@@ -323,23 +323,20 @@ var TILES = {
 		transparent: true
 	},
 
-	tileset: {},
+	tileset: null,
 	tilemap: {}
 };
 
 (function() {
 	TILES.tileset = document.createElement("img");
 	TILES.tileset.src = "assets/tileset.png";
-	var tileChs = " 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	var count = 0;
 	for (var i in TILES) {
 		var tile = TILES[i];
 		if (!tile.tileCoords) continue;
-		if (count >= tileChs.length)
-			throw new Error("Out of tile characters!");
 		tile.id = i;
 		tile.name = tile.name || i;
-		tile.ch = tileChs[count++];
+		tile.ch = count++;
 		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap);
 		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap);
 		TILES.tilemap[tile.ch] = tile.tileCoords;
