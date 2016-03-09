@@ -111,6 +111,16 @@ var TILES = {
 		walkable: true,
 		transparent: true
 	},
+	floor_cobblestone: {
+		tileCoords: [ 0, 6 ],
+		walkable: true,
+		transparent: true
+	},
+	floor_cobblestone2: {
+		tileCoords: [ 1, 6 ],
+		walkable: true,
+		transparent: true
+	},
 	wall_stone: {
 		tileCoords: [ 2, 5 ],
 		walkable: false,
@@ -164,12 +174,12 @@ var TILES = {
 	wall_lava: {
 		tileCoords: [ 4, 12 ],
 		walkable: false,
-		transparent: false
+		transparent: true
 	},
 	wall_lava2: {
 		tileCoords: [ 5, 12 ],
 		walkable: false,
-		transparent: false
+		transparent: true
 	},
 	door_wood: {
 		tileCoords: [ 8, 0 ],
@@ -274,6 +284,11 @@ var TILES = {
 		transparent: true
 	},
 
+	altar: {
+		tileCoords: [ 8, 7 ],
+		walkable: false,
+		transparent: true
+	},
 	key: {
 		tileCoords: [ 8, 8 ],
 		walkable: true,
@@ -523,7 +538,7 @@ var LEVELS = [
 		items: [ TILES.potion_health, TILES.potion_health, TILES.potion_health, TILES.gem ],
 		itemAmount: [3, 4]
 	},{
-		name: "Sand cave2",
+		name: "Sand Cave2",
 		desc: "Sand again. Quite fine.",
 		generator: "cave",
 		width: 40,
@@ -536,7 +551,21 @@ var LEVELS = [
 		mobAmount: [5, 6],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 4, 6 ]
-	},
+	},{
+		name: "Lava Cave",
+		desc: "It's hot in here.",
+		generator: "cave",
+		width: 40,
+		height: 30,
+		wall: [ TILES.wall_lava, TILES.wall_lava2 ],
+		floor: [ TILES.floor_cobblestone, TILES.floor_cobblestone2 ],
+		decor: [ TILES.rocks ],
+		decorAmount: [ 30, 35 ],
+		mobs: [ MOBS.goblin ],
+		mobAmount: [5, 6],
+		items: [ TILES.gem ],
+		itemAmount: [ 4, 6 ]
+	}
 ];
 
 (function() {
