@@ -455,6 +455,7 @@ var LEVELS = [
 		generator: "arena",
 		width: 20,
 		height: 15,
+		altar: false,
 		wallOnStaticLayer: true,
 		wall: [ TILES.tree, TILES.tree2, TILES.tree3 ],
 		floor: [ TILES.grass_plain, TILES.grass_plain, TILES.grass_plain, TILES.grass_little, TILES.grass_little, TILES.grass_lots ],
