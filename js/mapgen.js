@@ -154,3 +154,22 @@ Dungeon.prototype.generateCave = function(params) {
 	this.end = freeTiles.pop();
 	return freeTiles;
 };
+
+Dungeon.prototype.generateMaze = function(params) {
+	this.initMap(this.parseRand(params.width), this.parseRand(params.height));
+	var freeTiles = [];
+	// Basic borders
+	var wallLayer = params.wallOnStaticLayer ? Dungeon.LAYER_STATIC : Dungeon.LAYER_BG;
+	var gen = new ROT.Map.EllerMaze(this.width, this.height);
+	gen.create((function(x, y, wall) {
+		this.setTile(x, y, params.floor.random(), Dungeon.LAYER_BG);
+		if (wall)
+			this.setTile(x, y, params.wall.random(), wallLayer);
+		else
+			freeTiles.push([x, y]);
+	}).bind(this));
+	shuffle(freeTiles);
+	this.start = freeTiles.pop();
+	this.end = freeTiles.pop();
+	return freeTiles;
+};

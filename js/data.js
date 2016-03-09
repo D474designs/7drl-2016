@@ -116,6 +116,21 @@ var TILES = {
 		walkable: false,
 		transparent: false
 	},
+	wall_stone2: {
+		tileCoords: [ 7, 5 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_stone_old: {
+		tileCoords: [ 1, 4 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_stone_old_small: {
+		tileCoords: [ 0, 4 ],
+		walkable: false,
+		transparent: false
+	},
 	wall_bricks: {
 		tileCoords: [ 1, 5 ],
 		walkable: false,
@@ -143,6 +158,16 @@ var TILES = {
 	},
 	wall_logs: {
 		tileCoords: [ 6, 5 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_lava: {
+		tileCoords: [ 4, 12 ],
+		walkable: false,
+		transparent: false
+	},
+	wall_lava2: {
+		tileCoords: [ 5, 12 ],
 		walkable: false,
 		transparent: false
 	},
@@ -438,6 +463,20 @@ var LEVELS = [
 		mobAmount: [4, 5],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin ],
 		itemAmount: [ 3, 4 ]
+	},{
+		name: "Small Maze",
+		desc: "Argh, I hate mazes!",
+		generator: "maze",
+		width: [20, 25],
+		height: [20, 25],
+		wall: [ TILES.wall_stone2 ],
+		floor: [ TILES.floor_tiles ],
+		decor: [ ],
+		decorAmount: 0,
+		mobs: [ MOBS.ghost ],
+		mobAmount: [4, 5],
+		items: [ TILES.coin, TILES.gem ],
+		itemAmount: [ 5, 6 ]
 	},{
 		name: "Sand cave",
 		desc: "There is fine sand everywhere. No idea how they've formed dunes though, because there is no wind here.",

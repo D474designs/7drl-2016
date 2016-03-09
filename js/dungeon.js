@@ -13,7 +13,8 @@ function Dungeon(id, params) {
 	var generators = {
 		arena: this.generateArena.bind(this),
 		dungeon: this.generateDungeon.bind(this),
-		cave: this.generateCave.bind(this)
+		cave: this.generateCave.bind(this),
+		maze: this.generateMaze.bind(this)
 	};
 	Dungeon.totalCount++;
 	var freeTiles = generators[params.generator](params);
