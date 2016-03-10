@@ -29,7 +29,7 @@ World.prototype.create = function() {
 		ch: TILES[ui.characterChoice].ch,
 		health: ui.characterPerk === "tough" ? 12 : 10,
 		speed: ui.characterPerk === "swift" ? 1.2 : 1,
-		criticalChange: ui.characterPerk === "strong" ? 0.1 : 0
+		criticalChance: ui.characterPerk === "strong" ? 0.1 : 0
 	}
 	var pl = new Actor(this.dungeon.start[0], this.dungeon.start[1], def);
 	pl.updateVisibility();

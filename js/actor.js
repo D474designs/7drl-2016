@@ -14,7 +14,7 @@ function Actor(x, y, def) {
 	this.speed = def.speed || 1;
 	this.health = def.health || 3;
 	this.maxHealth = this.health;
-	this.criticalChange = def.criticalChange || 0;
+	this.criticalChance = def.criticalChance || 0;
 	this.gems = 0;
 	this.keys = 0;
 	this.coins = 0;
@@ -158,7 +158,7 @@ Actor.prototype.attack = function(target) {
 	var hit = randInt(0, 1); // TODO
 	if (hit) {
 		var damage = 1; // TODO
-		if (rnd() < this.criticalChange)
+		if (rnd() < this.criticalChance)
 			damage *= 2;
 		target.health -= damage;
 		ui.snd("hit", this);
