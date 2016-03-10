@@ -101,12 +101,36 @@ var TILES = {
 		tileCoords: [ 1, 6 ], walkable: true, transparent: true,
 		desc: "Cobblestone"
 	},
+	floor_marble_a: {
+		tileCoords: [ 6, 7 ], walkable: true, transparent: true,
+		desc: "Marble floor"
+	},
+	floor_marble_b: {
+		tileCoords: [ 7, 7 ], walkable: true, transparent: true,
+		desc: "Marble floor"
+	},
+	floor_marble_c: {
+		tileCoords: [ 6, 8 ], walkable: true, transparent: true,
+		desc: "Marble floor"
+	},
+	floor_marble_d: {
+		tileCoords: [ 7, 8 ], walkable: true, transparent: true,
+		desc: "Marble floor"
+	},
 	wall_stone: {
 		tileCoords: [ 2, 5 ], walkable: false, transparent: false,
 		desc: "Stone wall"
 	},
 	wall_stone2: {
 		tileCoords: [ 7, 5 ], walkable: false, transparent: false,
+		desc: "Stone wall"
+	},
+	wall_stone_blue1: {
+		tileCoords: [ 3, 6 ], walkable: false, transparent: false,
+		desc: "Stone wall"
+	},
+	wall_stone_blue2: {
+		tileCoords: [ 4, 6 ], walkable: false, transparent: false,
 		desc: "Stone wall"
 	},
 	wall_stone_classy: {
@@ -144,6 +168,10 @@ var TILES = {
 	wall_logs: {
 		tileCoords: [ 6, 5 ], walkable: false, transparent: false,
 		desc: "Log wall"
+	},
+	wall_water: {
+		tileCoords: [ 7, 2 ], walkable: false, transparent: true,
+		desc: "Water"
 	},
 	wall_lava: {
 		tileCoords: [ 4, 12 ], walkable: false, transparent: true,
@@ -580,16 +608,16 @@ var LEVELS = [
 		generator: "cave",
 		width: 30,
 		height: 30,
-		wall: [ TILES.wall_rocks ],
+		wall: [ TILES.wall_water ],
 		floor: [ TILES.grass_dark ],
 		decor: [ TILES.well, TILES.statue, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
 		decorAmount: 50,
 		mobs: [ MOBS.spider, MOBS.spider, MOBS.goblin, MOBS.golem ],
-		mobAmount: [1, 2],
+		mobAmount: [2, 3],
 		items: [ TILES.potion_health, TILES.potion_health, TILES.potion_health, TILES.gem ],
-		itemAmount: [3, 4]
+		itemAmount: [4, 5]
 	},{
-		name: "Sand Cave2",
+		name: "Another Sand Cave",
 		desc: "Sand again. Quite fine.",
 		generator: "cave",
 		width: 40,
@@ -602,6 +630,24 @@ var LEVELS = [
 		mobAmount: [5, 6],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 4, 6 ]
+	},{
+		name: "City",
+		desc: "Vast underground city - infested with goblins.",
+		generator: "dungeon",
+		width: randInt(50, 60),
+		height: randInt(40, 50),
+		roomWidth: [ 6, 10 ],
+		roomHeight: [ 4, 10 ],
+		corridorLength: [ 3, 6 ],
+		dugPercentage: 0.4,
+		wall: [ TILES.wall_stone_blue1, TILES.wall_stone_blue2 ],
+		floor: [ TILES.floor_marble_a, TILES.floor_marble_b, TILES.floor_marble_c, TILES.floor_marble_d ],
+		decor: [ TILES.pillar, TILES.pillar, TILES.statue, TILES.statue, TILES.well, TILES.pot, TILES.chest ],
+		decorAmount: [ 20, 25 ],
+		mobs: [ MOBS.goblin, MOBS.goblin, MOBS.goblin, MOBS.golem ],
+		mobAmount: [10, 15],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
+		itemAmount: [ 10, 20 ]
 	},{
 		name: "Lava Cave",
 		desc: "It's hot in here.",
