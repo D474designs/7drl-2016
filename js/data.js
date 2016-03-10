@@ -18,198 +18,259 @@ var SETTINGS = {
 
 var TILES = {
 	empty: {
-		tileCoords: [ 0, 23 ], walkable: false, transparent: false
+		tileCoords: [ 0, 23 ], walkable: false, transparent: false,
+		desc: "Nothing"
 	},
 	grass_plain: {
-		tileCoords: [ 0, 0 ], walkable: true, transparent: true
+		tileCoords: [ 0, 0 ], walkable: true, transparent: true,
+		desc: "Grass"
 	},
 	grass_little: {
-		tileCoords: [ 1, 0 ], walkable: true, transparent: true
+		tileCoords: [ 1, 0 ], walkable: true, transparent: true,
+		desc: "Grass"
 	},
 	grass_lots: {
-		tileCoords: [ 2, 0 ], walkable: true, transparent: true
+		tileCoords: [ 2, 0 ], walkable: true, transparent: true,
+		desc: "Grass"
 	},
 	grass_dark: {
-		tileCoords: [ 7, 0 ], walkable: true, transparent: true
+		tileCoords: [ 7, 0 ], walkable: true, transparent: true,
+		desc: "Grass"
 	},
 	grass_darker: {
-		tileCoords: [ 6, 0 ], walkable: true, transparent: true
+		tileCoords: [ 6, 0 ], walkable: true, transparent: true,
+		desc: "Grass"
 	},
 	floor_wood: {
-		tileCoords: [ 0, 1 ], walkable: true, transparent: true
+		tileCoords: [ 0, 1 ], walkable: true, transparent: true,
+		desc: "Wooden floor"
 	},
 	floor_wood2: {
-		tileCoords: [ 1, 1 ], walkable: true, transparent: true
+		tileCoords: [ 1, 1 ], walkable: true, transparent: true,
+		desc: "Wooden floor"
 	},
 	floor_sand_a: {
-		tileCoords: [ 0, 3 ], walkable: true, transparent: true
+		tileCoords: [ 0, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_b: {
-		tileCoords: [ 1, 3 ], walkable: true, transparent: true
+		tileCoords: [ 1, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_c: {
-		tileCoords: [ 2, 3 ], walkable: true, transparent: true
+		tileCoords: [ 2, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_d: {
-		tileCoords: [ 3, 3 ], walkable: true, transparent: true
+		tileCoords: [ 3, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_rock1: {
-		tileCoords: [ 4, 3 ], walkable: true, transparent: true
+		tileCoords: [ 4, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_rock2: {
-		tileCoords: [ 5, 3 ], walkable: true, transparent: true
+		tileCoords: [ 5, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_rock3: {
-		tileCoords: [ 6, 3 ], walkable: true, transparent: true
+		tileCoords: [ 6, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_rock4: {
-		tileCoords: [ 7, 3 ], walkable: true, transparent: true
+		tileCoords: [ 7, 3 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_alt: {
-		tileCoords: [ 0, 2 ], walkable: true, transparent: true
+		tileCoords: [ 0, 2 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_sand_dunes: {
-		tileCoords: [ 1, 2 ], walkable: true, transparent: true
+		tileCoords: [ 1, 2 ], walkable: true, transparent: true,
+		desc: "Sand"
 	},
 	floor_tiles: {
-		tileCoords: [ 3, 1 ], walkable: true, transparent: true
+		tileCoords: [ 3, 1 ], walkable: true, transparent: true,
+		desc: "Floor tiling"
 	},
 	floor_cobblestone: {
-		tileCoords: [ 0, 6 ], walkable: true, transparent: true
+		tileCoords: [ 0, 6 ], walkable: true, transparent: true,
+		desc: "Cobblestone"
 	},
 	floor_cobblestone2: {
-		tileCoords: [ 1, 6 ], walkable: true, transparent: true
+		tileCoords: [ 1, 6 ], walkable: true, transparent: true,
+		desc: "Cobblestone"
 	},
 	wall_stone: {
-		tileCoords: [ 2, 5 ], walkable: false, transparent: false
+		tileCoords: [ 2, 5 ], walkable: false, transparent: false,
+		desc: "Stone wall"
 	},
 	wall_stone2: {
-		tileCoords: [ 7, 5 ], walkable: false, transparent: false
+		tileCoords: [ 7, 5 ], walkable: false, transparent: false,
+		desc: "Stone wall"
 	},
 	wall_stone_old: {
-		tileCoords: [ 1, 4 ], walkable: false, transparent: false
+		tileCoords: [ 1, 4 ], walkable: false, transparent: false,
+		desc: "Old stone wall"
 	},
 	wall_stone_old_small: {
-		tileCoords: [ 0, 4 ], walkable: false, transparent: false
+		tileCoords: [ 0, 4 ], walkable: false, transparent: false,
+		desc: "Old stone wall"
 	},
 	wall_bricks: {
-		tileCoords: [ 1, 5 ], walkable: false, transparent: false
+		tileCoords: [ 1, 5 ], walkable: false, transparent: false,
+		desc: "Brick wall"
 	},
 	wall_mossy: {
-		tileCoords: [ 0, 5 ], walkable: false, transparent: false
+		tileCoords: [ 0, 5 ], walkable: false, transparent: false,
+		desc: "Mossy stone wall"
 	},
 	wall_rocks: {
-		tileCoords: [ 3, 5 ], walkable: false, transparent: false
+		tileCoords: [ 3, 5 ], walkable: false, transparent: false,
+		desc: "Rocky wall"
 	},
 	wall_rocks2: {
-		tileCoords: [ 4, 5 ], walkable: false, transparent: false
+		tileCoords: [ 4, 5 ], walkable: false, transparent: false,
+		desc: "Rocky wall"
 	},
 	wall_rocks3: {
-		tileCoords: [ 5, 5 ], walkable: false, transparent: false
+		tileCoords: [ 5, 5 ], walkable: false, transparent: false,
+		desc: "Rocky wall"
 	},
 	wall_logs: {
-		tileCoords: [ 6, 5 ], walkable: false, transparent: false
+		tileCoords: [ 6, 5 ], walkable: false, transparent: false,
+		desc: "Log wall"
 	},
 	wall_lava: {
-		tileCoords: [ 4, 12 ], walkable: false, transparent: true
+		tileCoords: [ 4, 12 ], walkable: false, transparent: true,
+		desc: "Hot lava"
 	},
 	wall_lava2: {
-		tileCoords: [ 5, 12 ], walkable: false, transparent: true
+		tileCoords: [ 5, 12 ], walkable: false, transparent: true,
+		desc: "Hot lava"
 	},
 	door_wood: {
-		tileCoords: [ 8, 0 ], walkable: true, transparent: false
+		tileCoords: [ 8, 0 ], walkable: true, transparent: false,
+		desc: "Closed wooden door, can be opened"
 	},
 	door_wood_open: {
-		tileCoords: [ 8, 2 ], walkable: true, transparent: true
+		tileCoords: [ 8, 2 ], walkable: true, transparent: true,
+		desc: "Open wooden door"
 	},
 	door_metal: {
-		tileCoords: [ 9, 0 ], walkable: true, transparent: false
+		tileCoords: [ 9, 0 ], walkable: true, transparent: false,
+		desc: "Locked metal door"
 	},
 	door_metal_open: {
-		tileCoords: [ 9, 2 ], walkable: true, transparent: true
+		tileCoords: [ 9, 2 ], walkable: true, transparent: true,
+		desc: "Open metal door"
 	},
 	stairs_down: {
-		tileCoords: [ 10, 1 ], walkable: true, transparent: true
+		tileCoords: [ 10, 1 ], walkable: true, transparent: true,
+		desc: "Stairs leading to a deeper level"
 	},
 	stairs_up: {
-		tileCoords: [ 10, 0 ], walkable: true, transparent: true
+		tileCoords: [ 10, 0 ], walkable: true, transparent: true,
+		desc: "Stairs leading upwards"
 	},
 
 	pot: {
-		tileCoords: [ 12, 0 ], walkable: true, transparent: true
+		tileCoords: [ 12, 0 ], walkable: true, transparent: true,
+		desc: "Clay pot"
 	},
 	chest: {
-		tileCoords: [ 11, 0 ], walkable: true, transparent: true
+		tileCoords: [ 11, 0 ], walkable: true, transparent: true,
+		desc: "Chest"
 	},
 	chest_open: {
-		tileCoords: [ 11, 2 ], walkable: true, transparent: true
+		tileCoords: [ 11, 2 ], walkable: true, transparent: true,
+		desc: "Open chest"
 	},
 
 	flowers: {
-		tileCoords: [ 3, 0 ], walkable: true, transparent: true
+		tileCoords: [ 3, 0 ], walkable: true, transparent: true,
+		desc: "Some nice flowers"
 	},
 	bush: {
-		tileCoords: [ 19, 0 ], walkable: true, transparent: true
+		tileCoords: [ 19, 0 ], walkable: true, transparent: true,
+		desc: "Bush"
 	},
 	tree: {
-		tileCoords: [ 19, 1 ], walkable: false, transparent: true
+		tileCoords: [ 19, 1 ], walkable: false, transparent: true,
+		desc: "Tree"
 	},
 	tree2: {
-		tileCoords: [ 19, 2 ], walkable: false, transparent: true
+		tileCoords: [ 19, 2 ], walkable: false, transparent: true,
+		desc: "Tree"
 	},
 	tree3: {
-		tileCoords: [ 19, 3 ], walkable: false, transparent: true
+		tileCoords: [ 19, 3 ], walkable: false, transparent: true,
+		desc: "Tree"
 	},
 	rocks: {
-		tileCoords: [ 19, 5 ], walkable: false, transparent: true
+		tileCoords: [ 19, 5 ], walkable: false, transparent: true,
+		desc: "Rocks"
 	},
 	well: {
-		tileCoords: [ 16, 0 ], walkable: false, transparent: true
+		tileCoords: [ 16, 0 ], walkable: false, transparent: true,
+		desc: "Well, probably dry"
 	},
 	pillar: {
-		tileCoords: [ 16, 1 ], walkable: false, transparent: true
+		tileCoords: [ 16, 1 ], walkable: false, transparent: true,
+		desc: "Pillar"
 	},
 	statue: {
-		tileCoords: [ 16, 2 ], walkable: false, transparent: true
+		tileCoords: [ 16, 2 ], walkable: false, transparent: true,
+		desc: "Cool statue"
 	},
 	cupboard: {
-		tileCoords: [ 16, 3 ], walkable: false, transparent: true
+		tileCoords: [ 16, 3 ], walkable: false, transparent: true,
+		desc: "Cupboard"
 	},
 	table: {
-		tileCoords: [ 14, 1 ], walkable: false, transparent: true
+		tileCoords: [ 14, 1 ], walkable: false, transparent: true,
+		desc: "Table"
 	},
 
 	altar: {
 		tileCoords: [ 8, 7 ], walkable: true, transparent: true,
+		desc: "Gods offer favors for sacrifices on this altar",
 		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ], shop: true
 	},
 	altar_used: {
 		tileCoords: [ 8, 6 ], walkable: false, transparent: true,
+		desc: "No more sacrifices on this altar",
 		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ]
 	},
 	key: {
-		tileCoords: [ 8, 8 ], walkable: true, transparent: true
+		tileCoords: [ 8, 8 ], walkable: true, transparent: true,
+		desc: "A key opens any one locked door"
 	},
 	coin: {
-		tileCoords: [ 8, 9 ], walkable: true, transparent: true
+		tileCoords: [ 8, 9 ], walkable: true, transparent: true,
+		desc: "A coin, can be sacrificed on altars"
 	},
 	gem: {
-		tileCoords: [ 11, 9 ], walkable: true, transparent: true
+		tileCoords: [ 11, 9 ], walkable: true, transparent: true,
+		desc: "A pretty gem, can be sacrificed on altars"
 	},
 	ring: {
-		tileCoords: [ 14, 9 ], walkable: true, transparent: true
+		tileCoords: [ 14, 9 ], walkable: true, transparent: true,
+		desc: "Ring, useless"
 	},
 	potion_health: {
-		name: "health potion",
+		name: "health potion", desc: "Health potion restores one heart",
 		tileCoords: [ 8, 13 ], walkable: true, transparent: true
 	},
 
 	player_male: {
 		tileCoords: [ 24, 0 ], walkable: false, transparent: true,
+		desc: "That's you!",
 		anim: [ [ 23, 0 ], [ 24, 0 ], [ 25, 0 ], [ 24, 0 ] ]
 	},
 	player_female: {
 		tileCoords: [ 27, 0 ], walkable: false, transparent: true,
+		desc: "That's you!",
 		anim: [ [ 26, 0 ], [ 27, 0 ], [ 28, 0 ], [ 27, 0 ] ]
 	},
 
@@ -267,6 +328,7 @@ var TILES = {
 		if (!tile.tileCoords) continue;
 		tile.id = i;
 		tile.name = tile.name || i;
+		tile.name = tile.name[0].toUpperCase() + tile.name.substr(1);
 		tile.ch = TILES.tileArray.length;
 		tile.tileCoords[0] *= (CONFIG.tileSize + CONFIG.tileGap);
 		tile.tileCoords[1] *= (CONFIG.tileSize + CONFIG.tileGap);
@@ -284,42 +346,52 @@ var TILES = {
 var MOBS = {
 	skeleton: {
 		name: "Skeleton", ch: TILES.skeleton.ch, ai: "hunter",
+		desc: "Dangerous and rather scary",
 		health: 3, vision: 9, speed: 1,
 	},
 	slime: {
 		name: "Slime", ch: TILES.slime.ch, ai: "hunter",
+		desc: "Disgusting but thankfully very slow",
 		health: 2, vision: 5, speed: 0.5
 	},
 	bat: {
 		name: "Giant Bat", ch: TILES.bat.ch, ai: "hunter",
+		desc: "Easy to kill and has bad vision, but they are fast and plentyful",
 		health: 1, vision: 4, speed: 1.5
 	},
 	ghost: {
 		name: "Ghost", ch: TILES.ghost.ch, ai: "hunter",
+		desc: "Dangerous and scary",
 		health: 2, vision: 9, speed: 1
 	},
 	spider: {
 		name: "Giant Spider", ch: TILES.spider.ch, ai: "hunter",
+		desc: "Dangerous, scary and fast",
 		health: 2, vision: 7, speed: 1.2
 	},
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
+		desc: "Tough enemy",
 		health: 5, vision: 9, speed: 1
 	},
 	rat: {
 		name: "Giant rat", ch: TILES.rat.ch, ai: "hunter",
+		desc: "Weak enemy with poor vision",
 		health: 1, vision: 3, speed: 1
 	},
 	golem: {
 		name: "Rock Golem", ch: TILES.golem.ch, ai: "hunter",
+		desc: "Extremely tough and strong, but thankfully slow and doesn't see far",
 		health: 10, vision: 3, speed: 0.5, criticalChance: 0.5
 	},
 	mummy: {
 		name: "Mummy", ch: TILES.mummy.ch, ai: "hunter",
+		desc: "Scary and semi-dangerous",
 		health: 2, vision: 3, speed: 0.75
 	},
 	skull: {
 		name: "Flaming Skull", ch: TILES.skull.ch, ai: "hunter",
+		desc: "Super fast and difficult to kill",
 		health: 6, vision: 3, speed: 2, criticalChance: 0.2
 	}
 };
@@ -445,7 +517,7 @@ var LEVELS = [
 		itemAmount: [ 3, 4 ]
 	},{
 		name: "Small Maze",
-		desc: "Argh, I hate mazes!",
+		desc: "Argh, I hate mazes! Thankfully this doesn't look that big.",
 		generator: "maze",
 		width: [20, 25],
 		height: [20, 25],
@@ -453,7 +525,7 @@ var LEVELS = [
 		floor: [ TILES.floor_tiles ],
 		decor: [ ],
 		decorAmount: 0,
-		mobs: [ MOBS.ghost ],
+		mobs: [ MOBS.ghost, MOBS.slime ],
 		mobAmount: [4, 5],
 		items: [ TILES.coin, TILES.gem ],
 		itemAmount: [ 5, 6 ]
@@ -467,7 +539,7 @@ var LEVELS = [
 		floor: [ TILES.floor_sand_dunes ],
 		decor: [ TILES.rocks ],
 		decorAmount: [ 30, 35 ],
-		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
+		mobs: [ MOBS.spider, MOBS.mummy ],
 		mobAmount: [5, 6],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 4, 6 ]
@@ -484,7 +556,7 @@ var LEVELS = [
 		floor: [ TILES.floor_tiles ],
 		decor: [ TILES.pot ],
 		decorAmount: [ 5, 8 ],
-		mobs: [ MOBS.skeleton, MOBS.mommy, MOBS.ghost, MOBS.rat ],
+		mobs: [ MOBS.skeleton, MOBS.mummy, MOBS.ghost, MOBS.rat ],
 		mobAmount: [ 10, 12 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
 		itemAmount: [ 5, 6 ]

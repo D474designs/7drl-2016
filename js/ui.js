@@ -176,8 +176,15 @@ UI.prototype.onClick = function(e) {
 		return;
 	if (e.type === "contextmenu" || this.mouse.longpress) {
 		var thing = world.dungeon.getTile(x, y);
-		var desc = thing.getDescription ? thing.getDescription() : thing.desc;
-		this.msg(desc ? desc : (thing.name ? thing.name : "Nothing interesting..."));
+		var desc = "Nothing interesting...";
+		if (thing instanceof Actor) {
+			desc = thing.name + " - " + thing.desc;
+		} else if (thing.desc) {
+			desc = thing.desc;
+		} else if (thing.name) {
+			desc = thing.name;
+		}
+		this.msg(desc);
 	} else if (ui.actor.moveTo(x, y)) {
 		this.snd("click");
 	}

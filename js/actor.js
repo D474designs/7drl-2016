@@ -3,6 +3,7 @@ function Actor(x, y, def) {
 	def = def || {};
 	this.id = def.id || null;
 	this.name = def.name || "Player";
+	this.desc = def.desc || "Unknown";
 	this.pos = [ x || 0, y || 0 ];
 	this.animPos = [ this.pos[0], this.pos[1] ];
 	this.animTime = (rnd() * 200)|0;
