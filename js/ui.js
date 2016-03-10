@@ -88,6 +88,9 @@ function UI(player) {
 	$("#death-restart").addEventListener("click", function() {
 		window.location.reload();
 	}, false);
+	$("#win-restart").addEventListener("click", function() {
+		window.location.reload();
+	}, false);
 	$("#new-male").addEventListener("click", function() {
 		this.classList.add("btn-selected");
 		$("#new-female").classList.remove("btn-selected");
