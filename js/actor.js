@@ -25,7 +25,10 @@ function Actor(x, y, def) {
 	this.faction = def.ai ? 0 : 1;
 	this.stats = {
 		turns: 0,
-		kills: 0
+		kills: 0,
+		perks: 0,
+		gems: 0,
+		coins: 0
 	};
 	this.done = false;
 	this.moved = false;
@@ -94,9 +97,11 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 			this.animPos = lerpVec2(this.pos, waypoint, 0.2);
 			if (item.id == "gem") {
 				this.gems++;
+				this.stats.gems++;
 				triggerAnimation($(".gem"), "tada");
 			} else if (item.id == "coin") {
 				this.coins++;
+				this.stats.coins++;
 				triggerAnimation($(".coin"), "tada")
 			} else if (item.id == "key") {
 				this.keys++;

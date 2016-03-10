@@ -132,6 +132,7 @@ function UI(player) {
 			var item = ui.shopItems[chosenElem.dataset.index];
 			if (item && item.canGet(ui.actor)) {
 				item.get(ui.actor);
+				ui.actor.stats.perks++;
 				ui.msg("The gods granted you " + item.name + "!", ui.actor, "feat");
 				ui.snd("pickup", ui.actor);
 				ui.shopItems = [];
@@ -349,6 +350,10 @@ UI.prototype.die = function() {
 	var stats = ui.actor.stats;
 	$("#death-turns").innerHTML = Math.round(stats.turns);
 	$("#death-kills").innerHTML = Math.round(stats.kills);
+	$("#death-depth").innerHTML = Math.round(world.dungeon.id);
+	$("#death-coins").innerHTML = Math.round(stats.coins);
+	$("#death-gems").innerHTML = Math.round(stats.gems);
+	$("#death-perks").innerHTML = Math.round(stats.perks);
 	$("#death-screen").style.display = "block";
 };
 
