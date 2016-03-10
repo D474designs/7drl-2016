@@ -109,6 +109,12 @@ Dungeon.prototype.animate = function(dt) {
 		var dx = actor.pos[0] - actor.animPos[0];
 		var dy = actor.pos[1] - actor.animPos[1];
 		if (dx != 0 || dy != 0) {
+			if (ui.actor.visibility(actor.pos[0], actor.pos[1]) < 0.9) {
+				// Don't bother animating mobs that are not visible
+				actor.animPos[0] = actor.pos[0];
+				actor.animPos[1] = actor.pos[1];
+				continue;
+			}
 			var speed = (1000 / CONFIG.moveDuration) * dt;
 			var length = dist(0, 0, dx, dy);
 			if (Math.abs(dx) <= speed)
