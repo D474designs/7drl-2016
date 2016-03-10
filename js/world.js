@@ -74,6 +74,10 @@ World.prototype.update = function(dt) {
 };
 
 World.prototype.changeMap = function(actor, entrance) {
+	if (entrance.mapId == "WIN") {
+		ui.win();
+		return;
+	}
 	removeElem(this.dungeon.actors, actor);
 	this.dungeon.start = clone(actor.pos);
 	this.dungeon.playerFov = actor.fov;

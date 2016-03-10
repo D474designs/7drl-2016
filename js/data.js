@@ -109,6 +109,10 @@ var TILES = {
 		tileCoords: [ 7, 5 ], walkable: false, transparent: false,
 		desc: "Stone wall"
 	},
+	wall_stone_classy: {
+		tileCoords: [ 6, 6 ], walkable: false, transparent: false,
+		desc: "Stone wall"
+	},
 	wall_stone_old: {
 		tileCoords: [ 1, 4 ], walkable: false, transparent: false,
 		desc: "Old stone wall"
@@ -256,7 +260,7 @@ var TILES = {
 	},
 	ring: {
 		tileCoords: [ 14, 9 ], walkable: true, transparent: true,
-		desc: "Ring, useless"
+		desc: "Token of Victory!"
 	},
 	potion_health: {
 		name: "health potion", desc: "Health potion restores one heart",
@@ -612,6 +616,22 @@ var LEVELS = [
 		mobAmount: [5, 6],
 		items: [ TILES.gem ],
 		itemAmount: [ 4, 6 ]
+	},{
+		name: "End Area",
+		desc: "Yay, the end has been reached!",
+		generator: "arena",
+		width: 20,
+		height: 15,
+		altar: false,
+		wallOnStaticLayer: true,
+		wall: [ TILES.wall_stone_classy ],
+		floor: [ TILES.floor_cobblestone, TILES.floor_cobblestone2 ],
+		decor: [ TILES.chest, TILES.chest_open, TILES.pot, TILES.statue ],
+		decorAmount: 10,
+		mobs: [],
+		mobAmount: 0,
+		items: [ TILES.coin, TILES.gem ],
+		itemAmount: 20
 	}
 ];
 

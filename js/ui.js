@@ -366,6 +366,7 @@ UI.prototype.die = function() {
 	$("#death-gems").innerHTML = Math.round(stats.gems);
 	$("#death-perks").innerHTML = Math.round(stats.perks);
 	$("#death").style.display = "block";
+	world.running = false;
 };
 
 UI.prototype.win = function() {
@@ -377,6 +378,7 @@ UI.prototype.win = function() {
 	$("#win-gems").innerHTML = Math.round(stats.gems);
 	$("#win-perks").innerHTML = Math.round(stats.perks);
 	$("#win").style.display = "block";
+	world.running = false;
 };
 
 UI.prototype.onClickShopItem = function(e) {
