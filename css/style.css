@@ -31,6 +31,8 @@ body {
 	body {
 		font-size: 14px;
 	}
+	.msg3 { display: none; }
+	.msg4 { display: none; }
 }
 
 :-webkit-full-screen {
@@ -109,10 +111,10 @@ canvas {
 }
 
 .msg0 { opacity: 1.0; }
-.msg1 { opacity: 0.4; }
-.msg2 { opacity: 0.2; }
-.msg3 { opacity: 0.15 }
-.msg4 { opacity: 0.1; }
+.msg1 { opacity: 0.6; }
+.msg2 { opacity: 0.4; }
+.msg3 { opacity: 0.3 }
+.msg4 { opacity: 0.2; }
 .info { }
 .warn { color: red; }
 .feat { color: green; }

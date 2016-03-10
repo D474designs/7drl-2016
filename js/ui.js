@@ -279,7 +279,7 @@ UI.prototype.update = function() {
 		if (this.messages.length <= 3) classes.shift();
 		if (this.messages.length <= 2) classes.shift();
 		if (this.messages.length <= 1) classes.shift();
-		var templ = '<span class="%1% %2%">%3%</span><br/>\n';
+		var templ = '<div class="%1% %2%">%3%</div>\n';
 		for (var i = firstMsg; i < this.messages.length; ++i)
 			msgBuf += templ.replace("%1%", classes.shift())
 				.replace("%2%", this.messages[i].type)
