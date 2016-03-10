@@ -201,7 +201,7 @@ var TILES = {
 	},
 	potion_health: {
 		name: "health potion",
-		tileCoords: [ 14, 11 ], walkable: true, transparent: true
+		tileCoords: [ 8, 13 ], walkable: true, transparent: true
 	},
 
 	player_male: {
