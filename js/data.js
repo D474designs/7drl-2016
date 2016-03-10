@@ -555,22 +555,22 @@ var LEVELS = [
 		decorAmount: [ 15, 20 ],
 		mobs: [ MOBS.rat, MOBS.rat, MOBS.rat, MOBS.bat ],
 		mobAmount: [4, 5],
-		items: [ TILES.potion_health, TILES.coin, TILES.coin ],
-		itemAmount: [ 3, 4 ]
+		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin ],
+		itemAmount: [ 5, 6 ]
 	},{
 		name: "Small Maze",
 		desc: "Argh, I hate mazes! Thankfully this doesn't look that big.",
 		generator: "maze",
-		width: [20, 25],
-		height: [20, 25],
+		width: [ 20, 25 ],
+		height: [ 20, 25 ],
 		wall: [ TILES.wall_stone2 ],
 		floor: [ TILES.floor_tiles ],
 		decor: [ ],
 		decorAmount: 0,
 		mobs: [ MOBS.ghost, MOBS.slime ],
-		mobAmount: [4, 5],
+		mobAmount: [ 4, 5 ],
 		items: [ TILES.coin, TILES.gem ],
-		itemAmount: [ 5, 6 ]
+		itemAmount: [ 6, 8 ]
 	},{
 		name: "Sand cave",
 		desc: "There is fine sand everywhere. No idea how they've formed dunes though, because there is no wind here.",
@@ -582,9 +582,9 @@ var LEVELS = [
 		decor: [ TILES.rocks ],
 		decorAmount: [ 30, 35 ],
 		mobs: [ MOBS.spider, MOBS.mummy ],
-		mobAmount: [5, 6],
+		mobAmount: [ 5, 6 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
-		itemAmount: [ 4, 6 ]
+		itemAmount: [ 6, 8 ]
 	},{
 		name: "Prison",
 		desc: "This looks like an old prison. Better be careful.",
@@ -601,7 +601,7 @@ var LEVELS = [
 		mobs: [ MOBS.skeleton, MOBS.mummy, MOBS.ghost, MOBS.rat ],
 		mobAmount: [ 10, 12 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
-		itemAmount: [ 5, 6 ]
+		itemAmount: [ 8, 10 ]
 	},{
 		name: "Underground Garden",
 		desc: "It is wonderful how these plants can grow beneath the surface.",
@@ -613,9 +613,9 @@ var LEVELS = [
 		decor: [ TILES.well, TILES.statue, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
 		decorAmount: 50,
 		mobs: [ MOBS.spider, MOBS.spider, MOBS.goblin, MOBS.golem ],
-		mobAmount: [2, 3],
+		mobAmount: [ 2, 3 ],
 		items: [ TILES.potion_health, TILES.potion_health, TILES.potion_health, TILES.gem ],
-		itemAmount: [4, 5]
+		itemAmount: [ 5, 6 ]
 	},{
 		name: "Another Sand Cave",
 		desc: "Sand again. Quite fine.",
@@ -627,15 +627,15 @@ var LEVELS = [
 		decor: [ TILES.floor_sand_rock1, TILES.floor_sand_rock2, TILES.floor_sand_rock3, TILES.floor_sand_rock4 ],
 		decorAmount: [ 30, 35 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
-		mobAmount: [5, 6],
-		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
-		itemAmount: [ 4, 6 ]
+		mobAmount: [ 5, 6 ],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
+		itemAmount: [ 6, 8 ]
 	},{
 		name: "City",
 		desc: "Vast underground city - infested with goblins.",
 		generator: "dungeon",
-		width: randInt(50, 60),
-		height: randInt(40, 50),
+		width: [ 50, 60 ],
+		height: [ 40, 50 ],
 		roomWidth: [ 6, 10 ],
 		roomHeight: [ 4, 10 ],
 		corridorLength: [ 3, 6 ],
@@ -645,9 +645,9 @@ var LEVELS = [
 		decor: [ TILES.pillar, TILES.pillar, TILES.statue, TILES.statue, TILES.well, TILES.pot, TILES.chest ],
 		decorAmount: [ 20, 25 ],
 		mobs: [ MOBS.goblin, MOBS.goblin, MOBS.goblin, MOBS.golem ],
-		mobAmount: [10, 15],
-		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
-		itemAmount: [ 10, 20 ]
+		mobAmount: [ 10, 15 ],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
+		itemAmount: [ 15, 20 ]
 	},{
 		name: "Lava Cave",
 		desc: "It's hot in here.",
@@ -658,8 +658,8 @@ var LEVELS = [
 		floor: [ TILES.floor_cobblestone, TILES.floor_cobblestone2 ],
 		decor: [ TILES.rocks ],
 		decorAmount: [ 30, 35 ],
-		mobs: [ MOBS.skull, MOBS.golem ],
-		mobAmount: [5, 6],
+		mobs: [ MOBS.skull, MOBS.skull, MOBS.skull, MOBS.golem, MOBS.golem ],
+		mobAmount: [ 6, 7 ],
 		items: [ TILES.gem ],
 		itemAmount: [ 4, 6 ]
 	},{

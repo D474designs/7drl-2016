@@ -28,7 +28,7 @@ World.prototype.create = function() {
 	var def = {
 		desc: "That's you!",
 		ch: TILES[ui.characterChoice].ch,
-		health: ui.characterPerk === "tough" ? 12 : 10,
+		health: ui.characterPerk === "tough" ? 14 : 10,
 		speed: ui.characterPerk === "swift" ? 1.2 : 1,
 		criticalChance: ui.characterPerk === "strong" ? 0.1 : 0
 	}
