@@ -1,5 +1,7 @@
 ### Tileset compiled from art made by the following people:
 
+(Semi-random order, not all tiles are used even if added to the set).
+
 **Lanea Zimmerman (Sharm)**  
 http://opengameart.org/content/tiny-16-basic  
 http://opengameart.org/content/16x16-overworld-tiles  
@@ -18,8 +20,9 @@ CC0
 
 **Stephen Challener (Redshrike)**  
 http://opengameart.org/content/16x16-16x24-32x32-rpg-enemies-updated  
+http://opengameart.org/content/rat-and-rat-king-overworld-antifarea-style  
+http://opengameart.org/content/a-load-of-overworld-34-rpg-sprites  
 CC-BY 3.0 / OGA-BY 3.0  
-Goblin enemy  
 
 **MrBeast (Commissioned by OpenGameArt.org)**  
 http://opengameart.org/content/cave-tileset-0  
@@ -32,12 +35,27 @@ CC-BY 3.0
 http://opengameart.org/content/16x16-tiles  
 CC0  
 
+**CharlesGabriel**  
+http://opengameart.org/content/halloween-gift-for-oga  
+CC-BY 3.0  
+
+**surt**  
+http://opengameart.org/content/forest-tiles  
+CC0  
+
+**Hyptosis**  
+http://opengameart.org/content/lots-of-free-2d-tiles-and-sprites-by-hyptosis  
+CC-BY 3.0  
+
 
 ### Sounds
 
-**Unless otherwise stated, the sounds are made by Kenney and licensed CC0.**
+**Kenney**
+http://opengameart.org/content/50-rpg-sound-effects
+http://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks
+http://opengameart.org/content/63-digital-sound-effects-lasers-phasers-space-etc
 
-hit.ogg:
+hit.ogg:  
 **8-Bit Sound Effects Library by Little Robot Sound Factory**  
 www.littlerobotsoundfactory.com  
 http://opengameart.org/content/8-bit-sound-effects-library  

@@ -237,6 +237,22 @@ var TILES = {
 		tileCoords: [ 27, 2 ], walkable: false, transparent: true,
 		anim: [ [ 26, 2 ], [ 27, 2 ], [ 28, 2 ], [ 27, 2 ] ]
 	},
+	rat: {
+		tileCoords: [ 30, 2 ], walkable: false, transparent: true,
+		anim: [ [ 29, 2 ], [ 30, 2 ], [ 31, 2 ], [ 30, 2 ] ]
+	},
+	golem: {
+		tileCoords: [ 24, 3 ], walkable: false, transparent: true,
+		anim: [ [ 23, 3 ], [ 24, 3 ], [ 25, 3 ], [ 24, 3 ] ]
+	},
+	mummy: {
+		tileCoords: [ 27, 3 ], walkable: false, transparent: true,
+		anim: [ [ 26, 3 ], [ 27, 3 ], [ 28, 3 ], [ 27, 3 ] ]
+	},
+	skull: {
+		tileCoords: [ 30, 3 ], walkable: false, transparent: true,
+		anim: [ [ 29, 3 ], [ 30, 3 ], [ 31, 3 ], [ 30, 3 ] ]
+	},
 
 	tileset: null,
 	tileArray: [],
@@ -289,6 +305,22 @@ var MOBS = {
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
 		health: 5, vision: 9, speed: 1
+	},
+	rat: {
+		name: "Giant rat", ch: TILES.rat.ch, ai: "hunter",
+		health: 1, vision: 3, speed: 1
+	},
+	golem: {
+		name: "Rock Golem", ch: TILES.golem.ch, ai: "hunter",
+		health: 10, vision: 3, speed: 0.5, criticalChance: 0.5
+	},
+	mummy: {
+		name: "Mummy", ch: TILES.mummy.ch, ai: "hunter",
+		health: 2, vision: 3, speed: 0.75
+	},
+	skull: {
+		name: "Flaming Skull", ch: TILES.skull.ch, ai: "hunter",
+		health: 6, vision: 3, speed: 2, criticalChance: 0.2
 	}
 };
 
@@ -356,7 +388,7 @@ var LEVELS = [
 		floor: [ TILES.floor_wood ],
 		decor: [ TILES.table, TILES.cupboard, TILES.pot ],
 		decorAmount: [ 15, 20 ],
-		mobs: [ MOBS.spider, MOBS.bat, MOBS.bat, MOBS.bat ],
+		mobs: [ MOBS.rat, MOBS.rat, MOBS.rat, MOBS.bat ],
 		mobAmount: [4, 5],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin ],
 		itemAmount: [ 3, 4 ]
@@ -401,7 +433,7 @@ var LEVELS = [
 		floor: [ TILES.floor_tiles ],
 		decor: [ TILES.pot ],
 		decorAmount: [ 5, 8 ],
-		mobs: [ MOBS.skeleton, MOBS.skeleton, MOBS.ghost ],
+		mobs: [ MOBS.skeleton, MOBS.mommy, MOBS.ghost, MOBS.rat ],
 		mobAmount: [ 10, 12 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
 		itemAmount: [ 5, 6 ]
@@ -415,7 +447,7 @@ var LEVELS = [
 		floor: [ TILES.grass_dark ],
 		decor: [ TILES.well, TILES.statue, TILES.bush, TILES.bush, TILES.rocks, TILES.tree, TILES.tree2, TILES.tree3 ],
 		decorAmount: 50,
-		mobs: [ MOBS.spider, MOBS.spider, MOBS.goblin ],
+		mobs: [ MOBS.spider, MOBS.spider, MOBS.goblin, MOBS.golem ],
 		mobAmount: [1, 2],
 		items: [ TILES.potion_health, TILES.potion_health, TILES.potion_health, TILES.gem ],
 		itemAmount: [3, 4]
@@ -443,7 +475,7 @@ var LEVELS = [
 		floor: [ TILES.floor_cobblestone, TILES.floor_cobblestone2 ],
 		decor: [ TILES.rocks ],
 		decorAmount: [ 30, 35 ],
-		mobs: [ MOBS.goblin ],
+		mobs: [ MOBS.skull, MOBS.golem ],
 		mobAmount: [5, 6],
 		items: [ TILES.gem ],
 		itemAmount: [ 4, 6 ]
