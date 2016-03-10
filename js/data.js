@@ -337,6 +337,9 @@ var SOUNDS = {
 	pickup: {
 		src: "assets/sounds/pickup"
 	},
+	powerup: {
+		src: "assets/sounds/powerup"
+	},
 	door_locked: {
 		src: "assets/sounds/door_locked"
 	},

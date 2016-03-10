@@ -134,7 +134,7 @@ function UI(player) {
 				item.get(ui.actor);
 				ui.actor.stats.perks++;
 				ui.msg("The gods granted you " + item.name + "!", ui.actor, "feat");
-				ui.snd("pickup", ui.actor);
+				ui.snd("powerup", ui.actor);
 				ui.shopItems = [];
 			}
 		}
@@ -236,6 +236,7 @@ UI.prototype.resetDisplay = function() {
 	if (this.display)
 		document.body.removeChild(this.display.getContainer());
 
+	// TODO: Display not used for actual rendering, could remove
 	this.display = new ROT.Display({
 		width: w,
 		height: h,
@@ -248,7 +249,7 @@ UI.prototype.resetDisplay = function() {
 		tileMap: TILES.tilemap,
 		tileColorize: false
 	});
-	this.display._tick = function() {}; // Disable dirty updates
+	this.display._tick = function() {}; // Disable dirty updates, we do our own drawing
 	var ctx = this.display.getContainer().getContext("2d");
 	if (ctx.imageSmoothingEnabled === undefined) {
 		ctx.mozImageSmoothingEnabled = false;
