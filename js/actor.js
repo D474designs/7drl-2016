@@ -121,7 +121,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		}
 		var object = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
 		if (object) {
-			if (this == ui.actor && object.shop) {
+			if (this == ui.actor && object.shop && this.path.length == 0) {
 				ui.openShop();
 				world.dungeon.setTile(waypoint[0], waypoint[1], "altar_used", Dungeon.LAYER_STATIC);
 				this.path = [];
