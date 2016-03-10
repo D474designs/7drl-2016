@@ -361,6 +361,54 @@ var SOUNDS = {
 	}
 })();
 
+var PERKS = [
+	// Ideas:
+	// * Stealth (monsters see less distance, or chance that they don't take as a target)
+	// * Drain (chance to get health from kills or hits)
+	// * "Saving throw"
+	// * Counter attack
+	// * Clairvoyant, always see down stairs
+	{
+		name: "Health",
+		desc: 'Restores full health. Cost <span class="sprite coin"></span> 5',
+		isAvailable: function(actor) { return actor.health < actor.maxHealth; },
+		canGet: function(actor) { return actor.coins >= 5; },
+		get: function(actor) { actor.coins -= 5; actor.health = actor.maxHealth; },
+	},{
+		name: "Vitality",
+		desc: 'Increases maximum health. Cost <span class="sprite gem"></span> 2',
+		isAvailable: function(actor) { return true; },
+		canGet: function(actor) { return actor.gems >= 2; },
+		get: function(actor) { actor.gems -= 2; actor.health += 1; actor.maxHealth += 1; },
+	},{
+		name: "Strength",
+		desc: 'Increases critical hit chance, which doubles damage.' +
+			' Cost <span class="sprite gem"></span> 2',
+		isAvailable: function(actor) { return actor.criticalChance < 0.9; },
+		canGet: function(actor) { return actor.gems >= 2; },
+		get: function(actor) { actor.gems -= 2; actor.criticalChance += 0.1; },
+	},{
+		name: "Swiftness",
+		desc: 'Increases your speed, which periodically results in extra turns.' +
+			' Cost <span class="sprite gem"></span> 2',
+		isAvailable: function(actor) { return actor.speed < 3; },
+		canGet: function(actor) { return actor.gems >= 2; },
+		get: function(actor) { actor.gems -= 2; actor.speed += 0.1; },
+	},{
+		name: "Eagle Eyes",
+		desc: ' You can see further. Cost <span class="sprite coin"></span> 3',
+		isAvailable: function(actor) { return actor.vision < 10; },
+		canGet: function(actor) { return actor.coins >= 3; },
+		get: function(actor) { actor.coins -= 3; actor.vision += 2; },
+	}/*,{
+		name: "",
+		desc: "",
+		isAvailable: function(actor) { return true; },
+		canGet: function(actor) { return true; },
+		get: function(actor) {},
+	},*/
+];
+
 var LEVELS = [
 	{
 		name: "Start Area",

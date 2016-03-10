@@ -7,6 +7,7 @@ function UI(player) {
 	this.fps = 0;
 	this.mouse = { x: 0, y: 0, downTime: 0, longpress: false };
 	this.pressed = [];
+	this.shopItems = [];
 	this.characterChoice = null;
 	this.characterPerk = null;
 	this.dom = {
@@ -123,6 +124,19 @@ function UI(player) {
 			if (SOUNDS[sound].audio)
 				SOUNDS[sound].audio.load();
 		}
+	}, false);
+	$("#shop-ok").addEventListener("click", function() {
+		var chosenElem = $("#shop-items > .btn-selected");
+		if (chosenElem) {
+			var item = ui.shopItems[chosenElem.dataset.index];
+			if (item && item.canGet(ui.actor)) {
+				item.get(ui.actor);
+				ui.msg("The gods granted you " + item.name + "!", ui.actor, "feat");
+				ui.snd("pickup", ui.actor);
+				ui.shopItems = [];
+			}
+		}
+		window.location.hash = "#game";
 	}, false);
 
 	function closeAllMenus() {
@@ -336,6 +350,50 @@ UI.prototype.die = function() {
 	$("#death-screen").style.display = "block";
 };
 
+UI.prototype.onClickShopItem = function(e) {
+	// this = clicked element
+	$("#shop-items > div", function(elem) { elem.classList.remove("btn-selected"); });
+	var item = ui.shopItems[this.dataset.index];
+	if (!item) return;
+	this.classList.add("btn-selected");
+	$("#shop-details").innerHTML = item.desc;
+	var canGet = item.canGet(ui.actor);
+	if (canGet) $("#shop-ok").classList.remove("btn-disabled");
+	else $("#shop-ok").classList.add("btn-disabled");
+	if (canGet) $("#shop-details").classList.add("feat");
+	else $("#shop-details").classList.remove("feat");
+};
+
+UI.prototype.updateShopScreen = function() {
+	$("#shop-ok").classList.add("btn-disabled");
+	var itemsElem = $("#shop-items");
+	itemsElem.innerHTML = "";
+	$("#shop-health").innerHTML = ui.actor.health + "/" + ui.actor.maxHealth;
+	$("#shop-coins").innerHTML = ui.actor.coins;
+	$("#shop-gems").innerHTML = ui.actor.gems;
+	$("#shop-details").innerHTML = "The gods will offer you one favor in exchange for a sacrifice.";
+
+	this.shopItems = [];
+	for (var i = 0; i < PERKS.length; ++i) {
+		if (PERKS[i].isAvailable(ui.actor))
+			this.shopItems.push(PERKS[i]);
+	}
+	shuffle(this.shopItems);
+	if (this.shopItems.length > 3)
+		this.shopItems.length = 3;
+	for (var i = 0; i < this.shopItems.length; ++i) {
+		var item = this.shopItems[i];
+		var elem = document.createElement("div");
+		elem.className = "btn btn-text";
+		elem.innerHTML = item.name;
+		//elem.title = item.desc;
+		elem.dataset.index = i;
+		elem.addEventListener("click", this.onClickShopItem);
+		itemsElem.appendChild(elem);
+	}
+};
+
 UI.prototype.openShop = function() {
+	this.updateShopScreen();
 	window.location.hash = "#shop";
 };
