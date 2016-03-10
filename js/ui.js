@@ -12,6 +12,7 @@ function UI(player) {
 	this.characterPerk = null;
 	this.dom = {
 		fps: $("#fps"),
+		depth: $("#depth"),
 		health: $("#health"),
 		gems: $("#gems"),
 		coins: $("#coins"),
@@ -308,6 +309,7 @@ UI.prototype.update = function() {
 	if (!this.actor)
 		return;
 
+	this.dom.depth.innerHTML = world.dungeon.id;
 	this.dom.health.innerHTML = this.actor.health;
 	this.dom.gems.innerHTML = this.actor.gems;
 	this.dom.coins.innerHTML = this.actor.coins;

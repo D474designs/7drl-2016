@@ -272,6 +272,7 @@ h1 {
 	transform: scale(3);
 	margin: 16px;
 }
+.depth { background-position: calc(-16px * 10) calc(-16px * 1); }
 .gem { background-position: calc(-16px * 11) calc(-16px * 9); }
 .coin { background-position: calc(-16px * 8) calc(-16px * 9); }
 .key { background-position: calc(-16px * 8) calc(-16px * 8); }
