@@ -13,6 +13,7 @@ function UI(player) {
 		fps: $("#fps"),
 		health: $("#health"),
 		gems: $("#gems"),
+		coins: $("#coins"),
 		keys: $("#keys"),
 		messages: $("#messages")
 	};
@@ -294,8 +295,9 @@ UI.prototype.update = function() {
 		return;
 
 	this.dom.health.innerHTML = this.actor.health;
-	this.dom.gems.innerHTML = this.actor.inv.gems;
-	this.dom.keys.innerHTML = this.actor.inv.keys;
+	this.dom.gems.innerHTML = this.actor.gems;
+	this.dom.coins.innerHTML = this.actor.coins;
+	this.dom.keys.innerHTML = this.actor.keys;
 
 	if (!CONFIG.touch) {
 		var cursor = "default";

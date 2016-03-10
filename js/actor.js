@@ -15,10 +15,9 @@ function Actor(x, y, def) {
 	this.health = def.health || 3;
 	this.maxHealth = this.health;
 	this.criticalChange = def.criticalChange || 0;
-	this.inv = {
-		gems: 0,
-		keys: 0
-	};
+	this.gems = 0;
+	this.keys = 0;
+	this.coins = 0;
 	this.ai = !def.ai ? null : {
 		type: def.ai,
 		target: null
@@ -94,10 +93,13 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		if (checkItems && item && this.path.length == 0) {
 			this.animPos = lerpVec2(this.pos, waypoint, 0.2);
 			if (item.id == "gem") {
-				this.inv.gems++;
+				this.gems++;
 				triggerAnimation($(".gem"), "tada");
+			} else if (item.id == "coin") {
+				this.coins++;
+				triggerAnimation($(".coin"), "tada")
 			} else if (item.id == "key") {
-				this.inv.keys++;
+				this.keys++;
 				triggerAnimation($(".key"), "tada")
 			} else if (item.id == "potion_health") {
 				if (this.health >= this.maxHealth) {
@@ -124,8 +126,8 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 				ui.snd("door_open", this);
 			} else if (object.id == "door_metal") {
 				this.animPos = lerpVec2(this.pos, waypoint, 0.2);
-				if (this.inv.keys > 0) {
-					this.inv.keys--;
+				if (this.keys > 0) {
+					this.keys--;
 					world.dungeon.setTile(waypoint[0], waypoint[1], "door_metal_open", Dungeon.LAYER_STATIC);
 					ui.snd("door_open", this);
 				} else {
