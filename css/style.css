@@ -279,6 +279,7 @@ h1 {
 .coin { background-position: calc(-16px * 8) calc(-16px * 9); }
 .key { background-position: calc(-16px * 8) calc(-16px * 8); }
 .heart { background-position: calc(-16px * 14) calc(-16px * 12); }
+.altar { background-position: calc(-16px * 8) calc(-16px * 7); }
 /*.heart { background: none; font-size: 16px; text-align: center; color: red; }*/
 .male { background-position: calc(-16px * 24) calc(-16px * 0); }
 .female { background-position: calc(-16px * 27) calc(-16px * 0); }
