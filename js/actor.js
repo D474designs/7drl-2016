@@ -114,7 +114,12 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		}
 		var object = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
 		if (object) {
-			if (object.id == "door_wood") {
+			if (this == ui.actor && object.shop) {
+				ui.openShop();
+				object.shop = null;
+				this.path = [];
+				return true;
+			} else if (object.id == "door_wood") {
 				world.dungeon.setTile(waypoint[0], waypoint[1], "door_wood_open", Dungeon.LAYER_STATIC);
 				ui.snd("door_open", this);
 			} else if (object.id == "door_metal") {

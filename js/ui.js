@@ -333,3 +333,7 @@ UI.prototype.die = function() {
 	$("#death-kills").innerHTML = Math.round(stats.kills);
 	$("#death-screen").style.display = "block";
 };
+
+UI.prototype.openShop = function() {
+	window.location.hash = "#shop";
+};

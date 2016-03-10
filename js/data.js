@@ -180,8 +180,8 @@ var TILES = {
 	},
 
 	altar: {
-		tileCoords: [ 8, 7 ], walkable: false, transparent: true,
-		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ]
+		tileCoords: [ 8, 7 ], walkable: true, transparent: true,
+		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ], shop: true
 	},
 	key: {
 		tileCoords: [ 8, 8 ], walkable: true, transparent: true

@@ -21,7 +21,7 @@ function Dungeon(id, params) {
 	// Altar
 	if (params.altar !== false) {
 		var altarPos = freeTiles.pop();
-		this.setTile(altarPos[0], altarPos[1], TILES.altar, Dungeon.LAYER_STATIC);
+		this.setTile(altarPos[0], altarPos[1], clone(TILES.altar), Dungeon.LAYER_STATIC);
 	}
 	// Items
 	this.generateItems(this.parseRand(params.itemAmount), params.items, freeTiles);
