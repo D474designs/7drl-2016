@@ -183,6 +183,10 @@ var TILES = {
 		tileCoords: [ 8, 7 ], walkable: true, transparent: true,
 		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ], shop: true
 	},
+	altar_used: {
+		tileCoords: [ 8, 6 ], walkable: false, transparent: true,
+		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ]
+	},
 	key: {
 		tileCoords: [ 8, 8 ], walkable: true, transparent: true
 	},
