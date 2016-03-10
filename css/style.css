@@ -222,14 +222,16 @@ h1 {
 	height: 100%;
 }
 
-#death-screen {
+#death {
 	background-color: rgba(64, 0, 0, 0.7);
 	text-align: center;
 }
-
-#death-screen > div {
-	top: 35%;
+#win {
+	background-color: rgba(0, 64, 0, 0.7);
+	text-align: center;
 }
+#death > div { top: 35%; }
+#win > div { top: 35%; }
 
 #status {
 	position: fixed;

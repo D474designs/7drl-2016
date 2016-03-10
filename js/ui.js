@@ -355,7 +355,18 @@ UI.prototype.die = function() {
 	$("#death-coins").innerHTML = Math.round(stats.coins);
 	$("#death-gems").innerHTML = Math.round(stats.gems);
 	$("#death-perks").innerHTML = Math.round(stats.perks);
-	$("#death-screen").style.display = "block";
+	$("#death").style.display = "block";
+};
+
+UI.prototype.win = function() {
+	var stats = ui.actor.stats;
+	$("#win-turns").innerHTML = Math.round(stats.turns);
+	$("#win-kills").innerHTML = Math.round(stats.kills);
+	$("#win-depth").innerHTML = Math.round(world.dungeon.id);
+	$("#win-coins").innerHTML = Math.round(stats.coins);
+	$("#win-gems").innerHTML = Math.round(stats.gems);
+	$("#win-perks").innerHTML = Math.round(stats.perks);
+	$("#win").style.display = "block";
 };
 
 UI.prototype.onClickShopItem = function(e) {
