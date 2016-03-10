@@ -2,8 +2,8 @@ var CONFIG = {
 	tileSize: 16,
 	tileGap: 0,
 	debug: false,
-	roundDelay: 160,
-	moveDuration: 140,
+	roundDelay: 100,
+	moveDuration: 100,
 	animFrameDuration: 64,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
