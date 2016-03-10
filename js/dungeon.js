@@ -5,7 +5,6 @@ function Dungeon(id, params) {
 	this.width = 0;
 	this.height = 0;
 	this.actors = [];
-	this.items = [];
 	this.playerFov = [];
 	this.map = [];
 	this.start = [0, 0];
@@ -48,11 +47,6 @@ Dungeon.LAYER_ITEM = 2;
 Dungeon.LAYER_ACTOR = 3;
 Dungeon.LAYER_COUNT = 4;
 Dungeon.totalCount = 0;
-
-Dungeon.prototype.removeItem = function(item) {
-	removeElem(this.items, item);
-	this.setTile(item.pos[0], item.pos[1], null, Dungeon.LAYER_ITEM);
-};
 
 Dungeon.prototype.getTile = function(x, y, layer) {
 	if (x < 0 || y < 0 || x >= this.width || y >= this.height) return TILES.empty;

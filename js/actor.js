@@ -24,6 +24,8 @@ function Actor(x, y, def) {
 		target: null
 	};
 	this.faction = def.ai ? 0 : 1;
+	this.loot = def.loot || null;
+	this.lootChance = def.lootChance || 0;
 	this.stats = {
 		turns: 0,
 		kills: 0,
@@ -115,7 +117,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 				this.health++;
 				triggerAnimation($(".heart"), "tada");
 			}
-			world.dungeon.removeItem(item);
+			world.dungeon.setTile(waypoint[0], waypoint[1], null, Dungeon.LAYER_ITEM);
 			ui.msg("Picked up a " + item.name + ".", this);
 			ui.snd("pickup", this);
 			return true;
@@ -175,6 +177,12 @@ Actor.prototype.attack = function(target) {
 			ui.msg("You killed " + target.name + "!", this);
 			ui.msg(this.name + " kills you!", target, "warn");
 			ui.vibrate(300, target);
+			if (target.loot && rnd() < target.lootChance) {
+				var existing = world.dungeon.getTile(target.pos[0], target.pos[1], Dungeon.LAYER_ITEM);
+				if (!existing) {
+					world.dungeon.setTile(target.pos[0], target.pos[1], target.loot, Dungeon.LAYER_ITEM);
+				}
+			}
 		} else {
 			ui.msg("You hit " + target.name + " for " + damage + "!", this);
 			ui.msg(this.name + " hits you for " + damage + "!", target, "warn");

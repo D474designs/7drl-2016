@@ -348,51 +348,61 @@ var MOBS = {
 		name: "Skeleton", ch: TILES.skeleton.ch, ai: "hunter",
 		desc: "Dangerous and rather scary",
 		health: 3, vision: 9, speed: 1,
+		loot: TILES.coin, lootChance: 0.5
 	},
 	slime: {
 		name: "Slime", ch: TILES.slime.ch, ai: "hunter",
 		desc: "Disgusting but thankfully very slow",
-		health: 2, vision: 5, speed: 0.5
+		health: 2, vision: 5, speed: 0.5,
+		loot: TILES.potion_health, lootChance: 0.333
 	},
 	bat: {
 		name: "Giant Bat", ch: TILES.bat.ch, ai: "hunter",
 		desc: "Easy to kill and has bad vision, but they are fast and plentyful",
-		health: 1, vision: 4, speed: 1.5
+		health: 1, vision: 4, speed: 1.5,
+		loot: TILES.potion_health, lootChance: 0.2
 	},
 	ghost: {
 		name: "Ghost", ch: TILES.ghost.ch, ai: "hunter",
 		desc: "Dangerous and scary",
-		health: 2, vision: 9, speed: 1
+		health: 2, vision: 9, speed: 1,
+		loot: TILES.gem, lootChance: 0.333
 	},
 	spider: {
 		name: "Giant Spider", ch: TILES.spider.ch, ai: "hunter",
 		desc: "Dangerous, scary and fast",
-		health: 2, vision: 7, speed: 1.2
+		health: 2, vision: 7, speed: 1.2,
+		loot: TILES.coin, lootChance: 0.5
 	},
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
 		desc: "Tough enemy",
-		health: 5, vision: 9, speed: 1
+		health: 5, vision: 9, speed: 1,
+		loot: TILES.coin, lootChance: 1
 	},
 	rat: {
 		name: "Giant rat", ch: TILES.rat.ch, ai: "hunter",
 		desc: "Weak enemy with poor vision",
-		health: 1, vision: 3, speed: 1
+		health: 1, vision: 3, speed: 1,
+		loot: TILES.coin, lootChance: 0.5
 	},
 	golem: {
 		name: "Rock Golem", ch: TILES.golem.ch, ai: "hunter",
 		desc: "Extremely tough and strong, but thankfully slow and doesn't see far",
-		health: 10, vision: 3, speed: 0.5, criticalChance: 0.5
+		health: 10, vision: 3, speed: 0.5, criticalChance: 0.5,
+		loot: TILES.potion_health, lootChance: 1
 	},
 	mummy: {
 		name: "Mummy", ch: TILES.mummy.ch, ai: "hunter",
 		desc: "Scary and semi-dangerous",
-		health: 2, vision: 3, speed: 0.75
+		health: 2, vision: 3, speed: 0.75,
+		loot: TILES.coin, lootChance: 0.5
 	},
 	skull: {
 		name: "Flaming Skull", ch: TILES.skull.ch, ai: "hunter",
 		desc: "Super fast and difficult to kill",
-		health: 6, vision: 3, speed: 2, criticalChance: 0.2
+		health: 6, vision: 3, speed: 2, criticalChance: 0.2,
+		loot: TILES.gem, lootChance: 1
 	}
 };
 

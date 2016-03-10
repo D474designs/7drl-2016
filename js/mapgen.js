@@ -21,7 +21,6 @@ Dungeon.prototype.generateItems = function(amount, choices, freeTiles) {
 		item.pos = freeTiles.pop();
 		if (!item.pos) throw "Too little floor space for items!";
 		this.setTile(item.pos[0], item.pos[1], item, Dungeon.LAYER_ITEM);
-		this.items.push(item);
 	}
 };
 
