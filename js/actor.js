@@ -142,7 +142,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		this.pos[1] = waypoint[1];
 		this.moved = true;
 		// Check for map change
-		if (checkMapChange) {
+		if (checkMapChange && this.path.length == 0) {
 			var tile = world.dungeon.getTile(this.pos[0], this.pos[1]);
 			if (tile.entrance && this.path.length === 0) {
 				world.changeMap(this, tile.entrance);
