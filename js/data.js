@@ -515,10 +515,17 @@ var PERKS = [
 		get: function(actor) { actor.gems -= 2; actor.speed += 0.1; },
 	},{
 		name: "Eagle Eyes",
-		desc: ' You can see further. Cost <span class="sprite coin"></span> 3',
+		desc: 'You can see further. Cost <span class="sprite coin"></span> 3',
 		isAvailable: function(actor) { return actor.vision < 10; },
 		canGet: function(actor) { return actor.coins >= 3; },
 		get: function(actor) { actor.coins -= 3; actor.vision += 2; },
+	},{
+		name: "Luck",
+		desc: 'Increases the chance of monsters dropping loot.' +
+			' Cost <span class="sprite coin"></span> 5',
+		isAvailable: function(actor) { return actor.luck < 0.4; },
+		canGet: function(actor) { return actor.coins > 5; },
+		get: function(actor) { actor.coins -= 5; actor.luck += 0.2; },
 	}/*,{
 		name: "",
 		desc: "",

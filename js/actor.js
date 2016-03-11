@@ -16,6 +16,7 @@ function Actor(x, y, def) {
 	this.health = def.health || 3;
 	this.maxHealth = this.health;
 	this.criticalChance = def.criticalChance || 0;
+	this.luck = def.luck || 0;
 	this.gems = 0;
 	this.keys = 0;
 	this.coins = 0;
@@ -177,7 +178,7 @@ Actor.prototype.attack = function(target) {
 			ui.msg("You killed " + target.name + "!", this);
 			ui.msg(this.name + " kills you!", target, "warn");
 			ui.vibrate(300, target);
-			if (target.loot && rnd() < target.lootChance) {
+			if (target.loot && rnd() < target.lootChance + this.luck) {
 				var existing = world.dungeon.getTile(target.pos[0], target.pos[1], Dungeon.LAYER_ITEM);
 				if (!existing) {
 					world.dungeon.setTile(target.pos[0], target.pos[1], target.loot, Dungeon.LAYER_ITEM);
