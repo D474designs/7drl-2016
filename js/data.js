@@ -394,7 +394,7 @@ var MOBS = {
 		name: "Giant Bat", ch: TILES.bat.ch, ai: "hunter",
 		desc: "Easy to kill and has bad vision, but they are fast and plentyful",
 		health: 1, vision: 4, speed: 1.5,
-		loot: TILES.potion_health, lootChance: 0.2
+		loot: TILES.potion_health, lootChance: 0.333
 	},
 	ghost: {
 		name: "Ghost", ch: TILES.ghost.ch, ai: "hunter",
@@ -406,7 +406,7 @@ var MOBS = {
 		name: "Giant Spider", ch: TILES.spider.ch, ai: "hunter",
 		desc: "Dangerous, scary and fast",
 		health: 2, vision: 7, speed: 1.2,
-		loot: TILES.coin, lootChance: 0.5
+		loot: TILES.coin, lootChance: 0.4
 	},
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
@@ -418,7 +418,7 @@ var MOBS = {
 		name: "Giant rat", ch: TILES.rat.ch, ai: "hunter",
 		desc: "Weak enemy with poor vision",
 		health: 1, vision: 3, speed: 1,
-		loot: TILES.coin, lootChance: 0.5
+		loot: TILES.coin, lootChance: 0.4
 	},
 	golem: {
 		name: "Rock Golem", ch: TILES.golem.ch, ai: "hunter",
@@ -628,7 +628,7 @@ var LEVELS = [
 		decorAmount: [ 5, 8 ],
 		mobs: [ MOBS.skeleton, MOBS.mummy, MOBS.ghost, MOBS.rat ],
 		mobAmount: [ 10, 12 ],
-		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
+		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin ],
 		itemAmount: [ 5, 7 ]
 	},{
 		name: "Underground Garden",
@@ -656,7 +656,7 @@ var LEVELS = [
 		decorAmount: [ 40, 50 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
 		mobAmount: [ 8, 10 ],
-		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 6, 8 ]
 	},{
 		name: "City",
@@ -674,7 +674,7 @@ var LEVELS = [
 		decorAmount: [ 20, 25 ],
 		mobs: [ MOBS.goblin, MOBS.goblin, MOBS.goblin, MOBS.golem ],
 		mobAmount: [ 10, 15 ],
-		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
+		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 15, 20 ]
 	},{
 		name: "Lava Maze",
