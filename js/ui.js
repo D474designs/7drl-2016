@@ -156,8 +156,22 @@ function UI(player) {
 			window.location.hash = "#new";
 			return;
 		}
-		if (hash == "#game")
+		if (hash == "#shop" && !this.shopItems.length) {
+			window.location.hash = "#game";
+			return
+		}
+		if (hash == "#win" || hash == "#death") {
+			window.location.hash = "#game";
+			return
+		}
+		if (hash == "#new" && world.running) {
+			window.location.hash = "#game";
+			return
+		}
+		if (hash == "#game") {
+			this.shopItems = [];
 			return;
+		}
 		var menudiv = $(hash);
 		if (menudiv) menudiv.style.display = "block";
 	}).bind(this);
