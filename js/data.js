@@ -678,8 +678,22 @@ var LEVELS = [
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
 		itemAmount: [ 15, 20 ]
 	},{
-		name: "Lava Cave",
+		name: "Lava Maze",
 		desc: "It's hot in here.",
+		generator: "maze",
+		width: 40,
+		height: 30,
+		wall: [ TILES.wall_lava, TILES.wall_lava2 ],
+		floor: [ TILES.floor_cobblestone, TILES.floor_cobblestone2 ],
+		decor: [ ],
+		decorAmount: 0,
+		mobs: [ MOBS.skull, MOBS.golem ],
+		mobAmount: [ 5, 6 ],
+		items: [ TILES.gem ],
+		itemAmount: [ 3, 4 ]
+	},{
+		name: "Lava Cave",
+		desc: "It's really hot in here.",
 		generator: "cave",
 		width: 40,
 		height: 30,
