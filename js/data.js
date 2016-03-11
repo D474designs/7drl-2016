@@ -481,11 +481,6 @@ var SOUNDS = {
 })();
 
 var PERKS = [
-	// Ideas:
-	// * Stealth (monsters see less distance, or chance that they don't take as a target)
-	// * "Saving throw"
-	// * Counter attack
-	// * Clairvoyant, always see down stairs
 	{
 		name: "Health",
 		desc: 'Restores full health. Cost <span class="sprite coin"></span> 5',
@@ -511,7 +506,13 @@ var PERKS = [
 			' Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return actor.speed < 3; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.speed += 0.1; }
+		get: function(actor) { actor.gems -= 2; actor.speed += 0.2; }
+	},{
+		name: "Dexterity",
+		desc: 'Increases your chance to hit. Cost <span class="sprite gem"></span> 3',
+		isAvailable: function(actor) { return actor.dexterity < 0.8; },
+		canGet: function(actor) { return actor.gems >= 3; },
+		get: function(actor) { actor.gems -= 3; actor.dexterity += 0.1; },
 	},{
 		name: "Eagle Eyes",
 		desc: 'You can see further. Cost <span class="sprite coin"></span> 3',
@@ -528,8 +529,7 @@ var PERKS = [
 	},{
 		name: "Drain",
 		desc: 'Adds a chance to heal you a bit by draining power from kills.' +
-			' Not at all black magic.' +
-			' Cost <span class="sprite gem"></span> 3',
+			' Not at all black magic. Cost <span class="sprite gem"></span> 3',
 		isAvailable: function(actor) { return actor.drainChance < 1; },
 		canGet: function(actor) { return actor.gems >= 3; },
 		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; }
@@ -545,14 +545,13 @@ var PERKS = [
 		isAvailable: function(actor) { return !actor.clairvoyant; },
 		canGet: function(actor) { return actor.coins >= 5; },
 		get: function(actor) { actor.coins -= 5; actor.monsterMind = true; },
+	},{
+		name: "Stealth",
+		desc: 'Enemies have a harder time spotting you. Cost <span class="sprite coin"></span> 3',
+		isAvailable: function(actor) { return actor.stealth < 2; },
+		canGet: function(actor) { return actor.coins >= 3; },
+		get: function(actor) { actor.coins -= 3; actor.stealth += 1; },
 	}
-	/*,{
-		name: "",
-		desc: "",
-		isAvailable: function(actor) { return true; },
-		canGet: function(actor) { return true; },
-		get: function(actor) {},
-	},*/
 ];
 
 var LEVELS = [

@@ -15,8 +15,10 @@ function Actor(x, y, def) {
 	this.speed = def.speed || 1;
 	this.health = def.health || 3;
 	this.maxHealth = this.health;
+	this.dexterity = def.dexterity || 0.5;
 	this.criticalChance = def.criticalChance || 0;
 	this.luck = def.luck || 0;
+	this.stealth = def.stealth || 0;
 	this.drainChance = def.drainChance || 0;
 	this.clairvoyant = false;
 	this.monsterMind = false;
@@ -178,9 +180,8 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 
 Actor.prototype.attack = function(target) {
 	this.animPos = lerpVec2(this.pos, target.pos, 0.3);
-	var hit = randInt(0, 1); // TODO
-	if (hit) {
-		var damage = 1; // TODO
+	if (rnd() < this.dexterity) {
+		var damage = 1;
 		if (rnd() < this.criticalChance)
 			damage *= 2;
 		target.health -= damage;
@@ -249,8 +250,14 @@ Actor.prototype.hunterAI = function() {
 	if (!this.ai.target) {
 		var newTarget = ui.actor; // TODO: Other possibilities?
 		this.updateVisibility();
-		if (this.visibility(newTarget.pos[0], newTarget.pos[1]) < 1)
+		if (this.visibility(newTarget.pos[0], newTarget.pos[1]) < 1) {
 			return this.drunkAI();
+		} else if (ui.actor.stealth) {
+			// TODO: Hack: Should do this properly if there's enemies with stealth ability
+			var d = dist(this.pos[0], this.pos[1], newTarget.pos[0], newTarget.pos[1]);
+			if (d <= Math.max(2, this.vision - ui.actor.stealth))
+				return this.drunkAI();
+		}
 		this.ai.target = ui.actor;
 	}
 	var target = this.ai.target;
