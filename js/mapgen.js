@@ -1,11 +1,11 @@
 Dungeon.prototype.parseRand = function(rangeOrNumber) {
 	if (rangeOrNumber instanceof Array)
-		return randInt(rangeOrNumber[0], rangeOrNumber[1])
+		return randInt(rangeOrNumber[0], rangeOrNumber[1]);
 	else if (typeof(rangeOrNumber) === "number")
 		return rangeOrNumber;
 	console.error("Invalid range or number", rangeOrNumber);
 	return 0;
-}
+};
 
 Dungeon.prototype.initMap = function(w, h) {
 	this.width = w;
@@ -13,7 +13,7 @@ Dungeon.prototype.initMap = function(w, h) {
 	this.map = new Array(Dungeon.LAYER_COUNT);
 	for (var i = 0; i < Dungeon.LAYER_COUNT; ++i)
 		this.map[i] = new Array(this.width * this.height);
-}
+};
 
 Dungeon.prototype.generateItems = function(amount, choices, freeTiles) {
 	for (var i = 0; i < amount; ++i) {
@@ -72,7 +72,7 @@ Dungeon.prototype.generateDungeon = function(params) {
 	for (var i = 0; i < rooms.length; i++) {
 		var numDoors = Object.keys(rooms[i]._doors).length;
 		// Lock single door rooms and usually also down stairs room
-		var locked = (numDoors == 1 && i != 0) || (rnd() < 0.5 && i == rooms.length-1);
+		var locked = (numDoors === 1 && i !== 0) || (rnd() < 0.5 && i == rooms.length-1);
 		if (locked) rooms[i].getDoors(doorLockedCallback);
 		else rooms[i].getDoors(doorCallback);
 		for (var y = rooms[i].getTop(); y < rooms[i].getBottom(); ++y) {
@@ -81,8 +81,8 @@ Dungeon.prototype.generateDungeon = function(params) {
 					(x != this.end[0] || y != this.end[1]))
 				{
 					// Don't generate keays in the first room, because that's boring
-					if (locked || i == 0) freeTiles.push([x, y]);
-					else if (i != 0) keyTiles.push([x, y]);
+					if (locked || i === 0) freeTiles.push([x, y]);
+					else if (i !== 0) keyTiles.push([x, y]);
 				}
 			}
 		}

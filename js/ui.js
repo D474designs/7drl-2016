@@ -158,15 +158,15 @@ function UI(player) {
 		}
 		if (hash == "#shop" && !this.shopItems.length) {
 			window.location.hash = "#game";
-			return
+			return;
 		}
 		if (hash == "#win" || hash == "#death") {
 			window.location.hash = "#game";
-			return
+			return;
 		}
 		if (hash == "#new" && world.running) {
 			window.location.hash = "#game";
-			return
+			return;
 		}
 		if (hash == "#game") {
 			this.shopItems = [];
@@ -177,7 +177,7 @@ function UI(player) {
 	}).bind(this);
 	window.addEventListener("hashchange", handleHash, true);
 	handleHash();
-};
+}
 
 UI.prototype.onClick = function(e) {
 	if (!this.actor)

@@ -491,40 +491,40 @@ var PERKS = [
 		desc: 'Restores full health. Cost <span class="sprite coin"></span> 5',
 		isAvailable: function(actor) { return actor.health < actor.maxHealth; },
 		canGet: function(actor) { return actor.coins >= 5; },
-		get: function(actor) { actor.coins -= 5; actor.health = actor.maxHealth; },
+		get: function(actor) { actor.coins -= 5; actor.health = actor.maxHealth; }
 	},{
 		name: "Vitality",
 		desc: 'Increases maximum health. Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return true; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.health += 1; actor.maxHealth += 1; },
+		get: function(actor) { actor.gems -= 2; actor.health += 1; actor.maxHealth += 1; }
 	},{
 		name: "Strength",
 		desc: 'Increases critical hit chance, which doubles damage.' +
 			' Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return actor.criticalChance < 0.9; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.criticalChance += 0.1; },
+		get: function(actor) { actor.gems -= 2; actor.criticalChance += 0.1; }
 	},{
 		name: "Swiftness",
 		desc: 'Increases your speed, which periodically results in extra turns.' +
 			' Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return actor.speed < 3; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.speed += 0.1; },
+		get: function(actor) { actor.gems -= 2; actor.speed += 0.1; }
 	},{
 		name: "Eagle Eyes",
 		desc: 'You can see further. Cost <span class="sprite coin"></span> 3',
 		isAvailable: function(actor) { return actor.vision < 10; },
 		canGet: function(actor) { return actor.coins >= 3; },
-		get: function(actor) { actor.coins -= 3; actor.vision += 2; },
+		get: function(actor) { actor.coins -= 3; actor.vision += 2; }
 	},{
 		name: "Luck",
 		desc: 'Increases the chance of monsters dropping loot.' +
 			' Cost <span class="sprite coin"></span> 5',
 		isAvailable: function(actor) { return actor.luck < 0.4; },
 		canGet: function(actor) { return actor.coins >= 5; },
-		get: function(actor) { actor.coins -= 5; actor.luck += 0.2; },
+		get: function(actor) { actor.coins -= 5; actor.luck += 0.2; }
 	},{
 		name: "Drain",
 		desc: 'Adds a chance to heal you a bit by draining power from kills.' +
@@ -532,7 +532,7 @@ var PERKS = [
 			' Cost <span class="sprite gem"></span> 3',
 		isAvailable: function(actor) { return actor.drainChance < 1; },
 		canGet: function(actor) { return actor.gems >= 3; },
-		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; },
+		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; }
 	}/*,{
 		name: "",
 		desc: "",

@@ -66,14 +66,14 @@ Dungeon.prototype.setTile = function(x, y, tile, layer) {
 };
 
 Dungeon.prototype.getPassable = function(x, y) {
-	var static = this.getTile(x, y, Dungeon.LAYER_STATIC);
-	if (static && !static.walkable) return false;
+	var staticTile = this.getTile(x, y, Dungeon.LAYER_STATIC);
+	if (staticTile && !staticTile.walkable) return false;
 	return this.getTile(x, y, Dungeon.LAYER_BG).walkable;
 };
 
 Dungeon.prototype.getTransparent = function(x, y) {
-	var static = this.getTile(x, y, Dungeon.LAYER_STATIC);
-	if (static && !static.transparent) return false;
+	var staticTile = this.getTile(x, y, Dungeon.LAYER_STATIC);
+	if (staticTile && !staticTile.transparent) return false;
 	return this.getTile(x, y, Dungeon.LAYER_BG).transparent;
 };
 
@@ -104,7 +104,7 @@ Dungeon.prototype.animate = function(dt) {
 		var actor = this.actors[i];
 		var dx = actor.pos[0] - actor.animPos[0];
 		var dy = actor.pos[1] - actor.animPos[1];
-		if (dx != 0 || dy != 0) {
+		if (dx !== 0 || dy !== 0) {
 			if (ui.actor.visibility(actor.pos[0], actor.pos[1]) < 0.9) {
 				// Don't bother animating mobs that are not visible
 				actor.animPos[0] = actor.pos[0];

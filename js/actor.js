@@ -98,7 +98,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		}
 		// Check items
 		var item = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_ITEM);
-		if (checkItems && item && this.path.length == 0) {
+		if (checkItems && item && this.path.length === 0) {
 			this.animPos = lerpVec2(this.pos, waypoint, 0.2);
 			if (item.id == "gem") {
 				this.gems++;
@@ -107,10 +107,10 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 			} else if (item.id == "coin") {
 				this.coins++;
 				this.stats.coins++;
-				triggerAnimation($(".coin"), "tada")
+				triggerAnimation($(".coin"), "tada");
 			} else if (item.id == "key") {
 				this.keys++;
-				triggerAnimation($(".key"), "tada")
+				triggerAnimation($(".key"), "tada");
 			} else if (item.id == "potion_health") {
 				if (this.health >= this.maxHealth) {
 					ui.msg("Health already full.", this);
@@ -126,7 +126,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		}
 		var object = world.dungeon.getTile(waypoint[0], waypoint[1], Dungeon.LAYER_STATIC);
 		if (object) {
-			if (this == ui.actor && object.shop && this.path.length == 0) {
+			if (this == ui.actor && object.shop && this.path.length === 0) {
 				ui.openShop();
 				world.dungeon.setTile(waypoint[0], waypoint[1], "altar_used", Dungeon.LAYER_STATIC);
 				this.path = [];
@@ -152,7 +152,7 @@ Actor.prototype.doPath = function(checkItems, checkMapChange) {
 		this.pos[1] = waypoint[1];
 		this.moved = true;
 		// Check for map change
-		if (checkMapChange && this.path.length == 0) {
+		if (checkMapChange && this.path.length === 0) {
 			var tile = world.dungeon.getTile(this.pos[0], this.pos[1]);
 			if (tile.entrance && this.path.length === 0) {
 				world.changeMap(this, tile.entrance);
