@@ -558,7 +558,7 @@ var PERKS = [
 var LEVELS = [
 	{
 		name: "Start Area",
-		desc: "What a lovely forest clearing. But down leads your journey, monsters are waiting!",
+		desc: "What a lovely forest clearing. But down leads the journey, monsters are waiting!",
 		generator: "arena",
 		width: 20,
 		height: 15,
@@ -633,7 +633,7 @@ var LEVELS = [
 		itemAmount: [ 8, 10 ]
 	},{
 		name: "Underground Garden",
-		desc: "It is wonderful how these plants can grow beneath the surface.",
+		desc: "What a surprise, an underground garden. It is wonderful how these plants can grow here beneath the surface.",
 		generator: "cave",
 		width: 30,
 		height: 30,
@@ -647,18 +647,18 @@ var LEVELS = [
 		itemAmount: [ 5, 6 ]
 	},{
 		name: "Another Sand Cave",
-		desc: "Sand again. Quite fine.",
+		desc: "Sand again. Familiar stuff.",
 		generator: "cave",
-		width: 40,
-		height: 20,
+		width: 50,
+		height: 40,
 		wall: [ TILES.wall_rocks2 ],
 		floor: [ TILES.floor_sand_a, TILES.floor_sand_b, TILES.floor_sand_c, TILES.floor_sand_d ],
 		decor: [ TILES.floor_sand_rock1, TILES.floor_sand_rock2, TILES.floor_sand_rock3, TILES.floor_sand_rock4 ],
-		decorAmount: [ 30, 35 ],
+		decorAmount: [ 40, 50 ],
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
-		mobAmount: [ 5, 6 ],
+		mobAmount: [ 8, 10 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
-		itemAmount: [ 6, 8 ]
+		itemAmount: [ 8, 10 ]
 	},{
 		name: "City",
 		desc: "Vast underground city - infested with goblins.",
