@@ -63,11 +63,11 @@ World.prototype.update = function(dt) {
 		this.dungeon.update();
 		this.currentActor = this.scheduler.next();
 		if (this.currentActor == ui.actor) {
-			this.roundTimer = Date.now() + CONFIG.roundDelay;
+			this.roundTimer = Date.now() + CONFIG.playerRoundDelay;
 			this.currentActor.updateVisibility();
 			break; // Always wait for next round after player action
 		} else if (ui.actor.visibility(this.currentActor.pos[0], this.currentActor.pos[1]) > 0.9) {
-			this.roundTimer = Date.now() + CONFIG.roundDelay;
+			this.roundTimer = Date.now() + CONFIG.enemyRoundDelay;
 			break;
 		}
 	}

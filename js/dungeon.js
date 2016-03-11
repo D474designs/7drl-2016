@@ -111,7 +111,8 @@ Dungeon.prototype.animate = function(dt) {
 				actor.animPos[1] = actor.pos[1];
 				continue;
 			}
-			var speed = (1000 / CONFIG.moveDuration) * dt;
+			var duration = actor === ui.actor ? CONFIG.playerMoveDuration : CONFIG.enemyMoveDuration;
+			var speed = (1000 / duration) * dt;
 			var length = dist(0, 0, dx, dy);
 			if (Math.abs(dx) <= speed)
 				actor.animPos[0] = actor.pos[0];
