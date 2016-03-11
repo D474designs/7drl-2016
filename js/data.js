@@ -387,7 +387,7 @@ var MOBS = {
 	slime: {
 		name: "Slime", ch: TILES.slime.ch, ai: "hunter",
 		desc: "Disgusting but thankfully very slow",
-		health: 2, vision: 5, speed: 0.5,
+		health: 3, vision: 5, speed: 0.5,
 		loot: TILES.potion_health, lootChance: 0.333
 	},
 	bat: {
