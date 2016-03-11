@@ -144,6 +144,11 @@ function UI(player) {
 		window.location.hash = "#game";
 	}, false);
 
+	function back() { window.history.back(); }
+	$(".back", function(elem) {
+		elem.addEventListener("click", back, false);
+	});
+
 	function closeAllMenus() {
 		$(".modal", function (elem) { elem.style.display = "none"; });
 	}
