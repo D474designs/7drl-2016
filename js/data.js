@@ -272,7 +272,7 @@ var TILES = {
 		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ], shop: true
 	},
 	altar_used: {
-		tileCoords: [ 8, 6 ], walkable: false, transparent: true,
+		tileCoords: [ 8, 6 ], walkable: true, transparent: true,
 		desc: "No more sacrifices on this altar",
 		anim: [ [ 8, 7 ], [ 9, 7 ], [ 10, 7 ] ]
 	},
