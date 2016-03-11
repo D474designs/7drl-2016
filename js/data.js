@@ -483,7 +483,6 @@ var SOUNDS = {
 var PERKS = [
 	// Ideas:
 	// * Stealth (monsters see less distance, or chance that they don't take as a target)
-	// * Drain (chance to get health from kills or hits)
 	// * "Saving throw"
 	// * Counter attack
 	// * Clairvoyant, always see down stairs
@@ -524,8 +523,16 @@ var PERKS = [
 		desc: 'Increases the chance of monsters dropping loot.' +
 			' Cost <span class="sprite coin"></span> 5',
 		isAvailable: function(actor) { return actor.luck < 0.4; },
-		canGet: function(actor) { return actor.coins > 5; },
+		canGet: function(actor) { return actor.coins >= 5; },
 		get: function(actor) { actor.coins -= 5; actor.luck += 0.2; },
+	},{
+		name: "Drain",
+		desc: 'Adds a chance to heal you a bit by draining power from kills.' +
+			' Not at all black magic.' +
+			' Cost <span class="sprite gem"></span> 3',
+		isAvailable: function(actor) { return actor.drainChance < 1; },
+		canGet: function(actor) { return actor.gems >= 3; },
+		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; },
 	}/*,{
 		name: "",
 		desc: "",

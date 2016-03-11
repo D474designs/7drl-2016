@@ -17,6 +17,7 @@ function Actor(x, y, def) {
 	this.maxHealth = this.health;
 	this.criticalChance = def.criticalChance || 0;
 	this.luck = def.luck || 0;
+	this.drainChance = def.drainChance || 0;
 	this.gems = 0;
 	this.keys = 0;
 	this.coins = 0;
@@ -183,6 +184,10 @@ Actor.prototype.attack = function(target) {
 				if (!existing) {
 					world.dungeon.setTile(target.pos[0], target.pos[1], target.loot, Dungeon.LAYER_ITEM);
 				}
+			}
+			if (rnd() < this.drainChance && this.health < this.maxHealth) {
+				this.health++;
+				ui.msg("You drained your kill for health.", this);
 			}
 		} else {
 			ui.msg("You hit " + target.name + " for " + damage + "!", this);
