@@ -253,8 +253,8 @@ UI.prototype.onKeyUp = function(e) {
 };
 
 UI.prototype.resetDisplay = function() {
-	var w = Math.floor(window.innerWidth / CONFIG.tileSize / SETTINGS.tileMag);
-	var h = Math.floor(window.innerHeight / CONFIG.tileSize / SETTINGS.tileMag);
+	var w = Math.floor(document.documentElement.clientWidth / CONFIG.tileSize / SETTINGS.tileMag);
+	var h = Math.floor(document.documentElement.clientHeight / CONFIG.tileSize / SETTINGS.tileMag);
 	camera = { pos: [0, 0], offset: [0, 0], center: [(w/2)|0, (h/2)|0] };
 
 	if (this.display)
