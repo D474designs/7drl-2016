@@ -584,7 +584,7 @@ var LEVELS = [
 		mobs: [ MOBS.rat, MOBS.rat, MOBS.rat, MOBS.bat ],
 		mobAmount: [4, 5],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin ],
-		itemAmount: [ 5, 6 ]
+		itemAmount: [ 4, 5 ]
 	},{
 		name: "Small Maze",
 		desc: "Argh, I hate mazes! Thankfully this doesn't look that big.",
@@ -598,7 +598,7 @@ var LEVELS = [
 		mobs: [ MOBS.ghost, MOBS.slime ],
 		mobAmount: [ 4, 5 ],
 		items: [ TILES.coin, TILES.gem ],
-		itemAmount: [ 6, 8 ]
+		itemAmount: [ 4, 6 ]
 	},{
 		name: "Sand cave",
 		desc: "There is fine sand everywhere. No idea how they've formed dunes though, because there is no wind here.",
@@ -612,12 +612,12 @@ var LEVELS = [
 		mobs: [ MOBS.spider, MOBS.mummy ],
 		mobAmount: [ 5, 6 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
-		itemAmount: [ 6, 8 ]
+		itemAmount: [ 4, 6 ]
 	},{
 		name: "Prison",
 		desc: "This looks like an old prison. Better be careful.",
 		generator: "dungeon",
-		width: 60,
+		width: 50,
 		height: 40,
 		roomWidth: [ 3, 5 ],
 		roomHeight: [ 2, 5 ],
@@ -629,7 +629,7 @@ var LEVELS = [
 		mobs: [ MOBS.skeleton, MOBS.mummy, MOBS.ghost, MOBS.rat ],
 		mobAmount: [ 10, 12 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin, TILES.coin ],
-		itemAmount: [ 8, 10 ]
+		itemAmount: [ 5, 7 ]
 	},{
 		name: "Underground Garden",
 		desc: "What a surprise, an underground garden. It is wonderful how these plants can grow here beneath the surface.",
@@ -657,12 +657,12 @@ var LEVELS = [
 		mobs: [ MOBS.spider, MOBS.bat, MOBS.slime ],
 		mobAmount: [ 8, 10 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem, TILES.gem ],
-		itemAmount: [ 8, 10 ]
+		itemAmount: [ 6, 8 ]
 	},{
 		name: "City",
 		desc: "Vast underground city - infested with goblins.",
 		generator: "dungeon",
-		width: [ 50, 60 ],
+		width: [ 45, 55 ],
 		height: [ 40, 50 ],
 		roomWidth: [ 6, 10 ],
 		roomHeight: [ 4, 10 ],
