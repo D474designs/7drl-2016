@@ -512,7 +512,7 @@ var PERKS = [
 		desc: 'Increases your chance to hit. Cost <span class="sprite gem"></span> 3',
 		isAvailable: function(actor) { return actor.dexterity < 0.8; },
 		canGet: function(actor) { return actor.gems >= 3; },
-		get: function(actor) { actor.gems -= 3; actor.dexterity += 0.1; },
+		get: function(actor) { actor.gems -= 3; actor.dexterity += 0.1; }
 	},{
 		name: "Eagle Eyes",
 		desc: 'You can see further. Cost <span class="sprite coin"></span> 3',
@@ -538,19 +538,19 @@ var PERKS = [
 		desc: 'Always see where the stairs are. Cost <span class="sprite coin"></span> 3',
 		isAvailable: function(actor) { return !actor.clairvoyant; },
 		canGet: function(actor) { return actor.coins >= 3; },
-		get: function(actor) { actor.coins -= 3; actor.clairvoyant = true; },
+		get: function(actor) { actor.coins -= 3; actor.clairvoyant = true; }
 	},{
 		name: "Monster Mind",
 		desc: 'Telepathically see monsters through the walls. Cost <span class="sprite coin"></span> 5',
 		isAvailable: function(actor) { return !actor.monsterMind; },
 		canGet: function(actor) { return actor.coins >= 5; },
-		get: function(actor) { actor.coins -= 5; actor.monsterMind = true; },
+		get: function(actor) { actor.coins -= 5; actor.monsterMind = true; }
 	},{
 		name: "Stealth",
 		desc: 'Enemies have a harder time spotting you. Cost <span class="sprite coin"></span> 3',
 		isAvailable: function(actor) { return actor.stealth < 2; },
 		canGet: function(actor) { return actor.coins >= 3; },
-		get: function(actor) { actor.coins -= 3; actor.stealth += 1; },
+		get: function(actor) { actor.coins -= 3; actor.stealth += 1; }
 	}
 ];
 

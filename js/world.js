@@ -68,8 +68,8 @@ World.prototype.update = function(dt) {
 			this.currentActor.updateVisibility();
 			break; // Always wait for next round after player action
 		} else if (ui.actor.visibility(this.currentActor.pos[0], this.currentActor.pos[1]) > 0.9 &&
-			distSq(this.currentActor.pos[0], this.currentActor.pos[1], ui.actor.pos[0], ui.actor.pos[1])
-			< ui.actor.vision * ui.actor.vision) // Dist check needed because of Monster Mind perk
+			distSq(this.currentActor.pos[0], this.currentActor.pos[1], ui.actor.pos[0], ui.actor.pos[1]) <
+				ui.actor.vision * ui.actor.vision) // Dist check needed because of Monster Mind perk
 		{
 			this.roundTimer = Date.now() + CONFIG.enemyRoundDelay;
 			break;
