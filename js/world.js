@@ -36,6 +36,7 @@ World.prototype.create = function() {
 	var pl = new Actor(this.dungeon.start[0], this.dungeon.start[1], def);
 	pl.updateVisibility();
 	this.dungeon.actors.push(pl);
+	this.dungeon.update();
 	this.resetScheduler();
 	this.running = true;
 	return pl;

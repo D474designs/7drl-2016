@@ -357,8 +357,16 @@ UI.prototype.update = function() {
 };
 
 UI.prototype.render = function(camera, dungeon) {
-	if (!this.actor)
+	if (!this.actor) {
+		camera.pos[0] = dungeon.start[0] - camera.center[0];
+		camera.pos[1] = dungeon.start[1] - camera.center[1];
+		world.dungeon.draw(camera, this.display, {
+			visibility: function(x, y) {
+				return (x < 0 || y < 0 || x >= dungeon.width || y >= dungeon.height) ? 0 : 1;
+			}
+		});
 		return;
+	}
 	camera.pos[0] = this.actor.pos[0] - camera.center[0];
 	camera.pos[1] = this.actor.pos[1] - camera.center[1];
 	if (this.actor.moved) {
