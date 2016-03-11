@@ -533,7 +533,20 @@ var PERKS = [
 		isAvailable: function(actor) { return actor.drainChance < 1; },
 		canGet: function(actor) { return actor.gems >= 3; },
 		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; }
-	}/*,{
+	},{
+		name: "Clairvoyant",
+		desc: 'Always see where the stairs are. Cost <span class="sprite coin"></span> 3',
+		isAvailable: function(actor) { return !actor.clairvoyant; },
+		canGet: function(actor) { return actor.coins >= 3; },
+		get: function(actor) { actor.coins -= 3; actor.clairvoyant = true; },
+	},{
+		name: "Monster Mind",
+		desc: 'Telepathically see monsters through the walls. Cost <span class="sprite coin"></span> 5',
+		isAvailable: function(actor) { return !actor.clairvoyant; },
+		canGet: function(actor) { return actor.coins >= 5; },
+		get: function(actor) { actor.coins -= 5; actor.monsterMind = true; },
+	}
+	/*,{
 		name: "",
 		desc: "",
 		isAvailable: function(actor) { return true; },

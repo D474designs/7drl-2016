@@ -18,6 +18,8 @@ function Actor(x, y, def) {
 	this.criticalChance = def.criticalChance || 0;
 	this.luck = def.luck || 0;
 	this.drainChance = def.drainChance || 0;
+	this.clairvoyant = false;
+	this.monsterMind = false;
 	this.gems = 0;
 	this.keys = 0;
 	this.coins = 0;
@@ -45,8 +47,19 @@ Actor.prototype.getSpeed = function() {
 };
 
 Actor.prototype.visibility = function(x, y) {
-	if (x < 0 || y < 0 || x >= world.dungeon.width || y >= world.dungeon.height)
+	var dungeon = world.dungeon;
+	if (x < 0 || y < 0 || x >= dungeon.width || y >= dungeon.height)
 		return false;
+	if (this.clairvoyant) {
+		if (x == dungeon.start[0] && y == dungeon.start[1])
+			return 1;
+		if (x == dungeon.end[0] && y == dungeon.end[1])
+			return 1;
+	}
+	if (this.monsterMind) {
+		var monster = dungeon.getTile(x, y, Dungeon.LAYER_ACTOR);
+		if (monster) return 1;
+	}
 	return this.fov[x + y * world.dungeon.width];
 };
 
