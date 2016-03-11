@@ -252,10 +252,9 @@ Actor.prototype.hunterAI = function() {
 		this.updateVisibility();
 		if (this.visibility(newTarget.pos[0], newTarget.pos[1]) < 1) {
 			return this.drunkAI();
-		} else if (ui.actor.stealth) {
-			// TODO: Hack: Should do this properly if there's enemies with stealth ability
-			var d = dist(this.pos[0], this.pos[1], newTarget.pos[0], newTarget.pos[1]);
-			if (d <= Math.max(2, this.vision - ui.actor.stealth))
+		} else if (newTarget.stealth) {
+			var d = Math.round(dist(this.pos[0], this.pos[1], newTarget.pos[0], newTarget.pos[1]));
+			if (d > Math.max(2, this.vision - newTarget.stealth))
 				return this.drunkAI();
 		}
 		this.ai.target = ui.actor;
