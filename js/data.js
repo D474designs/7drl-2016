@@ -542,7 +542,7 @@ var PERKS = [
 	},{
 		name: "Monster Mind",
 		desc: 'Telepathically see monsters through the walls. Cost <span class="sprite coin"></span> 5',
-		isAvailable: function(actor) { return !actor.clairvoyant; },
+		isAvailable: function(actor) { return !actor.monsterMind; },
 		canGet: function(actor) { return actor.coins >= 5; },
 		get: function(actor) { actor.coins -= 5; actor.monsterMind = true; },
 	},{
