@@ -411,7 +411,7 @@ var MOBS = {
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
 		desc: "Tough enemy",
-		health: 4, vision: 9, speed: 1,
+		health: 4, vision: 8, speed: 1,
 		loot: TILES.coin, lootChance: 1
 	},
 	rat: {
@@ -532,7 +532,7 @@ var PERKS = [
 			' Not at all black magic. Cost <span class="sprite gem"></span> 3',
 		isAvailable: function(actor) { return actor.drainChance < 1; },
 		canGet: function(actor) { return actor.gems >= 3; },
-		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.2; }
+		get: function(actor) { actor.gems -= 3; actor.drainChance += 0.35; }
 	},{
 		name: "Clairvoyant",
 		desc: 'Always see where the stairs are. Cost <span class="sprite coin"></span> 3',
@@ -617,8 +617,8 @@ var LEVELS = [
 		name: "Prison",
 		desc: "This looks like an old prison. Better be careful.",
 		generator: "dungeon",
-		width: 50,
-		height: 40,
+		width: 45,
+		height: 35,
 		roomWidth: [ 3, 5 ],
 		roomHeight: [ 2, 5 ],
 		dugPercentage: 0.5,
@@ -627,7 +627,7 @@ var LEVELS = [
 		decor: [ TILES.pot ],
 		decorAmount: [ 5, 8 ],
 		mobs: [ MOBS.skeleton, MOBS.mummy, MOBS.ghost, MOBS.rat ],
-		mobAmount: [ 10, 12 ],
+		mobAmount: [ 9, 12 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.coin, TILES.coin ],
 		itemAmount: [ 5, 7 ]
 	},{
@@ -673,7 +673,7 @@ var LEVELS = [
 		decor: [ TILES.pillar, TILES.pillar, TILES.statue, TILES.statue, TILES.well, TILES.pot, TILES.chest ],
 		decorAmount: [ 30, 35 ],
 		mobs: [ MOBS.goblin, MOBS.goblin, MOBS.goblin, MOBS.golem ],
-		mobAmount: [ 10, 15 ],
+		mobAmount: [ 10, 14 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
 		itemAmount: [ 15, 20 ]
 	},{
