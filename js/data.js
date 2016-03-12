@@ -411,7 +411,7 @@ var MOBS = {
 	goblin: {
 		name: "Goblin", ch: TILES.goblin.ch, ai: "hunter",
 		desc: "Tough enemy",
-		health: 5, vision: 9, speed: 1,
+		health: 4, vision: 9, speed: 1,
 		loot: TILES.coin, lootChance: 1
 	},
 	rat: {
@@ -423,7 +423,7 @@ var MOBS = {
 	golem: {
 		name: "Rock Golem", ch: TILES.golem.ch, ai: "hunter",
 		desc: "Extremely tough and strong, but thankfully slow and doesn't see far",
-		health: 10, vision: 3, speed: 0.5, criticalChance: 0.5,
+		health: 8, vision: 3, speed: 0.5, criticalChance: 0.6,
 		loot: TILES.potion_health, lootChance: 1
 	},
 	mummy: {
@@ -492,14 +492,14 @@ var PERKS = [
 		desc: 'Increases maximum health. Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return true; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.health += 1; actor.maxHealth += 1; }
+		get: function(actor) { actor.gems -= 2; actor.health += 1; actor.maxHealth += 2; }
 	},{
 		name: "Strength",
 		desc: 'Increases critical hit chance, which doubles damage.' +
 			' Cost <span class="sprite gem"></span> 2',
 		isAvailable: function(actor) { return actor.criticalChance < 0.9; },
 		canGet: function(actor) { return actor.gems >= 2; },
-		get: function(actor) { actor.gems -= 2; actor.criticalChance += 0.1; }
+		get: function(actor) { actor.gems -= 2; actor.criticalChance += 0.15; }
 	},{
 		name: "Swiftness",
 		desc: 'Increases your speed, which periodically results in extra turns.' +
@@ -512,7 +512,7 @@ var PERKS = [
 		desc: 'Increases your chance to hit. Cost <span class="sprite gem"></span> 3',
 		isAvailable: function(actor) { return actor.dexterity < 0.8; },
 		canGet: function(actor) { return actor.gems >= 3; },
-		get: function(actor) { actor.gems -= 3; actor.dexterity += 0.1; }
+		get: function(actor) { actor.gems -= 3; actor.dexterity += 0.15; }
 	},{
 		name: "Eagle Eyes",
 		desc: 'You can see further. Cost <span class="sprite coin"></span> 3',
@@ -671,7 +671,7 @@ var LEVELS = [
 		wall: [ TILES.wall_stone_blue1, TILES.wall_stone_blue2 ],
 		floor: [ TILES.floor_marble_a, TILES.floor_marble_b, TILES.floor_marble_c, TILES.floor_marble_d ],
 		decor: [ TILES.pillar, TILES.pillar, TILES.statue, TILES.statue, TILES.well, TILES.pot, TILES.chest ],
-		decorAmount: [ 20, 25 ],
+		decorAmount: [ 30, 35 ],
 		mobs: [ MOBS.goblin, MOBS.goblin, MOBS.goblin, MOBS.golem ],
 		mobAmount: [ 10, 15 ],
 		items: [ TILES.potion_health, TILES.coin, TILES.gem, TILES.gem ],
